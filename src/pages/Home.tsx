@@ -2,6 +2,9 @@
 import Hero from "@/components/Hero";
 import PhotoGallery from "@/components/PhotoGallery";
 import NewsSection from "@/components/NewsSection";
+import CurriculumStructure from "@/components/CurriculumStructure";
+import FeaturedFaculty from "@/components/FeaturedFaculty";
+import SpecialPrograms from "@/components/SpecialPrograms";
 
 const Home = () => {
   return (
@@ -23,11 +26,20 @@ const Home = () => {
               <span className="text-2xl md:text-3xl font-medium text-slate-600">創造行銷新典範</span>
             </h2>
             <p className="text-xl text-slate-600 leading-relaxed">
-              在這裡，每一個想法都可能成為改變世界的創新力量
+              全台唯一設定聚焦培育「品牌端(甲方)思維行銷人才」之系所
             </p>
           </div>
         </div>
       </section>
+      
+      {/* 課程架構展示 */}
+      <CurriculumStructure />
+      
+      {/* 明星師資展示 */}
+      <FeaturedFaculty />
+      
+      {/* 特色計畫 */}
+      <SpecialPrograms />
       
       <PhotoGallery />
       <NewsSection />

@@ -23,11 +23,11 @@ const About = () => {
               系所定位與特色
             </Badge>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-12 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 bg-clip-text text-transparent tracking-tight">
-              系所定位
+              全台唯一
             </h2>
             <p className="text-2xl md:text-3xl text-slate-600 max-w-6xl mx-auto leading-relaxed font-light">
-              全台唯一聚焦於品牌端行銷的學系，我們培養學生具備甲方思維，
-              深入理解消費者心理學與數位行銷的核心素養
+              行銷系目標在培育具備專業行銷知能、消費者洞察能力、企劃與執行能力、創新/創意能力之「品牌/產品行銷」專業人員。
+              本系是全台灣唯一設定聚焦培育「品牌端(甲方)思維行銷人才」之系所。
             </p>
           </div>
 
@@ -45,7 +45,7 @@ const About = () => {
                     {
                       icon: Target,
                       title: "品牌端甲方思維",
-                      desc: "從品牌方角度思考行銷策略，培養學生成為企業內部行銷專家",
+                      desc: "全台唯一聚焦培育「品牌端(甲方)思維行銷人才」，培養學生成為企業內部行銷專家",
                       color: "text-orange-600",
                       bg: "from-orange-50 to-red-50",
                       border: "border-orange-200/30"
@@ -53,23 +53,23 @@ const About = () => {
                     {
                       icon: Users,
                       title: "消費者心理學導向", 
-                      desc: "深入探討消費者行為與心理，建立科學化的行銷決策基礎",
+                      desc: "以心理學為基礎深入探討消費者行為，從普通心理學到認知心理學的完整學習路徑",
                       color: "text-blue-600",
                       bg: "from-blue-50 to-indigo-50",
                       border: "border-blue-200/30"
                     },
                     {
                       icon: Sparkles,
-                      title: "數位行銷素養",
-                      desc: "結合傳統行銷理論與最新數位工具，培養全方位行銷專業",
+                      title: "邏輯學在行銷",
+                      desc: "首創在商學院教導行銷人邏輯學，「邏輯好，做什麼都好」的理念，徹底改變決策思路",
                       color: "text-green-600",
                       bg: "from-green-50 to-emerald-50",
                       border: "border-green-200/30"
                     },
                     {
                       icon: Trophy,
-                      title: "實務與理論並重",
-                      desc: "透過產學合作與實習機會，讓學生在學習中累積實戰經驗",
+                      title: "電商實戰與業界師資",
+                      desc: "與全台電商教育最火的業界大師合作，把貴森森秘技課程直接搬到校園內",
                       color: "text-purple-600",
                       bg: "from-purple-50 to-violet-50",
                       border: "border-purple-200/30"
@@ -102,8 +102,8 @@ const About = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     <div className="absolute top-4 right-4 w-4 h-4 bg-orange-400 rounded-full animate-pulse"></div>
                   </div>
-                  <p className="text-slate-700 font-semibold text-2xl mb-4">系所形象展示</p>
-                  <p className="text-slate-500 text-lg">師生互動 × 教學環境</p>
+                  <p className="text-slate-700 font-semibold text-2xl mb-4">品牌端思維</p>
+                  <p className="text-slate-500 text-lg">甲方行銷人才培育基地</p>
                 </div>
 
                 {/* 浮動元素 */}
@@ -121,8 +121,8 @@ const About = () => {
               
               <Card className="absolute -top-8 -right-8 bg-white shadow-2xl border-0 hover:scale-110 transition-transform duration-500 rounded-2xl overflow-hidden">
                 <CardContent className="p-10">
-                  <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">40年</div>
-                  <div className="text-slate-600 font-medium text-lg">教育傳承</div>
+                  <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">4+1</div>
+                  <div className="text-slate-600 font-medium text-lg">學碩一貫</div>
                 </CardContent>
               </Card>
             </div>
@@ -137,24 +137,25 @@ const About = () => {
             <CardContent className="p-20 text-center relative z-10">
               <Badge className="bg-white/10 backdrop-blur-md text-orange-300 border border-white/20 px-10 py-4 rounded-full mb-12 font-medium text-lg">
                 <Trophy className="w-5 h-5 mr-3" />
-                我們的使命
+                培育目標
               </Badge>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 tracking-tight">我們的使命</h3>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 tracking-tight">培育未來職業角色</h3>
               <p className="text-2xl md:text-3xl text-blue-100 max-w-7xl mx-auto leading-relaxed mb-20 font-light">
-                培養具備品牌思維、消費者洞察力與數位行銷技能的專業人才，
-                成為企業內部行銷團隊的核心力量，推動品牌成長與市場創新
+                品牌經理、產品經理、行銷企劃主管、市場研究分析師、數位行銷經理、促銷企劃經理、
+                通路行銷經理、電商經營管理、自媒體經營者、社群經營管理師等職務
               </p>
-              <div className="grid md:grid-cols-3 gap-16">
+              <div className="grid md:grid-cols-4 gap-16">
                 {[
-                  { title: "品牌思維", subtitle: "Brand Mindset", icon: Target, color: "from-orange-400 to-red-400" },
-                  { title: "消費者洞察", subtitle: "Consumer Insights", icon: Users, color: "from-blue-400 to-indigo-400" },
-                  { title: "數位創新", subtitle: "Digital Innovation", icon: Sparkles, color: "from-green-400 to-emerald-400" }
+                  { title: "行銷基石專業", subtitle: "Marketing Foundation", icon: Target, color: "from-orange-400 to-red-400" },
+                  { title: "消費者洞察力", subtitle: "Consumer Insights", icon: Users, color: "from-blue-400 to-indigo-400" },
+                  { title: "企劃與執行力", subtitle: "Planning & Execution", icon: CheckCircle, color: "from-green-400 to-emerald-400" },
+                  { title: "創新創意思維", subtitle: "Innovation & Creativity", icon: Sparkles, color: "from-purple-400 to-pink-400" }
                 ].map((item, index) => (
                   <div key={index} className="group text-center">
                     <div className={`w-24 h-24 bg-gradient-to-br ${item.color}/20 rounded-[2rem] flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-500 border border-white/10`}>
                       <item.icon className="w-12 h-12 text-orange-300" />
                     </div>
-                    <div className="text-orange-400 font-bold text-3xl mb-3">{item.title}</div>
+                    <div className="text-orange-400 font-bold text-2xl mb-3">{item.title}</div>
                     <div className="text-blue-200 font-light tracking-wide text-lg">{item.subtitle}</div>
                   </div>
                 ))}
