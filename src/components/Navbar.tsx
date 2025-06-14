@@ -1,92 +1,115 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const Navbar = () => {
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const isActive = (path: string) => location.pathname === path;
   
   return (
-    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/60 z-50 shadow-sm">
-      <div className="container mx-auto px-6 py-3">
+    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl border-b border-slate-200/40 z-50 shadow-sm">
+      <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-teal-600 to-blue-600 rounded-lg flex items-center justify-center">
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                  <div className="w-4 h-4 border-2 border-white rounded-full"></div>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-slate-800 text-lg leading-tight">文化大學</span>
-                <span className="text-sm text-teal-600 font-medium">行銷學系</span>
-              </div>
+          {/* Logo 區域 */}
+          <Link to="/" className="flex items-center space-x-4 group">
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png" 
+                alt="文化大學行銷所 Logo"
+                className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </Link>
           
-          <div className="hidden md:flex space-x-6">
-            <Link 
-              to="/about"
-              className={`font-medium transition-colors ${
-                isActive('/about') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
-              }`}
-            >
-              系所介紹
-            </Link>
-            <Link 
-              to="/features"
-              className={`font-medium transition-colors ${
-                isActive('/features') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
-              }`}
-            >
-              教學特色
-            </Link>
-            <Link 
-              to="/faculty"
-              className={`font-medium transition-colors ${
-                isActive('/faculty') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
-              }`}
-            >
-              師資陣容
-            </Link>
-            <Link 
-              to="/activities"
-              className={`font-medium transition-colors ${
-                isActive('/activities') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
-              }`}
-            >
-              活動成果
-            </Link>
-            <Link 
-              to="/admissions"
-              className={`font-medium transition-colors ${
-                isActive('/admissions') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
-              }`}
-            >
-              招生資訊
-            </Link>
-            <Link 
-              to="/contact"
-              className={`font-medium transition-colors ${
-                isActive('/contact') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
-              }`}
-            >
-              聯絡我們
-            </Link>
+          {/* 桌面導航 */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {[
+              { path: '/about', label: '系所介紹' },
+              { path: '/features', label: '教學特色' },
+              { path: '/faculty', label: '師資陣容' },
+              { path: '/activities', label: '活動成果' },
+              { path: '/admissions', label: '招生資訊' },
+              { path: '/contact', label: '聯絡我們' }
+            ].map((item) => (
+              <Link 
+                key={item.path}
+                to={item.path}
+                className={`relative font-medium transition-all duration-300 group ${
+                  isActive(item.path) 
+                    ? 'text-teal-600' 
+                    : 'text-slate-700 hover:text-teal-600'
+                }`}
+              >
+                <span className="relative z-10">{item.label}</span>
+                <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-600 to-blue-600 transform origin-left transition-transform duration-300 ${
+                  isActive(item.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                }`}></div>
+              </Link>
+            ))}
           </div>
 
-          <div className="flex space-x-3">
+          {/* CTA 按鈕 */}
+          <div className="hidden lg:flex items-center space-x-3">
             <Button 
               variant="outline" 
               size="sm"
               asChild
-              className="border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
+              className="border-2 border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-300"
             >
               <Link to="/admissions">立即報名</Link>
             </Button>
           </div>
+
+          {/* 移動端菜單按鈕 */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="lg:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X /> : <Menu />}
+          </Button>
         </div>
+
+        {/* 移動端菜單 */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden mt-4 p-6 bg-white/95 backdrop-blur-xl rounded-2xl border border-slate-200/50 shadow-xl">
+            <div className="flex flex-col space-y-4">
+              {[
+                { path: '/about', label: '系所介紹' },
+                { path: '/features', label: '教學特色' },
+                { path: '/faculty', label: '師資陣容' },
+                { path: '/activities', label: '活動成果' },
+                { path: '/admissions', label: '招生資訊' },
+                { path: '/contact', label: '聯絡我們' }
+              ].map((item) => (
+                <Link 
+                  key={item.path}
+                  to={item.path}
+                  className={`font-medium py-2 px-4 rounded-lg transition-all duration-300 ${
+                    isActive(item.path) 
+                      ? 'text-teal-600 bg-teal-50' 
+                      : 'text-slate-700 hover:text-teal-600 hover:bg-teal-50'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Button 
+                asChild
+                className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white mt-4"
+              >
+                <Link to="/admissions" onClick={() => setIsMobileMenuOpen(false)}>立即報名</Link>
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
