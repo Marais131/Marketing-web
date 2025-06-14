@@ -5,22 +5,24 @@ import { Facebook, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white py-12">
+    <footer className="bg-slate-800 text-white py-12">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white font-bold">
-                CCU
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-blue-500 rounded-lg flex items-center justify-center">
+                <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                  <div className="w-3 h-3 border-2 border-white rounded-full"></div>
+                </div>
               </div>
               <div>
                 <h3 className="font-bold text-lg">中國文化大學</h3>
                 <p className="text-slate-400 text-sm">行銷學系 / 行銷研究所</p>
               </div>
             </div>
-            <p className="text-slate-400 mb-4">
-              全台唯一聚焦品牌端行銷思維的學系<br/>
-              培養具備消費者心理學與數位行銷素養的專業人才
+            <p className="text-slate-400 mb-4 leading-relaxed">
+              培養具備消費者心理學與數位行銷素養的專業人才<br/>
+              打造品牌思維與創新行銷的未來領袖
             </p>
             <div className="flex space-x-4">
               <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white p-2">
@@ -36,7 +38,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4 text-orange-400">快速連結</h4>
+            <h4 className="font-semibold mb-4 text-teal-400">快速連結</h4>
             <div className="space-y-2">
               <Link to="/about" className="block text-slate-400 hover:text-white transition-colors">系所介紹</Link>
               <Link to="/faculty" className="block text-slate-400 hover:text-white transition-colors">師資陣容</Link>
@@ -46,7 +48,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4 text-orange-400">聯絡資訊</h4>
+            <h4 className="font-semibold mb-4 text-teal-400">聯絡資訊</h4>
             <div className="space-y-2 text-slate-400 text-sm">
               <p>台北市士林區華岡路55號</p>
               <p>電話：02-2861-0511</p>
@@ -55,7 +57,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400 text-sm">
+        <div className="border-t border-slate-700 mt-8 pt-8 text-center text-slate-400 text-sm">
           <p>&copy; 2024 中國文化大學行銷學系. All rights reserved.</p>
         </div>
       </div>

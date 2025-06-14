@@ -8,21 +8,28 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
   
   return (
-    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50">
-      <div className="container mx-auto px-6 py-4">
+    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/60 z-50 shadow-sm">
+      <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-900 to-blue-700 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-              CCU
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-teal-600 to-blue-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                  <div className="w-4 h-4 border-2 border-white rounded-full"></div>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-bold text-slate-800 text-lg leading-tight">文化大學</span>
+                <span className="text-sm text-teal-600 font-medium">行銷學系</span>
+              </div>
             </div>
-            <span className="font-bold text-slate-800 text-lg">行銷系所</span>
           </Link>
           
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-6">
             <Link 
               to="/about"
               className={`font-medium transition-colors ${
-                isActive('/about') ? 'text-blue-900' : 'text-slate-700 hover:text-blue-900'
+                isActive('/about') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
               }`}
             >
               系所介紹
@@ -30,7 +37,7 @@ const Navbar = () => {
             <Link 
               to="/features"
               className={`font-medium transition-colors ${
-                isActive('/features') ? 'text-blue-900' : 'text-slate-700 hover:text-blue-900'
+                isActive('/features') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
               }`}
             >
               教學特色
@@ -38,7 +45,7 @@ const Navbar = () => {
             <Link 
               to="/faculty"
               className={`font-medium transition-colors ${
-                isActive('/faculty') ? 'text-blue-900' : 'text-slate-700 hover:text-blue-900'
+                isActive('/faculty') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
               }`}
             >
               師資陣容
@@ -46,7 +53,7 @@ const Navbar = () => {
             <Link 
               to="/activities"
               className={`font-medium transition-colors ${
-                isActive('/activities') ? 'text-blue-900' : 'text-slate-700 hover:text-blue-900'
+                isActive('/activities') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
               }`}
             >
               活動成果
@@ -54,7 +61,7 @@ const Navbar = () => {
             <Link 
               to="/admissions"
               className={`font-medium transition-colors ${
-                isActive('/admissions') ? 'text-blue-900' : 'text-slate-700 hover:text-blue-900'
+                isActive('/admissions') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
               }`}
             >
               招生資訊
@@ -62,7 +69,7 @@ const Navbar = () => {
             <Link 
               to="/contact"
               className={`font-medium transition-colors ${
-                isActive('/contact') ? 'text-blue-900' : 'text-slate-700 hover:text-blue-900'
+                isActive('/contact') ? 'text-teal-600' : 'text-slate-700 hover:text-teal-600'
               }`}
             >
               聯絡我們
@@ -74,7 +81,7 @@ const Navbar = () => {
               variant="outline" 
               size="sm"
               asChild
-              className="border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white"
+              className="border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
             >
               <Link to="/admissions">立即報名</Link>
             </Button>
