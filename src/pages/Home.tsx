@@ -1,6 +1,5 @@
 
 import Hero from "@/components/Hero";
-import AdmissionHighlight from "@/components/AdmissionHighlight";
 import PhotoGallery from "@/components/PhotoGallery";
 import NewsSection from "@/components/NewsSection";
 import CurriculumStructure from "@/components/CurriculumStructure";
@@ -11,9 +10,6 @@ const Home = () => {
   return (
     <div className="relative">
       <Hero />
-      
-      {/* 招生重點資訊 - 針對家長優先展示 */}
-      <AdmissionHighlight />
       
       {/* 創新過渡區塊 */}
       <section className="relative py-20 bg-gradient-to-br from-white via-slate-50 to-teal-50/30 overflow-hidden">
