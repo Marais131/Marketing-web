@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -57,67 +56,57 @@ const SpecialPrograms = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* 4+1學碩一貫 */}
-            <Card className={`group hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-br ${programs[0].bgColor} hover:scale-105 relative overflow-hidden`}>
-              <div className={`absolute inset-0 bg-gradient-to-br ${programs[0].color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
-              
-              <CardHeader className="relative z-10 p-10">
-                <div className={`w-20 h-20 bg-gradient-to-br ${programs[0].color} rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  <programs[0].icon className="w-10 h-10 text-white" />
-                </div>
-                <CardTitle className="text-3xl text-slate-900 mb-4">{programs[0].title}</CardTitle>
-                <div className="text-lg font-medium text-slate-600 mb-6">{programs[0].subtitle}</div>
-              </CardHeader>
-
-              <CardContent className="relative z-10 p-10 pt-0">
-                <div className="space-y-6 mb-8">
-                  {programs[0].benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-center space-x-4 group-hover:translate-x-2 transition-transform duration-300">
-                      <div className={`w-12 h-12 bg-gradient-to-br ${programs[0].color} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                        <benefit.icon className="w-6 h-6 text-white" />
+            {programs.map((program, index) => {
+              const ProgramIcon = program.icon;
+              return (
+                <Card key={index} className={`group hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-br ${program.bgColor} hover:scale-105 relative overflow-hidden`}>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${program.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  
+                  <CardHeader className="relative z-10 p-10">
+                    <div className={`w-20 h-20 bg-gradient-to-br ${program.color} rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <ProgramIcon className="w-10 h-10 text-white" />
+                    </div>
+                    <CardTitle className="text-3xl text-slate-900 mb-4">{program.title}</CardTitle>
+                    <div className="text-lg font-medium text-slate-600 mb-6">{program.subtitle}</div>
+                  </CardHeader>
+    
+                  <CardContent className="relative z-10 p-10 pt-0">
+                    {program.benefits && (
+                      <div className="space-y-6 mb-8">
+                        {program.benefits.map((benefit, benefitIndex) => {
+                          const BenefitIcon = benefit.icon;
+                          return (
+                            <div key={benefitIndex} className="flex items-center space-x-4 group-hover:translate-x-2 transition-transform duration-300">
+                              <div className={`w-12 h-12 bg-gradient-to-br ${program.color} rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg`}>
+                                <BenefitIcon className="w-6 h-6 text-white" />
+                              </div>
+                              <span className="text-slate-700 font-medium text-lg">{benefit.text}</span>
+                            </div>
+                          );
+                        })}
                       </div>
-                      <span className="text-slate-700 font-medium text-lg">{benefit.text}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/50">
-                  <p className="text-slate-600 leading-relaxed italic">
-                    {programs[0].description}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+                    )}
 
-            {/* 職業角色定位 */}
-            <Card className={`group hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-br ${programs[1].bgColor} hover:scale-105 relative overflow-hidden`}>
-              <div className={`absolute inset-0 bg-gradient-to-br ${programs[1].color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
-              
-              <CardHeader className="relative z-10 p-10">
-                <div className={`w-20 h-20 bg-gradient-to-br ${programs[1].color} rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  <programs[1].icon className="w-10 h-10 text-white" />
-                </div>
-                <CardTitle className="text-3xl text-slate-900 mb-4">{programs[1].title}</CardTitle>
-                <div className="text-lg font-medium text-slate-600 mb-6">{programs[1].subtitle}</div>
-              </CardHeader>
-
-              <CardContent className="relative z-10 p-10 pt-0">
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  {programs[1].careers.map((career, index) => (
-                    <div key={index} className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300">
-                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                      <span className="text-slate-700 font-medium">{career}</span>
+                    {program.careers && (
+                       <div className="grid grid-cols-2 gap-4 mb-8">
+                        {program.careers.map((career, careerIndex) => (
+                          <div key={careerIndex} className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300">
+                            <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                            <span className="text-slate-700 font-medium">{career}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/50">
+                      <p className="text-slate-600 leading-relaxed italic">
+                        {program.description}
+                      </p>
                     </div>
-                  ))}
-                </div>
-                
-                <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/50">
-                  <p className="text-slate-600 leading-relaxed italic">
-                    {programs[1].description}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           {/* CTA 區塊 */}
@@ -147,4 +136,3 @@ const SpecialPrograms = () => {
 };
 
 export default SpecialPrograms;
-
