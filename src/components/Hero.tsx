@@ -1,13 +1,10 @@
 
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowDown, Sparkles, Play, Star } from "lucide-react";
+import { Sparkles, Play } from "lucide-react";
 
 const Hero = () => {
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* 精緻的背景漸層 */}
@@ -73,17 +70,21 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-24">
             <Button 
               size="lg" 
+              asChild
               className="bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white px-16 py-6 text-xl font-medium shadow-xl hover:shadow-2xl transition-all duration-500 rounded-xl hover:scale-105"
             >
-              了解招生資訊
+              <Link to="/admissions">了解招生資訊</Link>
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
+              asChild
               className="border-2 border-blue-900/20 text-blue-900 bg-white/80 backdrop-blur-sm hover:bg-blue-50 px-16 py-6 text-xl font-medium rounded-xl transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-105"
             >
-              <Play className="w-6 h-6 mr-3" />
-              觀看系所介紹
+              <Link to="/about">
+                <Play className="w-6 h-6 mr-3" />
+                觀看系所介紹
+              </Link>
             </Button>
           </div>
 
@@ -107,18 +108,17 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* 精緻的滾動指示器 */}
+      {/* 精緻的導航指示器 */}
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
-        <button 
-          onClick={scrollToAbout}
+        <Link 
+          to="/about"
           className="group flex flex-col items-center text-slate-400 hover:text-slate-600 transition-all duration-500"
         >
           <div className="w-8 h-12 border-2 border-slate-300 rounded-full flex justify-center mb-4 group-hover:border-slate-400 transition-colors backdrop-blur-sm">
             <div className="w-1.5 h-4 bg-slate-400 rounded-full mt-3 animate-pulse group-hover:bg-slate-600"></div>
           </div>
-          <ArrowDown className="w-5 h-5 animate-bounce" />
           <span className="text-sm mt-3 font-medium tracking-wide">探索更多</span>
-        </button>
+        </Link>
       </div>
     </section>
   );
