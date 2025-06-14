@@ -2,28 +2,35 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Play } from "lucide-react";
+import { Sparkles, Play, ChevronDown } from "lucide-react";
 
 const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* 精緻的背景漸層 */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30"></div>
+      {/* 背景圖片層 */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&h=1080&fit=crop&q=80" 
+          alt="校園背景"
+          className="w-full h-full object-cover opacity-10"
+        />
+      </div>
       
       {/* 高級幾何背景圖案 */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.03),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(59,130,246,0.01)_0%,transparent_25%,transparent_75%,rgba(249,115,22,0.01)_100%)]"></div>
+      <div className="absolute inset-0 z-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(59,130,246,0.02)_0%,transparent_25%,transparent_75%,rgba(249,115,22,0.02)_100%)]"></div>
         
         {/* 浮動裝飾元素 */}
-        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-blue-100/20 to-orange-100/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-br from-orange-100/20 to-blue-100/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-blue-100/30 to-orange-100/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-br from-orange-100/30 to-blue-100/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
         
         {/* 精緻的網格背景 */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.02)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center">
+      <div className="relative z-30 container mx-auto px-6 text-center">
         <div className="max-w-7xl mx-auto">
           {/* 精緻的頂部標章 */}
           <div className="mb-16">
@@ -109,16 +116,14 @@ const Hero = () => {
       </div>
 
       {/* 精緻的導航指示器 */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
-        <Link 
-          to="/about"
-          className="group flex flex-col items-center text-slate-400 hover:text-slate-600 transition-all duration-500"
-        >
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30">
+        <div className="group flex flex-col items-center text-slate-400 hover:text-slate-600 transition-all duration-500 cursor-pointer">
           <div className="w-8 h-12 border-2 border-slate-300 rounded-full flex justify-center mb-4 group-hover:border-slate-400 transition-colors backdrop-blur-sm">
             <div className="w-1.5 h-4 bg-slate-400 rounded-full mt-3 animate-pulse group-hover:bg-slate-600"></div>
           </div>
-          <span className="text-sm mt-3 font-medium tracking-wide">探索更多</span>
-        </Link>
+          <ChevronDown className="w-5 h-5 animate-bounce" />
+          <span className="text-sm mt-2 font-medium tracking-wide">探索更多</span>
+        </div>
       </div>
     </section>
   );
