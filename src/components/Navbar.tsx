@@ -53,18 +53,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA 按鈕 */}
-          <div className="hidden lg:flex items-center space-x-3">
-            <Button 
-              variant="outline" 
-              size="sm"
-              asChild
-              className="border-2 border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-300"
-            >
-              <Link to="/admissions">立即報名</Link>
-            </Button>
-          </div>
-
           {/* 移動端菜單按鈕 */}
           <Button
             variant="ghost"
@@ -101,12 +89,7 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <Button 
-                asChild
-                className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white mt-4"
-              >
-                <Link to="/admissions" onClick={() => setIsMobileMenuOpen(false)}>立即報名</Link>
-              </Button>
+              {/* 移除手機 CTA 按鈕 */}
             </div>
           </div>
         )}
@@ -116,3 +99,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
