@@ -7,11 +7,15 @@ import NewsSection from "@/components/NewsSection";
 import KeyFeatures from "@/components/KeyFeatures";
 import Faculty from "@/components/Faculty";
 import HomeGroupPhoto from "@/components/HomeGroupPhoto";
+import CareerSalaryHighlight from "@/components/CareerSalaryHighlight";
 
 const Home = () => {
   return (
     <div className="relative">
       <Hero />
+
+      {/* 薪資/職涯亮點新區塊 */}
+      <CareerSalaryHighlight />
 
       {/* 圖片流動牆 PhotoWall（新）：呈現真實校園面貌 */}
       <PhotoWall />
