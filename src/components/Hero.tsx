@@ -14,14 +14,14 @@ const Hero = () => {
       {/* 圓弧色塊裝飾 */}
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
-      <div className="container mx-auto px-2 md:px-6 py-8 md:py-16 flex flex-col md:flex-row items-center justify-between gap-y-10 md:gap-x-16">
-        {/* 左側 Logo + 標語 */}
-        <div className="flex-1 flex flex-col items-start justify-center max-w-2xl w-full md:pr-0 lg:pr-6 mb-10 md:mb-0">
+      <div className="container mx-auto px-2 md:px-6 py-8 md:py-16 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-6 lg:gap-x-4">
+        {/* 左側 Logo + 標語：flex-[2] 右側影片 flex-[1] 約7:3 */}
+        <div className="flex-[2] flex flex-col items-start justify-center max-w-2xl w-full md:pr-0 lg:pr-2 mb-10 md:mb-0">
           {/* 去背扁平型Logo，左對齊且更大更扁 */}
           <img
             src={LOGO}
             alt="Logo"
-            className="w-full max-w-[480px] md:max-w-[580px] h-[105px] md:h-[145px] object-contain mb-7 transition-all duration-300"
+            className="w-full max-w-[410px] md:max-w-[520px] h-[95px] md:h-[135px] object-contain mb-5 transition-all duration-300"
             style={{
               background: "none",
               border: "none",
@@ -49,9 +49,9 @@ const Hero = () => {
             </span>
           </div>
         </div>
-        {/* 右側 影片區：容器放大並嚴格維持16:9，最大寬度/高度調整，永遠不被切 */}
-        <div className="flex-[1.15] flex items-center justify-center w-full max-w-full mt-2 md:mt-0">
-          <div className="relative w-full max-w-[760px] md:max-w-[880px] lg:max-w-[950px] aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[220px] md:min-h-[380px]">
+        {/* 右側 影片區：約3成寬度，容器保證16:9且不被壓縮 */}
+        <div className="flex-[1] flex items-center justify-center w-full max-w-[450px] md:max-w-[370px] lg:max-w-[420px] mt-2 md:mt-0">
+          <div className="relative w-full aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[150px] md:min-h-[200px]">
             {!showVideo ? (
               <>
                 <img
@@ -59,7 +59,7 @@ const Hero = () => {
                   alt="系所介紹影片"
                   className="w-full h-full object-cover object-center aspect-[16/9] transition-opacity"
                   style={{
-                    minHeight: "220px",
+                    minHeight: "150px",
                     borderRadius: "1.5rem",
                   }}
                 />
@@ -67,9 +67,9 @@ const Hero = () => {
                   <button
                     onClick={() => setShowVideo(true)}
                     aria-label="播放介紹影片"
-                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-20 h-20 md:w-28 md:h-28 flex items-center justify-center hover:scale-105 transition shadow-xl"
+                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center hover:scale-105 transition shadow-xl"
                   >
-                    <Play className="w-10 h-10 md:w-16 md:h-16" fill="currentColor" />
+                    <Play className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" />
                   </button>
                 </div>
               </>
@@ -81,11 +81,11 @@ const Hero = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
-                  minHeight: "220px",
+                  minHeight: "150px",
                   width: "100%",
                   borderRadius: "1.5rem",
                   height: "100%",
-                  maxHeight: "520px"
+                  maxHeight: "320px"
                 }}
               />
             )}
