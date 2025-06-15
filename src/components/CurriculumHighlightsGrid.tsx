@@ -1,6 +1,7 @@
 
 import { BookOpen, Star, LayoutGrid } from "lucide-react";
 
+// highlight 區塊資料 
 const highlights = [
   {
     title: "獨特跨域課程",
@@ -57,45 +58,48 @@ const CurriculumHighlightsGrid = () => {
           </p>
         </div>
 
-        {/* 新版三大 highlight 卡片，等高、圖片固定寬度 */}
-        <div className="flex flex-col gap-10">
+        {/* 新版三大 highlight 卡片 - 全寬圖片/視覺區塊 + 文字疊加，左右分離 */}
+        <div className="flex flex-col gap-12">
           {highlights.map((item, idx) => (
             <div
               key={item.title}
               className={`
-                bg-gradient-to-br ${item.background} 
-                rounded-2xl shadow-lg px-0 py-0
-                flex flex-col md:flex-row items-stretch
-                overflow-hidden animate-fade-in
-                ${idx % 2 === 1 ? "md:flex-row-reverse" : ""}
+                relative rounded-3xl overflow-hidden shadow-lg grid 
+                md:grid-cols-2
+                ${idx % 2 === 1 ? "md:flex-row-reverse" : ""} 
+                bg-gradient-to-br ${item.background}
+                group
+                min-h-[340px]
               `}
             >
-              {/* 圖片區（左或右） */}
-              <div className="md:w-[40%] w-full flex items-center justify-center bg-white/40 min-h-[230px] md:min-h-[260px]">
+              {/* 圖片區：左(奇數)／右(偶數)*/}
+              <div className="relative h-56 md:h-auto md:min-h-[340px]">
                 {item.image ? (
                   <img
                     src={item.image}
                     alt={item.imageAlt}
-                    className="object-contain w-full h-full max-h-[220px] md:max-h-[300px] p-5 rounded-2xl"
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
                 ) : (
-                  <div className="flex w-full h-full items-center justify-center">
-                    <span className="rounded-full bg-white/80 shadow p-8">
-                      <item.icon className="w-14 h-14 text-blue-600" />
+                  <div className="w-full h-full flex items-center justify-center bg-white/60">
+                    <span className="rounded-full bg-white/85 shadow p-12">
+                      <item.icon className="w-16 h-16 text-blue-600" />
                     </span>
                   </div>
                 )}
+                {/* 圖片上覆蓋漸層遮色，讓標題可讀 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-white/30 to-transparent pointer-events-none" />
               </div>
-              {/* 內容區（右或左） */}
-              <div
-                className={`flex-1 min-w-0 px-6 py-8 md:px-10 md:py-10 flex flex-col justify-center ${item.text}`}
-              >
+              {/* 文字內容區 */}
+              <div className={`flex flex-col justify-center p-6 md:p-10 z-10 ${item.text}`}>
                 <span className="flex items-center gap-2 mb-2">
                   <item.icon className="w-8 h-8 text-blue-600" />
-                  <span className="font-semibold text-lg md:text-xl tracking-wide">{item.subtitle}</span>
+                  <span className="font-semibold text-lg md:text-xl tracking-wide">
+                    {item.subtitle}
+                  </span>
                 </span>
-                <h2 className="font-extrabold text-2xl md:text-3xl mb-2">{item.title}</h2>
+                <h2 className="font-extrabold text-2xl md:text-3xl mb-3">{item.title}</h2>
                 <p className="text-base md:text-lg mb-1">{item.description}</p>
               </div>
             </div>
