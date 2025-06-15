@@ -1,8 +1,12 @@
 
+import WhyChooseMarketing from "@/components/WhyChooseMarketing";
 import CurriculumHighlightsGrid from "@/components/CurriculumHighlightsGrid";
 
 const CurriculumHighlights = () => (
-  <CurriculumHighlightsGrid />
+  <>
+    <WhyChooseMarketing />
+    <CurriculumHighlightsGrid />
+  </>
 );
 
 export default CurriculumHighlights;
