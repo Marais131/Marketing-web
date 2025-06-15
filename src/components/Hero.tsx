@@ -1,6 +1,4 @@
 
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
@@ -40,35 +38,15 @@ const Hero = () => {
               在這裡，我們不只學習行銷
               <span className="block text-teal-300 font-bold mt-2">我們創造未來商業的無限可能</span>
             </p>
-            {/* CTA 按鈕 */}
-            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-              <Button 
-                size="lg" 
-                asChild
-                className="group bg-gradient-to-r from-teal-600 via-blue-600 to-purple-600 hover:from-teal-700 hover:via-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg shadow-2xl rounded-2xl hover:scale-105 transition-all"
-              >
-                <Link to="/admissions">
-                  <span>探索無限可能</span>
-                  <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                asChild
-                className="border-2 border-white/40 text-white hover:bg-white/10 px-8 py-4 text-lg backdrop-blur-sm rounded-2xl hover:scale-105 transition"
-              >
-                <Link to="/about">系所深度探索</Link>
-              </Button>
-            </div>
+            {/* 已移除 CTA 按鈕，留下簡約形象 */}
           </div>
 
-          {/* 右側主視覺影片（放大＆壓縮上下空間＋提升畫面美感） */}
+          {/* 右側主視覺影片區（不變） */}
           <div className="lg:w-1/2 w-full flex items-center justify-center mt-0">
             <div className="relative w-full max-w-3xl aspect-video rounded-3xl overflow-hidden shadow-2xl group"
               style={{
                 minHeight: "240px",
-                maxHeight: "68vh", // 桌機時最多快佔滿螢幕
+                maxHeight: "68vh",
                 marginTop: 0,
                 marginBottom: 0,
               }}
@@ -81,13 +59,12 @@ const Hero = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/35 to-transparent flex items-center justify-center z-10">
-                    <Button
+                    <button
                       onClick={() => setShowVideo(true)}
-                      size="lg"
-                      className="group bg-white/25 hover:bg-white/40 text-white border-2 border-white/30 backdrop-blur-md rounded-full w-24 h-24 p-0 hover:scale-110 transition"
+                      className="group bg-white/25 hover:bg-white/40 text-white border-2 border-white/30 backdrop-blur-md rounded-full w-24 h-24 p-0 hover:scale-110 transition flex items-center justify-center"
                     >
                       <Play className="w-12 h-12 group-hover:scale-110 transition-transform" fill="currentColor" />
-                    </Button>
+                    </button>
                   </div>
                   <div className="absolute bottom-6 left-6 right-6 z-20">
                     <h3 className="text-white font-bold text-2xl mb-2 drop-shadow">系所介紹影片</h3>
