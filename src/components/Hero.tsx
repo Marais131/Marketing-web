@@ -9,19 +9,18 @@ const Hero = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-blue-50 via-white to-orange-50 overflow-hidden pb-8 md:pb-14 pt-10 md:pt-20">
+    <section className="relative w-full bg-gradient-to-b from-blue-50 via-white to-orange-50 overflow-hidden pb-8 md:pb-14 pt-7 md:pt-14">
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
       <div className="container mx-auto px-2 md:px-8 flex flex-col md:flex-row items-stretch justify-between gap-y-8 md:gap-x-12 lg:gap-x-16">
         {/* 左側 Logo + 標語大卡片 */}
         <div className="flex-[4] flex flex-col justify-stretch w-full max-w-2xl">
           <div className="flex h-full min-h-[170px] md:min-h-[400px] lg:min-h-[440px]">
-            <div className="flex flex-col justify-center h-full w-full bg-gradient-to-br from-orange-100/95 via-white to-blue-100/90 rounded-3xl shadow-2xl px-7 py-9 md:px-12 md:py-14 gap-y-7 min-h-[170px] md:min-h-[400px] lg:min-h-[440px] max-h-[600px]">
-              {/* Logo */}
+            <div className="flex flex-col justify-center h-full w-full bg-gradient-to-br from-orange-100/90 via-white to-blue-100/90 rounded-3xl shadow-2xl px-0 md:px-6 py-8 md:py-8 gap-y-7 min-h-[170px] md:min-h-[400px] lg:min-h-[460px] max-h-[650px]">
               <img
                 src={LOGO}
                 alt="Logo"
-                className="w-full max-w-[285px] h-[58px] md:h-[78px] object-contain mb-5 self-center"
+                className="w-full max-w-[260px] md:max-w-[285px] h-[58px] md:h-[78px] object-contain mb-4 md:mb-7 mx-auto"
                 style={{
                   background: "none",
                   border: "none",
@@ -31,34 +30,37 @@ const Hero = () => {
                 }}
               />
               {/* 條狀特色Badge */}
-              <Badge className="bg-gradient-to-r from-blue-100 to-orange-50 text-blue-900 border border-blue-200 rounded-full px-8 py-2 mb-3 text-lg md:text-xl flex items-center font-bold shadow self-center">
+              <Badge className="bg-gradient-to-r from-blue-100 to-orange-50 text-blue-900 border border-blue-200 rounded-full px-8 py-2 mb-0 text-lg md:text-xl flex items-center font-bold shadow self-center">
                 <Sparkles className="w-6 h-6 mr-2" />
                 ブランド新世代整合者
                 <Zap className="w-6 h-6 ml-2" />
               </Badge>
-              {/* 主標題 (斷行，大字) */}
-              <h1 className="font-black text-3xl md:text-5xl lg:text-6xl text-blue-900 leading-tight mb-2 tracking-tight text-center">
-                <span className="block">
-                  以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，
-                </span>
-                <span className="block">培養新世代行銷人才</span>
-              </h1>
-              {/* 副標題 */}
-              <div className="text-xl md:text-2xl text-slate-700 font-semibold mb-3 text-center">
-                你不只是學行銷，
-                <span className="text-orange-600 font-bold">我們培養領導者</span>
+              {/* 主標題，直式大標題，帶跳色 */}
+              <div className="mt-2 mb-1 flex flex-col items-center w-full">
+                <div className="flex flex-col gap-0 md:gap-1 leading-tight tracking-tight w-full">
+                  <span className="font-black text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] text-left md:text-center text-blue-900">
+                    以 <span className="text-teal-600 font-black">品牌端視野</span>，
+                  </span>
+                  <span className="font-black text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] text-blue-900 text-left md:text-center">
+                    培養新世代行銷人才
+                  </span>
+                </div>
               </div>
-              {/* 精簡說明 */}
-              <div className="text-base md:text-xl text-slate-700 font-medium leading-relaxed whitespace-normal text-center max-w-[40rem] mx-auto">
+              {/* 副標題放大，強化重點 */}
+              <div className="mt-2 text-lg md:text-2xl text-center font-semibold text-slate-700">
+                你不只是學行銷，
+                <span className="text-orange-600 font-extrabold">我們培養領導者</span>
+              </div>
+              {/* 精簡說明 下方淡色，拉出空間 */}
+              <div className="text-base md:text-xl text-slate-700 font-medium leading-relaxed whitespace-normal text-center max-w-[44rem] mx-auto mt-2">
                 整合
-                <span className="text-blue-700 font-bold mx-1">創新</span>、數據、心理、美感，
-                善用團隊與數位工具、
+                <span className="text-blue-700 font-bold mx-1">創新</span>、數據、心理、美感，善用團隊與數位工具、
                 <span className="text-blue-700 font-bold mx-1">主導市場未來</span>
               </div>
             </div>
           </div>
         </div>
-        {/* 右側 影片區（60%比例） */}
+        {/* 右側 影片區（比例不動，保持目前高寬） */}
         <div className="flex-[6] flex items-center justify-center w-full max-w-full mt-2 md:mt-0">
           <div className="relative w-full max-w-[520px] md:max-w-[680px] aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[170px] md:min-h-[400px] h-full flex">
             {!showVideo ? (
@@ -101,7 +103,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      {/* 理念敘述卡片維持不變 */}
+      {/* 理念敘述卡片區 */}
       <div className="container mx-auto px-2 md:px-6 mt-1 md:mt-7">
         <div className="bg-gradient-to-br from-orange-50 via-white to-blue-50 border border-orange-200 rounded-2xl shadow flex flex-col md:flex-row items-center justify-between px-6 py-7 md:py-8 gap-y-4 md:gap-x-8">
           <div className="flex-1 flex flex-col justify-center">
