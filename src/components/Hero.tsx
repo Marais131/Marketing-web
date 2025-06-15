@@ -15,35 +15,33 @@ const Hero = () => {
       <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-teal-400/30 to-blue-400/20 rounded-full blur-xl animate-pulse z-0"></div>
       <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full blur-lg"></div>
 
-      <div className="relative z-20 container mx-auto px-6 pt-20 pb-8">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
+      <div className="relative z-20 container mx-auto px-3 pt-8 pb-2 md:pt-12 md:pb-8">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-4 lg:gap-7">
           {/* 左側LOGO與文字 */}
-          <div className="lg:w-1/2 flex flex-col gap-7 items-center lg:items-start">
-            {/* LOGO */}
+          <div className="lg:w-1/2 flex flex-col gap-7 items-center lg:items-start mt-4 lg:mt-0">
             <img
               src="/lovable-uploads/603de662-92e7-46c2-b6f8-d3f7e42e804e.png"
               alt="系所 Logo"
-              className="w-52 md:w-64 lg:w-72 rounded-xl drop-shadow-lg mb-2"
+              className="w-48 md:w-60 lg:w-64 rounded-xl drop-shadow-lg mb-2 mt-1"
             />
-
-            <Badge className="bg-gradient-to-r from-teal-500/20 to-blue-500/20 text-teal-300 border border-teal-400/30 px-7 py-2 rounded-full mb-3 text-base font-semibold flex items-center">
+            <Badge className="bg-gradient-to-r from-teal-500/20 to-blue-500/20 text-teal-300 border border-teal-400/30 px-7 py-2 rounded-full mb-2 text-base font-semibold flex items-center">
               <Sparkles className="w-5 h-5 mr-2" />
               創新行銷思維
               <Zap className="w-5 h-5 ml-2" />
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight drop-shadow mb-3">
+            <h1 className="text-3xl md:text-5xl font-black text-white leading-tight drop-shadow mb-2">
               重塑未來
               <br />
               <span className="bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                 行銷新境界
               </span>
             </h1>
-            <p className="text-lg md:text-2xl text-slate-300 leading-normal md:leading-relaxed mb-5 font-medium max-w-lg">
+            <p className="text-base md:text-xl text-slate-300 leading-normal md:leading-relaxed mb-3 font-medium max-w-lg">
               在這裡，我們不只學習行銷
               <span className="block text-teal-300 font-bold mt-2">我們創造未來商業的無限可能</span>
             </p>
             {/* CTA 按鈕 */}
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <Button 
                 size="lg" 
                 asChild
@@ -65,9 +63,16 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 右側主視覺影片 */}
-          <div className="lg:w-1/2 w-full flex items-center justify-center">
-            <div className="relative w-full max-w-2xl aspect-video rounded-3xl overflow-hidden shadow-2xl group">
+          {/* 右側主視覺影片（放大＆壓縮上下空間＋提升畫面美感） */}
+          <div className="lg:w-1/2 w-full flex items-center justify-center mt-0">
+            <div className="relative w-full max-w-3xl aspect-video rounded-3xl overflow-hidden shadow-2xl group"
+              style={{
+                minHeight: "240px",
+                maxHeight: "68vh", // 桌機時最多快佔滿螢幕
+                marginTop: 0,
+                marginBottom: 0,
+              }}
+            >
               {!showVideo ? (
                 <>
                   <img 
@@ -96,6 +101,10 @@ const Hero = () => {
                   className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  style={{
+                    minHeight: "240px",
+                    maxHeight: "68vh",
+                  }}
                 />
               )}
             </div>
