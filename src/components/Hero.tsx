@@ -13,14 +13,14 @@ const Hero = () => {
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
       <div className="container mx-auto px-2 md:px-6 py-8 md:py-14 flex flex-col md:flex-row items-center justify-between gap-y-6 md:gap-x-8">
-        {/* 左側 Logo + 標語區塊 */}
-        <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-6 md:mb-0">
-          <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-4 md:p-7">
+        {/* 左側 Logo + 標語區塊（緊湊版） */}
+        <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-4 md:mb-0">
+          <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-3 md:p-4">
             {/* Logo */}
             <img
               src={LOGO}
               alt="Logo"
-              className="w-full max-w-[230px] md:max-w-[270px] h-[48px] md:h-[68px] object-contain mb-2 md:mb-3"
+              className="w-full max-w-[190px] md:max-w-[220px] h-[38px] md:h-[60px] object-contain mb-2"
               style={{
                 background: "none",
                 border: "none",
@@ -32,21 +32,21 @@ const Hero = () => {
               }}
             />
             {/* 特色Badge */}
-            <Badge className="bg-gradient-to-r from-orange-100 to-blue-100 text-blue-800 border border-blue-200 rounded-full px-5 py-1.5 mb-2 text-sm flex items-center font-semibold shadow-sm">
-              <Sparkles className="w-4 h-4 mr-2" />
+            <Badge className="bg-gradient-to-r from-orange-100 to-blue-100 text-blue-800 border border-blue-200 rounded-full px-4 py-1 mb-1 text-xs flex items-center font-semibold shadow-sm">
+              <Sparkles className="w-4 h-4 mr-1" />
               ブランド新世代整合者
-              <Zap className="w-4 h-4 ml-2" />
+              <Zap className="w-4 h-4 ml-1" />
             </Badge>
-            {/* 主標題 單行呈現並縮小字體 */}
-            <h1 className="font-black text-xl md:text-2xl lg:text-3xl text-blue-900 leading-tight mb-2 md:mb-3 drop-shadow">
+            {/* 主標題字體縮小，間距壓縮 */}
+            <h1 className="font-black text-base md:text-lg lg:text-xl text-blue-900 leading-snug mb-1">
               以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，培養新世代行銷人才
             </h1>
-            {/* 副標題，間距壓縮 */}
-            <div className="text-sm md:text-base text-slate-700 font-semibold mb-1">
+            {/* 副標題字體與間距壓縮 */}
+            <div className="text-xs md:text-sm text-slate-700 font-semibold mb-1">
               你不只是學行銷，<span className="text-orange-600 font-bold">我們培養領導者</span>
             </div>
-            {/* 精簡說明，全部單行、壓縮字體、只保留一兩處跳色 */}
-            <div className="text-xs md:text-sm text-slate-600 font-medium whitespace-nowrap overflow-x-auto">
+            {/* 精簡說明，單行，字體壓縮 */}
+            <div className="text-[11px] md:text-xs text-slate-600 font-medium whitespace-nowrap overflow-x-auto">
               整合
               <span className="text-blue-700 font-bold mx-1">創新</span>、
               數據、心理、美感，善用團隊與數位工具、
@@ -97,7 +97,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      {/* 理念敘述卡片維持，微調間距 */}
+      {/* 理念敘述卡片維持不變 */}
       <div className="container mx-auto px-2 md:px-6 mt-1 md:mt-7">
         <div className="bg-gradient-to-br from-orange-50 via-white to-blue-50 border border-orange-200 rounded-2xl shadow flex flex-col md:flex-row items-center justify-between px-6 py-7 md:py-8 gap-y-4 md:gap-x-8">
           <div className="flex-1 flex flex-col justify-center">
@@ -119,4 +119,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
