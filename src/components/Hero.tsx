@@ -9,60 +9,54 @@ const Hero = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-blue-50 via-white to-orange-50 overflow-hidden pb-8 md:pb-14 pt-7 md:pt-14">
+    <section className="relative w-full bg-gradient-to-b from-blue-50 via-white to-orange-50 overflow-hidden">
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
-      <div className="container mx-auto px-2 md:px-8 flex flex-col md:flex-row items-stretch justify-between gap-y-8 md:gap-x-12 lg:gap-x-16">
-        {/* 左側 Logo + 標語大卡片 */}
-        <div className="flex-[4] flex flex-col justify-stretch w-full max-w-2xl">
-          <div className="flex h-full min-h-[170px] md:min-h-[400px] lg:min-h-[440px]">
-            <div className="flex flex-col justify-center h-full w-full bg-gradient-to-br from-orange-100/90 via-white to-blue-100/90 rounded-3xl shadow-2xl px-0 md:px-6 py-8 md:py-8 gap-y-7 min-h-[170px] md:min-h-[400px] lg:min-h-[460px] max-h-[650px]">
-              <img
-                src={LOGO}
-                alt="Logo"
-                className="w-full max-w-[260px] md:max-w-[285px] h-[58px] md:h-[78px] object-contain mb-4 md:mb-7 mx-auto"
-                style={{
-                  background: "none",
-                  border: "none",
-                  boxShadow: "none",
-                  filter: "none",
-                  display: "block"
-                }}
-              />
-              {/* 條狀特色Badge */}
-              <Badge className="bg-gradient-to-r from-blue-100 to-orange-50 text-blue-900 border border-blue-200 rounded-full px-8 py-2 mb-0 text-lg md:text-xl flex items-center font-bold shadow self-center">
-                <Sparkles className="w-6 h-6 mr-2" />
-                ブランド新世代整合者
-                <Zap className="w-6 h-6 ml-2" />
-              </Badge>
-              {/* 主標題，直式大標題，帶跳色 */}
-              <div className="mt-2 mb-1 flex flex-col items-center w-full">
-                <div className="flex flex-col gap-0 md:gap-1 leading-tight tracking-tight w-full">
-                  <span className="font-black text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] text-left md:text-center text-blue-900">
-                    以 <span className="text-teal-600 font-black">品牌端視野</span>，
-                  </span>
-                  <span className="font-black text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] text-blue-900 text-left md:text-center">
-                    培養新世代行銷人才
-                  </span>
-                </div>
-              </div>
-              {/* 副標題放大，強化重點 */}
-              <div className="mt-2 text-lg md:text-2xl text-center font-semibold text-slate-700">
-                你不只是學行銷，
-                <span className="text-orange-600 font-extrabold">我們培養領導者</span>
-              </div>
-              {/* 精簡說明 下方淡色，拉出空間 */}
-              <div className="text-base md:text-xl text-slate-700 font-medium leading-relaxed whitespace-normal text-center max-w-[44rem] mx-auto mt-2">
-                整合
-                <span className="text-blue-700 font-bold mx-1">創新</span>、數據、心理、美感，善用團隊與數位工具、
-                <span className="text-blue-700 font-bold mx-1">主導市場未來</span>
-              </div>
+      <div className="container mx-auto px-2 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-8">
+        {/* 左側 Logo + 標語區塊 */}
+        <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-8 md:mb-0">
+          <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-6 md:p-10">
+            {/* Logo */}
+            <img
+              src={LOGO}
+              alt="Logo"
+              className="w-full max-w-[300px] md:max-w-[340px] h-[62px] md:h-[88px] object-contain mb-4 md:mb-5"
+              style={{
+                background: "none",
+                border: "none",
+                marginLeft: 0,
+                marginRight: 0,
+                boxShadow: "none",
+                filter: "none",
+                display: "block"
+              }}
+            />
+            {/* 特色Badge */}
+            <Badge className="bg-gradient-to-r from-orange-100 to-blue-100 text-blue-800 border border-blue-200 rounded-full px-6 py-2 mb-3 text-base flex items-center font-semibold shadow-sm">
+              <Sparkles className="w-5 h-5 mr-2" />
+              ブランド新世代整合者
+              <Zap className="w-5 h-5 ml-2" />
+            </Badge>
+            {/* 主標題 */}
+            <h1 className="font-black text-2xl md:text-3xl lg:text-4xl text-blue-900 leading-snug mb-3 md:mb-4 drop-shadow">
+              以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，培養新世代行銷人才
+            </h1>
+            {/* 副標題（單行，只突出關鍵詞） */}
+            <div className="text-base md:text-lg text-slate-700 font-semibold mb-2">
+              你不只是學行銷，<span className="text-orange-600 font-bold">我們培養領導者</span>
+            </div>
+            {/* 說明精簡（僅整體一色，保留部分關鍵字藍色） */}
+            <div className="text-sm md:text-base text-slate-600 font-medium">
+              整合
+              <span className="text-blue-700 font-bold mx-1">創新</span>、
+              數據、心理與美感，善用團隊與數位工具，
+              <span className="text-blue-700 font-bold mx-1">主導市場未來</span>。
             </div>
           </div>
         </div>
-        {/* 右側 影片區（比例不動，保持目前高寬） */}
+        {/* 右側 影片區（60%比例） */}
         <div className="flex-[6] flex items-center justify-center w-full max-w-full mt-2 md:mt-0">
-          <div className="relative w-full max-w-[520px] md:max-w-[680px] aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[170px] md:min-h-[400px] h-full flex">
+          <div className="relative w-full max-w-[520px] md:max-w-[680px] aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[170px] md:min-h-[240px]">
             {!showVideo ? (
               <>
                 <img
@@ -78,9 +72,9 @@ const Hero = () => {
                   <button
                     onClick={() => setShowVideo(true)}
                     aria-label="播放介紹影片"
-                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-14 h-14 md:w-16 md:h-16 flex items-center justify-center hover:scale-105 transition shadow-xl"
+                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center hover:scale-105 transition shadow-xl"
                   >
-                    <Play className="w-7 h-7 md:w-10 md:h-10" fill="currentColor" />
+                    <Play className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" />
                   </button>
                 </div>
               </>
@@ -96,14 +90,14 @@ const Hero = () => {
                   width: "100%",
                   borderRadius: "1.5rem",
                   height: "100%",
-                  maxHeight: "420px"
+                  maxHeight: "360px"
                 }}
               />
             )}
           </div>
         </div>
       </div>
-      {/* 理念敘述卡片區 */}
+      {/* 理念敘述卡片維持，微調間距 */}
       <div className="container mx-auto px-2 md:px-6 mt-1 md:mt-7">
         <div className="bg-gradient-to-br from-orange-50 via-white to-blue-50 border border-orange-200 rounded-2xl shadow flex flex-col md:flex-row items-center justify-between px-6 py-7 md:py-8 gap-y-4 md:gap-x-8">
           <div className="flex-1 flex flex-col justify-center">
