@@ -1,7 +1,7 @@
-
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Zap, Play, House } from "lucide-react";
+import { Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LOGO = "/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png";
 
@@ -16,23 +16,34 @@ const Hero = () => {
         {/* 左側 Logo + 標語區塊 */}
         <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-8 md:mb-0">
           <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-6 md:p-10">
-            {/* Logo+Icon 整合 */}
-            <div className="flex items-center mb-4 md:mb-5 gap-2">
-              <House className="text-teal-600 w-10 h-10 md:w-14 md:h-14 mr-2" />
-              <img
-                src={LOGO}
-                alt="Logo"
-                className="h-[75px] md:h-[112px] w-auto max-w-[360px] md:max-w-[440px] object-contain transition-all duration-300"
-                style={{
-                  background: "none",
-                  border: "none",
-                  margin: 0,
-                  boxShadow: "none",
-                  filter: "none",
-                  display: "block"
-                }}
-              />
-            </div>
+            {/* Banner Logo+Icon／整合的可點擊區 */}
+            <Link 
+              to="/" 
+              className="flex items-center gap-3 mb-4 md:mb-5 group transition-transform hover:scale-105"
+              aria-label="回到首頁"
+              style={{ width: 'fit-content' }}
+            >
+              <div className="relative flex items-center">
+                <svg width="48" height="48" viewBox="0 0 32 32" className="md:w-16 md:h-16 w-10 h-10 text-teal-600 mr-1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="7" y="14" width="18" height="11" rx="2.5" fill="#10bfae"/>
+                  <path d="M6 14.7L15.6 7.12a2.5 2.5 0 0 1 3.09.07L26 14.7" stroke="#0e8a70" strokeWidth="2"/>
+                  <rect x="15" y="19" width="2" height="6" rx="0.7" fill="#ffffff"/>
+                </svg>
+                <img
+                  src={LOGO}
+                  alt="Logo"
+                  className="h-[95px] md:h-[135px] w-auto max-w-[420px] md:max-w-[520px] object-contain transition-all duration-300 ml-2"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    margin: 0,
+                    boxShadow: "none",
+                    filter: "none",
+                    display: "block"
+                  }}
+                />
+              </div>
+            </Link>
             {/* 特色Badge */}
             <Badge className="bg-gradient-to-r from-orange-100 to-blue-100 text-blue-800 border border-blue-200 rounded-full px-6 py-2 mb-3 text-base flex items-center font-semibold shadow-sm">
               <Sparkles className="w-5 h-5 mr-2" />
