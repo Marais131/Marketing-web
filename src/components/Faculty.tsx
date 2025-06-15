@@ -1,6 +1,30 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Briefcase } from "lucide-react";
+import FeaturedTeachersCard from "./FeaturedTeachersCard";
+
+const featuredTeachers = [
+  {
+    name: "駱少康",
+    title: "行銷學博士／行銷所所長",
+    role: "系主任",
+    imgUrl: "/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png",
+    description: "品牌管理權威，推動「品牌端行銷人才」培育與產學創新，強調實戰與理論並重。"
+  },
+  {
+    name: "孫慶文",
+    title: "心理學博士",
+    role: "教授",
+    imgUrl: "/lovable-uploads/5b1142c5-30f6-4b6a-882f-adfab212c822.png",
+    description: "美國芝加哥大學心理學博士，專精消費者心理與認知、行銷心理學應用。"
+  },
+  {
+    name: "傅皓政",
+    title: "邏輯學專家",
+    role: "教授 / 前所長",
+    imgUrl: "/lovable-uploads/5b1142c5-30f6-4b6a-882f-adfab212c822.png",
+    description: "國內邏輯學教學權威，首創將邏輯學納入行銷決策養成、導正行銷職人思維。"
+  }
+];
 
 const Faculty = () => {
   return (
@@ -43,10 +67,15 @@ const Faculty = () => {
             </div>
           </div>
         </div>
+
+        {/* 新增：特色教師介紹卡片 */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">師資人物介紹</h3>
+          <FeaturedTeachersCard teachers={featuredTeachers} />
+        </div>
       </div>
     </section>
   );
 };
 
 export default Faculty;
-
