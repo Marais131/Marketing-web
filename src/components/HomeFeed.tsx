@@ -1,8 +1,8 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Camera, Calendar, ChevronRight, Users, Award, Briefcase, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { sampleArticles, ArticlePreviewCard } from "@/components/ArticlePreviewCard";
 
 const news = [
   {
@@ -81,8 +81,9 @@ const HomeFeed = () => (
           實況消息 x 亮點活動搶先看
         </p>
       </div>
-      {/* 內容 二欄 Responsive */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-9 mb-16">
+
+      {/* 內容：消息 News */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-9 mb-10">
         {/* 左：消息 News */}
         <div className="flex flex-col gap-6">
           {news.map(item => {
@@ -156,6 +157,28 @@ const HomeFeed = () => (
           ))}
         </div>
       </div>
+
+      {/* 專欄精選卡片加在這裡 */}
+      <div className="mb-16">
+        <h3 className="text-xl font-bold mb-4 text-teal-700 flex items-center gap-2">
+          <span className="inline-block bg-gradient-to-r from-blue-100 to-teal-100 text-teal-700 px-3 py-1 rounded-full text-base">專欄精選</span>
+          <span className="text-slate-500 text-sm">老師與產學團隊獨家分享</span>
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {sampleArticles.slice(0, 3).map(article => (
+            <ArticlePreviewCard key={article.id} article={article} />
+          ))}
+        </div>
+        <div className="mt-5 text-right">
+          <a
+            href="/articles"
+            className="inline-block bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-5 py-2 rounded-full font-semibold shadow transition-all"
+          >
+            看所有專欄文章
+          </a>
+        </div>
+      </div>
+      
       {/* CTA 區域 */}
       <div className="text-center bg-gradient-to-r from-slate-50 to-teal-50/50 rounded-2xl p-10 border border-slate-200/50">
         <h3 className="text-xl font-bold text-slate-800 mb-2">
