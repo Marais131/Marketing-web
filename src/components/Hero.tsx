@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
@@ -37,20 +36,20 @@ const Hero = () => {
               ブランド新世代整合者
               <Zap className="w-5 h-5 ml-2" />
             </Badge>
-            {/* 主標題 */}
+            {/* 主標題 單行呈現 */}
             <h1 className="font-black text-2xl md:text-3xl lg:text-4xl text-blue-900 leading-snug mb-3 md:mb-4 drop-shadow">
               以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，培養新世代行銷人才
             </h1>
-            {/* 副標題（單行，只突出關鍵詞） */}
+            {/* 副標題 單行強調關鍵詞 */}
             <div className="text-base md:text-lg text-slate-700 font-semibold mb-2">
               你不只是學行銷，<span className="text-orange-600 font-bold">我們培養領導者</span>
             </div>
-            {/* 說明精簡（僅整體一色，保留部分關鍵字藍色） */}
+            {/* 精簡說明（同一行「、」分隔，僅保留核心藍色跳色關鍵字） */}
             <div className="text-sm md:text-base text-slate-600 font-medium">
               整合
               <span className="text-blue-700 font-bold mx-1">創新</span>、
               數據、心理與美感，善用團隊與數位工具，
-              <span className="text-blue-700 font-bold mx-1">主導市場未來</span>。
+              <span className="text-blue-700 font-bold mx-1">主導市場未來</span>
             </div>
           </div>
         </div>
