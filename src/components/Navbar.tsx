@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -14,14 +13,14 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl border-b border-slate-200/40 z-50 shadow-sm">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo 區域 */}
-          <Link to="/" className="flex items-center space-x-4 group">
+          {/* Logo 區域：調整高度與最大寬度，增大扁平比例 */}
+          <Link to="/" className="flex items-center group" style={{ minHeight: "54px" }}>
             <div className="relative">
               <img 
                 src="/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png" 
                 alt="文化大學行銷所 Logo"
-                className="h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                style={{ minWidth: "180px", maxWidth: "300px" }}
+                className="h-16 md:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                style={{ minWidth: "240px", maxWidth: "390px" }}
               />
               <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -125,4 +124,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

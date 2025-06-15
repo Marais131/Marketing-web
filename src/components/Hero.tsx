@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
@@ -18,11 +17,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-8 md:py-16 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-20">
         {/* 左側 Logo + 標語 */}
         <div className="flex-1 flex flex-col items-start justify-center max-w-2xl md:pr-10 mb-10 md:mb-0 animate-fade-in">
+          {/* 去背扁平型長條LOGO放大 */}
           <img
             src={LOGO}
             alt="Logo"
-            className="w-full max-w-[540px] min-w-[320px] h-[110px] md:h-[150px] mb-8 object-contain"
-            // 這裡不用額外 border, bg, drop-shadow，呈現原去背圖
+            className="w-full max-w-[600px] min-w-[320px] h-[120px] md:h-[174px] mb-9 object-contain"
             style={{
               background: "none",
               border: "none",
@@ -53,22 +52,22 @@ const Hero = () => {
           </div>
         </div>
         {/* 右側 影片/主視覺，動畫包裹 */}
-        <div className="flex-1 flex items-center justify-center max-w-[900px] w-full mt-4 md:mt-0 animate-fade-in">
-          <div className="relative w-full max-w-[720px] aspect-video rounded-2xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[350px] md:min-h-[430px]">
+        <div className="flex-1 flex items-center justify-center max-w-[980px] w-full mt-4 md:mt-0 animate-fade-in">
+          <div className="relative w-full max-w-[900px] aspect-video rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[410px] md:min-h-[520px]">
             {!showVideo ? (
               <>
                 <img
                   src="https://img.youtube.com/vi/kcLHZOMzuXE/maxresdefault.jpg"
                   alt="系所介紹影片"
-                  className="w-full h-full object-cover object-center min-h-[350px] md:min-h-[430px] aspect-video transition-opacity"
+                  className="w-full h-full object-cover object-center min-h-[410px] md:min-h-[520px] aspect-video transition-opacity"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-slate-900/30">
                   <button
                     onClick={() => setShowVideo(true)}
                     aria-label="播放介紹影片"
-                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-28 h-28 flex items-center justify-center hover:scale-105 transition shadow-xl animate-fade-in"
+                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-32 h-32 flex items-center justify-center hover:scale-105 transition shadow-xl animate-fade-in"
                   >
-                    <Play className="w-16 h-16" fill="currentColor" />
+                    <Play className="w-20 h-20" fill="currentColor" />
                   </button>
                 </div>
               </>
@@ -76,15 +75,15 @@ const Hero = () => {
               <iframe
                 src="https://www.youtube.com/embed/kcLHZOMzuXE?autoplay=1"
                 title="系所介紹影片"
-                className="w-full h-full aspect-video rounded-2xl"
+                className="w-full h-full aspect-video rounded-3xl"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
-                  minHeight: "350px",
+                  minHeight: "410px",
                   width: "100%",
-                  borderRadius: "1rem",
+                  borderRadius: "1.5rem",
                   height: "100%",
-                  maxHeight: "480px"
+                  maxHeight: "600px"
                 }}
               />
             )}
