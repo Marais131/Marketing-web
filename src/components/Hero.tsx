@@ -15,14 +15,23 @@ const Hero = () => {
       <div className="absolute -z-10 top-0 -left-20 w-96 h-96 bg-orange-100/50 rounded-full blur-3xl animate-fade-in"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-96 h-96 bg-blue-200/40 rounded-full blur-3xl animate-fade-in"></div>
 
-      <div className="container mx-auto px-4 py-8 md:py-14 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-20">
+      <div className="container mx-auto px-4 py-8 md:py-16 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-20">
         {/* 左側 Logo + 標語 */}
-        <div className="flex-1 flex flex-col items-start justify-center max-w-xl md:pr-8 mb-8 md:mb-0 animate-fade-in">
+        <div className="flex-1 flex flex-col items-start justify-center max-w-2xl md:pr-10 mb-10 md:mb-0 animate-fade-in">
           <img
             src={LOGO}
             alt="Logo"
-            className="w-full max-w-2xl min-w-[220px] h-[65px] md:h-[90px] mb-8 object-contain drop-shadow-2xl"
-            style={{ background: "none", border: "none", display: "block" }}
+            className="w-full max-w-[540px] min-w-[320px] h-[110px] md:h-[150px] mb-8 object-contain"
+            // 這裡不用額外 border, bg, drop-shadow，呈現原去背圖
+            style={{
+              background: "none",
+              border: "none",
+              display: "block",
+              marginLeft: 0,
+              marginRight: 0,
+              boxShadow: "none",
+              filter: "none"
+            }}
           />
 
           {/* 品牌識別特色 */}
@@ -35,7 +44,7 @@ const Hero = () => {
           <h1 className="font-black text-3xl md:text-5xl text-blue-900 leading-tight mb-4 drop-shadow animate-fade-in">
             以品牌端視野，培養行銷決策型人才
           </h1>
-          <div className="text-lg md:text-xl text-slate-700/90 font-medium mb-4 ">
+          <div className="text-lg md:text-xl text-slate-700/90 font-medium mb-4">
             不只是學行銷，更培養你成為能整合創新、數據、心理與美感的領導者，
             在專業深度與跨界協作中，
             <span className="block text-blue-700 font-bold text-xl md:text-2xl mt-2 drop-shadow">
@@ -44,22 +53,22 @@ const Hero = () => {
           </div>
         </div>
         {/* 右側 影片/主視覺，動畫包裹 */}
-        <div className="flex-1 flex items-center justify-center max-w-3xl w-full mt-4 md:mt-0 animate-fade-in">
-          <div className="relative w-full max-w-2xl aspect-video rounded-2xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100">
+        <div className="flex-1 flex items-center justify-center max-w-[900px] w-full mt-4 md:mt-0 animate-fade-in">
+          <div className="relative w-full max-w-[720px] aspect-video rounded-2xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[350px] md:min-h-[430px]">
             {!showVideo ? (
               <>
                 <img
                   src="https://img.youtube.com/vi/kcLHZOMzuXE/maxresdefault.jpg"
                   alt="系所介紹影片"
-                  className="w-full h-full object-cover object-center min-h-[300px] aspect-video transition-opacity"
+                  className="w-full h-full object-cover object-center min-h-[350px] md:min-h-[430px] aspect-video transition-opacity"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-slate-900/30">
                   <button
                     onClick={() => setShowVideo(true)}
                     aria-label="播放介紹影片"
-                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-24 h-24 flex items-center justify-center hover:scale-105 transition shadow-xl animate-fade-in"
+                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-28 h-28 flex items-center justify-center hover:scale-105 transition shadow-xl animate-fade-in"
                   >
-                    <Play className="w-14 h-14" fill="currentColor" />
+                    <Play className="w-16 h-16" fill="currentColor" />
                   </button>
                 </div>
               </>
@@ -71,9 +80,11 @@ const Hero = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
-                  minHeight: "300px",
+                  minHeight: "350px",
                   width: "100%",
                   borderRadius: "1rem",
+                  height: "100%",
+                  maxHeight: "480px"
                 }}
               />
             )}
