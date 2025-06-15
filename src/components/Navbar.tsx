@@ -20,7 +20,8 @@ const Navbar = () => {
               <img 
                 src="/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png" 
                 alt="文化大學行銷所 Logo"
-                className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
+                className="h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                style={{ minWidth: "180px", maxWidth: "300px" }}
               />
               <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
@@ -28,6 +29,21 @@ const Navbar = () => {
           
           {/* 桌面導航 */}
           <div className="hidden lg:flex items-center space-x-8">
+            <Link 
+              to="/curriculum"
+              className={`relative font-semibold transition-all duration-300 group ${
+                location.pathname === "/curriculum"
+                  ? "text-teal-600"
+                  : "text-slate-700 hover:text-teal-600"
+              }`}
+            >
+              <span className="relative z-10">課程介紹</span>
+              <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-600 to-blue-600 transform origin-left transition-transform duration-300 ${
+                location.pathname === "/curriculum"
+                  ? "scale-x-100"
+                  : "scale-x-0 group-hover:scale-x-100"
+              }`}></div>
+            </Link>
             {[
               { path: '/about', label: '系所介紹' },
               { path: '/features', label: '教學特色' },
@@ -68,6 +84,17 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden mt-4 p-6 bg-white/95 backdrop-blur-xl rounded-2xl border border-slate-200/50 shadow-xl">
             <div className="flex flex-col space-y-4">
+              <Link
+                to="/curriculum"
+                className={`font-semibold py-2 px-4 rounded-lg transition-all duration-300 ${
+                  location.pathname === "/curriculum"
+                    ? "text-teal-600 bg-teal-50"
+                    : "text-slate-700 hover:text-teal-600 hover:bg-teal-50"
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                課程介紹
+              </Link>
               {[
                 { path: '/about', label: '系所介紹' },
                 { path: '/features', label: '教學特色' },
@@ -89,7 +116,6 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              {/* 移除手機 CTA 按鈕 */}
             </div>
           </div>
         )}

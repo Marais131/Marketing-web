@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
 
-/** 橫條Logo檔案路徑 */
+/** 扁平長條Logo檔案路徑 */
 const LOGO = "/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png";
 
 const Hero = () => {
@@ -21,8 +21,8 @@ const Hero = () => {
           <img
             src={LOGO}
             alt="Logo"
-            className="w-48 md:w-64 mb-6 md:mb-8 drop-shadow-xl"
-            style={{ background: "none", boxShadow: "none", border: "none", display: "block" }}
+            className="w-full max-w-2xl min-w-[220px] h-[65px] md:h-[90px] mb-8 object-contain drop-shadow-2xl"
+            style={{ background: "none", border: "none", display: "block" }}
           />
 
           {/* 品牌識別特色 */}
@@ -44,22 +44,22 @@ const Hero = () => {
           </div>
         </div>
         {/* 右側 影片/主視覺，動畫包裹 */}
-        <div className="flex-1 flex items-center justify-center max-w-2xl w-full mt-4 md:mt-0 animate-fade-in">
-          <div className="relative w-full aspect-video rounded-2xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100">
+        <div className="flex-1 flex items-center justify-center max-w-3xl w-full mt-4 md:mt-0 animate-fade-in">
+          <div className="relative w-full max-w-2xl aspect-video rounded-2xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100">
             {!showVideo ? (
               <>
                 <img
                   src="https://img.youtube.com/vi/kcLHZOMzuXE/maxresdefault.jpg"
                   alt="系所介紹影片"
-                  className="w-full h-full object-cover object-center min-h-[200px] aspect-video transition-opacity"
+                  className="w-full h-full object-cover object-center min-h-[300px] aspect-video transition-opacity"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-slate-900/30">
                   <button
                     onClick={() => setShowVideo(true)}
                     aria-label="播放介紹影片"
-                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-20 h-20 flex items-center justify-center hover:scale-105 transition shadow-xl animate-fade-in"
+                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-24 h-24 flex items-center justify-center hover:scale-105 transition shadow-xl animate-fade-in"
                   >
-                    <Play className="w-12 h-12" fill="currentColor" />
+                    <Play className="w-14 h-14" fill="currentColor" />
                   </button>
                 </div>
               </>
@@ -71,7 +71,7 @@ const Hero = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
-                  minHeight: "200px",
+                  minHeight: "300px",
                   width: "100%",
                   borderRadius: "1rem",
                 }}
