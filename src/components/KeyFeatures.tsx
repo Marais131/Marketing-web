@@ -13,7 +13,8 @@ const features = [
       "邏輯學思維：改造思想方式",
       "電商實戰：業師帶領，邊做邊學",
     ],
-    image: "/lovable-uploads/271ae152-edba-4054-9549-c12e52467d30.png",
+    // 圖片路徑改用使用者上傳正確圖檔
+    image: "/lovable-uploads/d3bb2780-7b61-43e4-b4e3-972e02c9080f.png",
     imageAlt: "課程架構圖",
     align: "right"
   },

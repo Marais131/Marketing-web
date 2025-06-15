@@ -1,15 +1,18 @@
-
 import Hero from "@/components/Hero";
 import AdmissionHighlight from "@/components/AdmissionHighlight";
 import PhotoGallery from "@/components/PhotoGallery";
 import NewsSection from "@/components/NewsSection";
 import KeyFeatures from "@/components/KeyFeatures";
 import Faculty from "@/components/Faculty";
+import HomeGroupPhoto from "@/components/HomeGroupPhoto";
 
 const Home = () => {
   return (
     <div className="relative">
       <Hero />
+
+      {/* 團體合照區塊 */}
+      <HomeGroupPhoto />
 
       {/* 招生導向亮點 */}
       <AdmissionHighlight />
