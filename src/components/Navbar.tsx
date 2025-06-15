@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-xl border-b border-slate-200/40 z-50 shadow-sm">
       <div className="container mx-auto px-2 sm:px-4 py-3">
         <div className="flex items-center justify-between gap-x-3">
-          {/* Logo 區域：最左放大、扁平比例（去背） */}
+          {/* Logo 區域 */}
           <Link
             to="/"
             className="flex items-center group"
@@ -39,7 +39,7 @@ const Navbar = () => {
                   : "text-slate-700 hover:text-teal-600"
               }`}
             >
-              <span className="relative z-10">課程介紹</span>
+              <span className="relative z-10">課程亮點</span>
               <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-teal-600 to-blue-600 transform origin-left transition-transform duration-300 ${
                 location.pathname === "/curriculum"
                   ? "scale-x-100"
@@ -48,7 +48,7 @@ const Navbar = () => {
             </Link>
             {[
               { path: '/about', label: '系所介紹' },
-              { path: '/features', label: '教學特色' },
+              // 移除教學特色
               { path: '/faculty', label: '師資陣容' },
               { path: '/activities', label: '活動成果' },
               { path: '/admissions', label: '招生資訊' },
@@ -93,11 +93,11 @@ const Navbar = () => {
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                課程介紹
+                課程亮點
               </Link>
               {[
                 { path: '/about', label: '系所介紹' },
-                { path: '/features', label: '教學特色' },
+                // 移除教學特色
                 { path: '/faculty', label: '師資陣容' },
                 { path: '/activities', label: '活動成果' },
                 { path: '/admissions', label: '招生資訊' },

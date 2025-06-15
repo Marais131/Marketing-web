@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,13 +7,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import AboutPage from "./pages/About";
-import FeaturesPage from "./pages/Features";
 import FacultyPage from "./pages/Faculty";
 import ActivitiesPage from "./pages/Activities";
 import AdmissionsPage from "./pages/Admissions";
 import ContactPage from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import CurriculumPage from "./pages/Curriculum";
+// 移除舊 FeaturesPage
+import CurriculumHighlights from "./pages/CurriculumHighlights";
 
 const queryClient = new QueryClient();
 
@@ -25,9 +26,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="curriculum" element={<CurriculumPage />} />
+            <Route path="curriculum" element={<CurriculumHighlights />} />
             <Route path="about" element={<AboutPage />} />
-            <Route path="features" element={<FeaturesPage />} />
             <Route path="faculty" element={<FacultyPage />} />
             <Route path="activities" element={<ActivitiesPage />} />
             <Route path="admissions" element={<AdmissionsPage />} />
