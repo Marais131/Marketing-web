@@ -77,18 +77,16 @@ const CurriculumStructure = () => {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.03),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(249,115,22,0.03),transparent_50%)]"></div>
+    <section className="py-32 bg-gradient-to-b from-blue-50 via-white to-orange-50 relative overflow-hidden animate-fade-in">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_60%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(249,115,22,0.06),transparent_60%)]"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        {/* T型人才養成總論導言 */}
-        <div className="max-w-5xl mx-auto mb-12 text-xl text-slate-800 font-medium text-center">
-          <div className="font-bold text-orange-600 text-2xl mb-2">「T 型人才」養成系統 × 全面課程設計</div>
+        {/* 教育理念嵌入總論 */}
+        <div className="max-w-5xl mx-auto mb-12 text-xl text-slate-800 font-medium text-center animate-fade-in">
+          <div className="font-bold text-blue-700 text-2xl mb-2">品牌端專業 × 跨界整合的行銷教育藍圖</div>
           <p>
-            本系以品牌端T型人才為教育藍圖，設計垂直（專精行銷、心理學、數據、企劃與創新）與水平（跨域整合、專案協作、美學素養、電商實戰）兼備的課程結構。
-            <br className="hidden md:block" />
-            打造從基礎到高階，一步步實踐專業＋跨域的完整成長路徑，讓每位同學畢業即成為業界渴求的全方位品牌人！
+            我們設計了專業深度與多元廣度兼備的成長路徑，涵蓋品牌管理、心理學洞察、邏輯企劃、美感素養及電商實戰。從課程到實務演練，帶領同學培養引領市場、創新決策、精準協作的能力，成為未來品牌行銷的關鍵推手。
           </p>
         </div>
         {/* 標題區 */}

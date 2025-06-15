@@ -34,20 +34,21 @@ const features = [
 
 const KeyFeatures = () => {
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24 bg-gradient-to-b from-blue-50 via-white to-orange-50">
       <div className="container mx-auto px-6">
-        {/* T型人才區說明＋四大能力條列 */}
-        <div className="max-w-3xl mx-auto mb-10">
+        {/* 教育理念/核心能力融入敘述 */}
+        <div className="max-w-3xl mx-auto mb-10 animate-fade-in">
           <div className="flex flex-col gap-2 md:items-center md:text-center">
-            <h3 className="text-xl font-bold text-orange-600 mb-1">什麼是 T 型人才？</h3>
+            <h3 className="text-xl font-bold text-blue-700 mb-1">專業跨域 × 創新整合 × 智慧商業</h3>
             <div className="text-base md:text-lg text-slate-700 mb-1">
-              T 型人才意指同時擁有一項專精領域（垂直能力）與多元廣度知能（水平能力），
-              是新時代決策型品牌行銷人的最佳典範。<br />
-              <span className="font-semibold text-blue-600">本系以 T 型養成為主軸，聚焦四大核心能力：</span>
+              我們的課程以品牌端所需的核心職能為藍本，強化「品牌管理、消費洞察、策略企劃、創意傳播」等專業深度，
+              並結合心理學、美感素養、邏輯規劃與電商實作，讓同學同時具備統整創新、精準決策、多方協作的能力，
+              成為能引領市場、打造影響力的行銷整合型人才。
             </div>
           </div>
-          {/* 四大能力條列 */}
+          {/* 四大核心能... */}
           <ul className="mt-4 grid gap-2 md:gap-0 grid-cols-1 md:grid-cols-2">
+            {/* ... keep existing core abilities li內容 the same ... */}
             <li className="flex items-start gap-2 mb-2">
               <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" />
               <span>
@@ -74,24 +75,25 @@ const KeyFeatures = () => {
             </li>
           </ul>
         </div>
-        {/* 原本的標題區與 features 區塊 */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-            打造你的<span className="text-blue-600">行銷超能力</span>
+        {/* 原本的標題區與features區塊-含動畫 */}
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            打造你的<span className="text-blue-600">品牌行銷競爭力</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            我們提供的不僅是知識，更是一套讓你脫穎而出的完整裝備。
+            我們提供的不僅是知識，更是一條實證專業與跨界價值兼備的成長路徑。
           </p>
         </div>
 
+        {/* 特色卡片加入動畫和hover */}
         <div className="space-y-20">
           {features.map((feature, index) => (
-            <div key={index} className={`grid lg:grid-cols-2 gap-12 items-center`}>
+            <div key={index} className={`grid lg:grid-cols-2 gap-12 items-center animate-fade-in`}>
               <div className={`relative ${feature.align === 'left' ? 'lg:order-2' : ''}`}>
-                 <img src={feature.image} alt={feature.imageAlt} className="rounded-2xl shadow-2xl w-full h-auto object-cover" />
+                 <img src={feature.image} alt={feature.imageAlt} className="rounded-2xl shadow-2xl w-full h-auto object-cover hover:scale-105 hover:shadow-3xl transition-transform duration-300" />
               </div>
               <div className={`space-y-6 ${feature.align === 'left' ? 'lg:order-1' : ''}`}>
-                <Badge className="bg-blue-100 text-blue-700 text-base px-4 py-1 rounded-full">{feature.subtitle}</Badge>
+                <Badge className="bg-blue-100 text-blue-700 text-base px-4 py-1 rounded-full shadow">{feature.subtitle}</Badge>
                 <h3 className="text-3xl font-bold text-slate-900">{feature.title}</h3>
                 <p className="text-lg text-slate-600 leading-relaxed">{feature.description}</p>
                 <ul className="space-y-3">
