@@ -9,7 +9,7 @@ const HomeGroupPhoto = () => (
       {/* 團體合照 */}
       <div className="relative group">
         <img
-          src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1200&auto=format&fit=crop"
+          src="/lovable-uploads/d3bb2780-7b61-43e4-b4e3-972e02c9080f.png"
           alt="品牌行銷系團體合照"
           className="w-full max-w-4xl rounded-3xl shadow-2xl object-cover border-8 border-white group-hover:scale-105 transition-transform duration-500"
           style={{ maxHeight: '600px', objectFit: 'cover' }}
