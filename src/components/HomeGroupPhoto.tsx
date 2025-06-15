@@ -7,7 +7,7 @@ const HomeGroupPhoto = () => (
   <section className="py-12 md:py-20 bg-white relative z-20">
     <div className="container mx-auto px-6 flex flex-col items-center gap-6">
       <img
-        src="/lovable-uploads/5c79638c-ea70-4e12-956e-60ba4ada73d2.jpg"
+        src="/lovable-uploads/603de662-92e7-46c2-b6f8-d3f7e42e804e.png"
         alt="團體合照"
         className="w-full max-w-3xl rounded-3xl shadow-xl object-cover border-4 border-white"
         style={{ maxHeight: '520px', objectFit: 'cover' }}
