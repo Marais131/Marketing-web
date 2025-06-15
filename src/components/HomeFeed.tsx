@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Camera, Calendar, ChevronRight, Users, Award, Briefcase, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { sampleArticles } from "@/components/ArticlePreviewCard";
+import { Link } from "react-router-dom";
 
 const news = [
   {
@@ -120,6 +122,36 @@ const HomeFeed = () => (
               </Card>
             )
           })}
+          {/* 專欄精選區塊（簡版） */}
+          <div className="my-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Badge className="bg-gradient-to-r from-blue-100 to-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full shadow-sm border border-blue-200">
+                專欄精選
+              </Badge>
+              <span className="text-slate-600 text-xs">產學、老師觀點新知搶先看</span>
+            </div>
+            <div className="flex gap-3 flex-wrap">
+              {sampleArticles.slice(0, 3).map(article => (
+                <div key={article.id} className="flex flex-col w-40 bg-white/95 rounded-lg shadow hover:shadow-md overflow-hidden border border-slate-100">
+                  {article.image && (
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-20 object-cover"
+                    />
+                  )}
+                  <div className="p-2 flex flex-col gap-0.5">
+                    <span className="text-xs text-teal-700 font-semibold">{article.category}</span>
+                    <div className="text-xs text-slate-800 font-bold truncate">{article.title}</div>
+                  </div>
+                </div>
+              ))}
+              <Link to="/articles" className="flex items-center justify-center w-32 h-20 bg-gradient-to-r from-teal-600 to-blue-600 text-white rounded-lg font-bold shadow hover:from-teal-700 hover:to-blue-700 transition ml-2">
+                全部專欄
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </div>
         </div>
         {/* 右：活動照片 */}
         <div className="flex flex-col gap-6">

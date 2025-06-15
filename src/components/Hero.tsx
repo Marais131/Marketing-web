@@ -1,38 +1,9 @@
+
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Zap, Play } from "lucide-react";
+import { Sparkles, Zap } from "lucide-react";
 import { useState } from "react";
 
 const LOGO = "/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png";
-
-const articles = [
-  {
-    id: 1,
-    title: "品牌思維如何打造高競爭力行銷人？",
-    excerpt: "從產業實戰分享品牌經營的關鍵，結合行銷心理與數據洞察，打開嶄新職涯視角。",
-    author: "王大明 教授",
-    date: "2024-05-30",
-    category: "教師專欄",
-    image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=600&q=80",
-  },
-  {
-    id: 2,
-    title: "掌握消費者行為的三大心理技巧",
-    excerpt: "用案例解析如何破解消費者行為迷思，精準行銷策略大公開。",
-    author: "李小美 老師",
-    date: "2024-06-10",
-    category: "教師專欄",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80",
-  },
-  {
-    id: 3,
-    title: "AI大數據驅動的行銷產學研新未來",
-    excerpt: "產學合作案例，揭秘產學如何聯動AI和數據思維帶來行銷新局。",
-    author: "產研團隊",
-    date: "2024-06-12",
-    category: "產業分享",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600&q=80",
-  }
-];
 
 const Hero = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -49,7 +20,7 @@ const Hero = () => {
             <img
               src={LOGO}
               alt="Logo"
-              className="w-full max-w-[300px] md:max-w-[340px] h-[62px] md:h-[88px] object-contain mb-4 md:mb-5"
+              className="w-full max-w-[320px] md:max-w-[360px] h-[62px] md:h-[88px] object-contain mb-4 md:mb-5"
               style={{
                 background: "none",
                 border: "none",
@@ -70,53 +41,16 @@ const Hero = () => {
             <h1 className="font-black text-2xl md:text-3xl lg:text-4xl text-blue-900 leading-snug mb-3 md:mb-4 drop-shadow">
               以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，培養新世代行銷人才
             </h1>
-            {/* 副標題（單行，只突出關鍵詞） */}
+            {/* 副標題 */}
             <div className="text-base md:text-lg text-slate-700 font-semibold mb-2">
               你不只是學行銷，<span className="text-orange-600 font-bold">我們培養領導者</span>
             </div>
-            {/* 說明精簡（僅整體一色，保留部分關鍵字藍色） */}
+            {/* 簡介 */}
             <div className="text-sm md:text-base text-slate-600 font-medium">
               整合
               <span className="text-blue-700 font-bold mx-1">創新</span>、
               數據、心理與美感，善用團隊與數位工具，
               <span className="text-blue-700 font-bold mx-1">主導市場未來</span>。
-            </div>
-          </div>
-          {/* 新增專欄預覽區塊 */}
-          <div className="w-full mt-6">
-            <div className="font-bold text-blue-800 mb-3 text-lg flex items-center">
-              <span className="inline-block bg-gradient-to-r from-blue-100 to-teal-100 text-teal-700 px-3 py-1 rounded-full text-base mr-2">
-                最新專欄
-              </span>
-              <span className="text-slate-600 text-sm font-medium">專業老師與產學團隊深度剖析</span>
-            </div>
-            <div className="flex flex-col md:flex-row gap-4">
-              {articles.slice(0, 3).map((article) => (
-                <div key={article.id} className="bg-white/90 border border-slate-200 rounded-xl shadow group overflow-hidden hover:shadow-lg transition-all duration-200 flex-1 min-w-0">
-                  {article.image && (
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-32 object-cover"
-                    />
-                  )}
-                  <div className="p-3">
-                    <div className="flex gap-2 text-xs text-teal-700 mb-0.5">
-                      <span className="bg-blue-50 px-2 py-0.5 rounded">{article.category}</span>
-                      <span>{article.author}</span>
-                    </div>
-                    <div className="font-semibold text-slate-800 line-clamp-2 text-sm mb-0.5">{article.title}</div>
-                    <div className="text-xs text-slate-500 line-clamp-2">{article.excerpt}</div>
-                    <div className="text-xs text-gray-400 mt-1">{new Date(article.date).toLocaleDateString('zh-TW')}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4">
-              <a
-                href="/articles"
-                className="inline-block bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-5 py-2 rounded-full font-semibold shadow transition-all"
-              >前往全部專欄文章</a>
             </div>
           </div>
         </div>
@@ -140,7 +74,9 @@ const Hero = () => {
                     aria-label="播放介紹影片"
                     className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center hover:scale-105 transition shadow-xl"
                   >
-                    <Play className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" />
+                    <svg className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <polygon points="5,3 19,12 5,21" />
+                    </svg>
                   </button>
                 </div>
               </>
