@@ -11,30 +11,32 @@ const Hero = () => {
 
   return (
     <section className="relative w-full bg-white">
-      <div className="container mx-auto px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between">
+      <div className="container mx-auto px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-16">
         {/* 左側 Logo + 標語 */}
         <div className="flex-1 flex flex-col items-start justify-center max-w-xl md:pr-10 mb-10 md:mb-0">
+          {/* Logo 乾淨顯示，無邊框無陰影 */}
           <img
             src={LOGO}
             alt="Logo"
-            className="w-24 md:w-32 mb-6 md:mb-10 rounded-xl bg-white border shadow"
-            style={{ boxShadow: "0 4px 24px 0 rgba(24, 126, 179, 0.06)" }}
+            className="w-28 md:w-36 mb-8"
+            style={{ background: "none", boxShadow: "none", border: "none" }}
           />
-          <Badge className="bg-gradient-to-r from-teal-100 to-blue-100 text-teal-700 border border-teal-200 rounded-full px-5 py-2 mb-4 text-base flex items-center font-semibold">
+          {/* 創新行銷思維徽章 */}
+          <Badge className="bg-gradient-to-r from-teal-100 to-blue-100 text-teal-700 border border-teal-200 rounded-full px-5 py-2 mb-5 text-base flex items-center font-semibold">
             <Sparkles className="w-5 h-5 mr-2" />
             創新行銷思維
             <Zap className="w-5 h-5 ml-2" />
           </Badge>
-          <h1 className="font-black text-3xl md:text-4xl lg:text-5xl text-slate-800 leading-tight mb-4">
+          <h1 className="font-black text-3xl md:text-5xl text-slate-800 leading-tight mb-4">
             打造未來品牌行銷人才
           </h1>
-          <div className="text-lg md:text-xl text-slate-600 font-medium mb-6 md:mb-10">
-            我們不只學行銷，<br />
+          <div className="text-lg md:text-xl text-slate-600 font-medium mb-6">
+            我們不只學行銷，
+            <br />
             <span className="block text-blue-600 font-bold text-xl md:text-2xl mt-2">
               更讓你成為企業最想要的領袖型人才！
             </span>
           </div>
-          {/* 行動按鈕預留空間（可以加入聯絡、了解更多等） */}
         </div>
         {/* 右側 影片/主視覺 */}
         <div className="flex-1 flex items-center justify-center max-w-2xl w-full">
