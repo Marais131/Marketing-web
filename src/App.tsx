@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import ActivitiesPage from "./pages/Activities";
 import AdmissionsPage from "./pages/Admissions";
 import ContactPage from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Articles from "./pages/Articles";
 // 移除舊 FeaturesPage
 import CurriculumHighlights from "./pages/CurriculumHighlights";
 
@@ -30,6 +30,7 @@ const App = () => (
             <Route path="about" element={<AboutPage />} />
             <Route path="faculty" element={<FacultyPage />} />
             <Route path="activities" element={<ActivitiesPage />} />
+            <Route path="articles" element={<Articles />} />
             <Route path="admissions" element={<AdmissionsPage />} />
             <Route path="contact" element={<ContactPage />} />
           </Route>

@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, House } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -14,12 +14,13 @@ const Navbar = () => {
     <nav className="relative w-full bg-white/90 backdrop-blur-xl border-b border-slate-200/40 z-50 shadow-sm">
       <div className="container mx-auto px-2 sm:px-4 py-3">
         <div className="flex items-center justify-between gap-x-3">
-          {/* Logo 區域 */}
+          {/* Logo 區域（加icon） */}
           <Link
             to="/"
             className="flex items-center group"
             style={{ minHeight: "74px" }}
           >
+            <House className="text-teal-600 mr-3 w-7 h-7 md:w-8 md:h-8" />
             <div className="relative flex items-center">
               <img 
                 src="/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png" 
@@ -51,6 +52,8 @@ const Navbar = () => {
               // 移除教學特色
               { path: '/faculty', label: '師資陣容' },
               { path: '/activities', label: '活動成果' },
+              // 新增專欄文章
+              { path: '/articles', label: '專欄文章' },
               { path: '/admissions', label: '入學與未來' },
               { path: '/contact', label: '聯絡我們' }
             ].map((item) => (
@@ -100,6 +103,8 @@ const Navbar = () => {
                 // 移除教學特色
                 { path: '/faculty', label: '師資陣容' },
                 { path: '/activities', label: '活動成果' },
+                // 新增專欄文章
+                { path: '/articles', label: '專欄文章' },
                 { path: '/admissions', label: '入學與未來' },
                 { path: '/contact', label: '聯絡我們' }
               ].map((item) => (
