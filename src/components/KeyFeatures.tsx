@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle } from "lucide-react";
@@ -37,6 +36,45 @@ const KeyFeatures = () => {
   return (
     <section className="py-24 bg-slate-50">
       <div className="container mx-auto px-6">
+        {/* T型人才區說明＋四大能力條列 */}
+        <div className="max-w-3xl mx-auto mb-10">
+          <div className="flex flex-col gap-2 md:items-center md:text-center">
+            <h3 className="text-xl font-bold text-orange-600 mb-1">什麼是 T 型人才？</h3>
+            <div className="text-base md:text-lg text-slate-700 mb-1">
+              T 型人才意指同時擁有一項專精領域（垂直能力）與多元廣度知能（水平能力），
+              是新時代決策型品牌行銷人的最佳典範。<br />
+              <span className="font-semibold text-blue-600">本系以 T 型養成為主軸，聚焦四大核心能力：</span>
+            </div>
+          </div>
+          {/* 四大能力條列 */}
+          <ul className="mt-4 grid gap-2 md:gap-0 grid-cols-1 md:grid-cols-2">
+            <li className="flex items-start gap-2 mb-2">
+              <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" />
+              <span>
+                <b>行銷基石知能</b>：品牌管理、促銷設計、通路經營等策略規劃能力
+              </span>
+            </li>
+            <li className="flex items-start gap-2 mb-2">
+              <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" />
+              <span>
+                <b>消費者洞察力</b>：心理行為研究、需求挖掘、數據分析
+              </span>
+            </li>
+            <li className="flex items-start gap-2 mb-2">
+              <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" />
+              <span>
+                <b>企劃與執行力</b>：邏輯規劃、專案管理、資源協作落實品牌專案
+              </span>
+            </li>
+            <li className="flex items-start gap-2 mb-2">
+              <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" />
+              <span>
+                <b>創新／創意思維</b>：美感訓練、內容敘事、跨界創新
+              </span>
+            </li>
+          </ul>
+        </div>
+        {/* 原本的標題區與 features 區塊 */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
             打造你的<span className="text-blue-600">行銷超能力</span>
@@ -74,4 +112,3 @@ const KeyFeatures = () => {
 };
 
 export default KeyFeatures;
-

@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
@@ -79,6 +78,25 @@ const Hero = () => {
                 }}
               />
             )}
+          </div>
+        </div>
+      </div>
+      {/* T型人才理念文案卡片（Hero下方） */}
+      <div className="container mx-auto px-4 mt-0 md:mt-5">
+        <div className="bg-orange-50 border border-orange-200 rounded-2xl shadow flex flex-col md:flex-row items-center justify-between px-6 py-6 md:py-7 gap-y-4 md:gap-x-8">
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="flex items-center mb-1">
+              <span className="font-semibold text-orange-600 tracking-wide text-base">品牌端 T 型人才的搖籃</span>
+            </div>
+            <div className="text-slate-700 text-base md:text-lg leading-relaxed">
+              本系聚焦品牌／產品行銷職能，以「T 型人才」為教育核心，強調
+              <span className="font-bold text-orange-600"> 專業深度 × 跨域整合 </span>
+              ——讓你不只是創意人，更是具備
+              <span className="text-blue-600 font-semibold">商業洞察</span>、
+              <span className="text-blue-600 font-semibold">邏輯判斷</span>與
+              <span className="text-blue-600 font-semibold">跨域協作</span>
+              力量的品牌決策型行銷人！
+            </div>
           </div>
         </div>
       </div>
