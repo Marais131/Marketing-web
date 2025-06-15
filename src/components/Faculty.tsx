@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Briefcase } from "lucide-react";
-import FeaturedTeachersCard from "./FeaturedTeachersCard";
+import TeacherCarousel from "./TeacherCarousel";
 
 const featuredTeachers = [
   {
@@ -68,10 +68,9 @@ const Faculty = () => {
           </div>
         </div>
 
-        {/* 新增：特色教師介紹卡片 */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">師資人物介紹</h3>
-          <FeaturedTeachersCard teachers={featuredTeachers} />
+        {/* 特色教師－新版圖片動態區塊 */}
+        <div className="mt-20">
+          <TeacherCarousel teachers={featuredTeachers} />
         </div>
       </div>
     </section>
