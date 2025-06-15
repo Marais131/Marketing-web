@@ -13,7 +13,7 @@ const Hero = () => {
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
       <div className="container mx-auto px-2 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-8">
-        {/* 左側 Logo + 標語區塊加寬、簡化說明、重點跳色 */}
+        {/* 左側 Logo + 標語區塊 */}
         <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-8 md:mb-0">
           <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-6 md:p-10">
             {/* Logo */}
@@ -37,18 +37,20 @@ const Hero = () => {
               ブランド新世代整合者
               <Zap className="w-5 h-5 ml-2" />
             </Badge>
-            {/* 主標題（略小） */}
-            <h1 className="font-black text-xl md:text-3xl lg:text-4xl text-blue-900 leading-snug mb-3 md:mb-4 drop-shadow">
-              以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，<br className="hidden md:inline" />
-              培養新世代行銷人才
+            {/* 主標題 */}
+            <h1 className="font-black text-2xl md:text-3xl lg:text-4xl text-blue-900 leading-snug mb-3 md:mb-4 drop-shadow">
+              以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，培養新世代行銷人才
             </h1>
-            {/* 精簡副標題（強調重點關鍵字） */}
+            {/* 副標題（單行，只突出關鍵詞） */}
             <div className="text-base md:text-lg text-slate-700 font-semibold mb-2">
               你不只是學行銷，<span className="text-orange-600 font-bold">我們培養領導者</span>
-              <span className="block mt-1 text-teal-700 font-medium">
-                整合 <span className="text-blue-700 font-bold">創新</span>、<span className="text-slate-900 font-bold">數據</span>、心理與美感， 
-                善用團隊與數位工具，<span className="text-blue-700 font-bold">主導市場未來</span>。
-              </span>
+            </div>
+            {/* 說明精簡（僅整體一色，保留部分關鍵字藍色） */}
+            <div className="text-sm md:text-base text-slate-600 font-medium">
+              整合
+              <span className="text-blue-700 font-bold mx-1">創新</span>、
+              數據、心理與美感，善用團隊與數位工具，
+              <span className="text-blue-700 font-bold mx-1">主導市場未來</span>。
             </div>
           </div>
         </div>
