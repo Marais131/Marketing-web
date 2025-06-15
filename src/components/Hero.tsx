@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
@@ -11,15 +12,15 @@ const Hero = () => {
     <section className="relative w-full bg-gradient-to-b from-blue-50 via-white to-orange-50 overflow-hidden">
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
-      <div className="container mx-auto px-2 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-8">
+      <div className="container mx-auto px-2 md:px-6 py-8 md:py-14 flex flex-col md:flex-row items-center justify-between gap-y-6 md:gap-x-8">
         {/* 左側 Logo + 標語區塊 */}
-        <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-8 md:mb-0">
-          <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-6 md:p-10">
+        <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-6 md:mb-0">
+          <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-4 md:p-7">
             {/* Logo */}
             <img
               src={LOGO}
               alt="Logo"
-              className="w-full max-w-[300px] md:max-w-[340px] h-[62px] md:h-[88px] object-contain mb-4 md:mb-5"
+              className="w-full max-w-[230px] md:max-w-[270px] h-[48px] md:h-[68px] object-contain mb-2 md:mb-3"
               style={{
                 background: "none",
                 border: "none",
@@ -31,24 +32,24 @@ const Hero = () => {
               }}
             />
             {/* 特色Badge */}
-            <Badge className="bg-gradient-to-r from-orange-100 to-blue-100 text-blue-800 border border-blue-200 rounded-full px-6 py-2 mb-3 text-base flex items-center font-semibold shadow-sm">
-              <Sparkles className="w-5 h-5 mr-2" />
+            <Badge className="bg-gradient-to-r from-orange-100 to-blue-100 text-blue-800 border border-blue-200 rounded-full px-5 py-1.5 mb-2 text-sm flex items-center font-semibold shadow-sm">
+              <Sparkles className="w-4 h-4 mr-2" />
               ブランド新世代整合者
-              <Zap className="w-5 h-5 ml-2" />
+              <Zap className="w-4 h-4 ml-2" />
             </Badge>
-            {/* 主標題 單行呈現 */}
-            <h1 className="font-black text-2xl md:text-3xl lg:text-4xl text-blue-900 leading-snug mb-3 md:mb-4 drop-shadow">
+            {/* 主標題 單行呈現並縮小字體 */}
+            <h1 className="font-black text-xl md:text-2xl lg:text-3xl text-blue-900 leading-tight mb-2 md:mb-3 drop-shadow">
               以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，培養新世代行銷人才
             </h1>
-            {/* 副標題 單行強調關鍵詞 */}
-            <div className="text-base md:text-lg text-slate-700 font-semibold mb-2">
+            {/* 副標題，間距壓縮 */}
+            <div className="text-sm md:text-base text-slate-700 font-semibold mb-1">
               你不只是學行銷，<span className="text-orange-600 font-bold">我們培養領導者</span>
             </div>
-            {/* 精簡說明（同一行「、」分隔，僅保留核心藍色跳色關鍵字） */}
-            <div className="text-sm md:text-base text-slate-600 font-medium">
+            {/* 精簡說明，全部單行、壓縮字體、只保留一兩處跳色 */}
+            <div className="text-xs md:text-sm text-slate-600 font-medium whitespace-nowrap overflow-x-auto">
               整合
               <span className="text-blue-700 font-bold mx-1">創新</span>、
-              數據、心理與美感，善用團隊與數位工具，
+              數據、心理、美感，善用團隊與數位工具、
               <span className="text-blue-700 font-bold mx-1">主導市場未來</span>
             </div>
           </div>
@@ -71,9 +72,9 @@ const Hero = () => {
                   <button
                     onClick={() => setShowVideo(true)}
                     aria-label="播放介紹影片"
-                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center hover:scale-105 transition shadow-xl"
+                    className="bg-white/90 hover:bg-blue-100 text-teal-600 border-2 border-white rounded-full w-14 h-14 md:w-16 md:h-16 flex items-center justify-center hover:scale-105 transition shadow-xl"
                   >
-                    <Play className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" />
+                    <Play className="w-7 h-7 md:w-10 md:h-10" fill="currentColor" />
                   </button>
                 </div>
               </>
@@ -118,3 +119,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
