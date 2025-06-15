@@ -15,13 +15,13 @@ const Hero = () => {
       <div className="container mx-auto px-2 md:px-8 flex flex-col md:flex-row items-stretch justify-between gap-y-8 md:gap-x-12 lg:gap-x-16">
         {/* 左側 Logo + 標語大卡片 */}
         <div className="flex-[4] flex flex-col justify-stretch w-full max-w-2xl">
-          <div className="flex h-full">
-            <div className="w-full h-full bg-gradient-to-br from-orange-100/95 via-white to-blue-100/90 rounded-3xl shadow-2xl p-8 md:p-12 flex flex-col gap-7 justify-center min-h-[300px] md:min-h-[400px] lg:min-h-[440px] max-h-[600px]">
+          <div className="flex h-full min-h-[170px] md:min-h-[400px] lg:min-h-[440px]">
+            <div className="flex flex-col justify-center h-full w-full bg-gradient-to-br from-orange-100/95 via-white to-blue-100/90 rounded-3xl shadow-2xl px-7 py-9 md:px-12 md:py-14 gap-y-7 min-h-[170px] md:min-h-[400px] lg:min-h-[440px] max-h-[600px]">
               {/* Logo */}
               <img
                 src={LOGO}
                 alt="Logo"
-                className="w-full max-w-[260px] md:max-w-[285px] h-[58px] md:h-[78px] object-contain mb-5"
+                className="w-full max-w-[285px] h-[58px] md:h-[78px] object-contain mb-5 self-center"
                 style={{
                   background: "none",
                   border: "none",
@@ -31,25 +31,25 @@ const Hero = () => {
                 }}
               />
               {/* 條狀特色Badge */}
-              <Badge className="bg-gradient-to-r from-blue-100 to-orange-50 text-blue-900 border border-blue-200 rounded-full px-8 py-2 mb-4 text-lg md:text-xl flex items-center font-bold shadow">
+              <Badge className="bg-gradient-to-r from-blue-100 to-orange-50 text-blue-900 border border-blue-200 rounded-full px-8 py-2 mb-3 text-lg md:text-xl flex items-center font-bold shadow self-center">
                 <Sparkles className="w-6 h-6 mr-2" />
                 ブランド新世代整合者
                 <Zap className="w-6 h-6 ml-2" />
               </Badge>
               {/* 主標題 (斷行，大字) */}
-              <h1 className="font-black text-3xl md:text-5xl lg:text-6xl text-blue-900 leading-tight mb-4 tracking-tight">
+              <h1 className="font-black text-3xl md:text-5xl lg:text-6xl text-blue-900 leading-tight mb-2 tracking-tight text-center">
                 <span className="block">
                   以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，
                 </span>
                 <span className="block">培養新世代行銷人才</span>
               </h1>
-              {/* 副標題 (放大、明顯) */}
-              <div className="text-xl md:text-2xl text-slate-700 font-semibold mb-1">
+              {/* 副標題 */}
+              <div className="text-xl md:text-2xl text-slate-700 font-semibold mb-3 text-center">
                 你不只是學行銷，
                 <span className="text-orange-600 font-bold">我們培養領導者</span>
               </div>
-              {/* 精簡說明 (單行顯眼、放大、著重跳色) */}
-              <div className="text-base md:text-xl text-slate-700 font-medium leading-relaxed whitespace-normal">
+              {/* 精簡說明 */}
+              <div className="text-base md:text-xl text-slate-700 font-medium leading-relaxed whitespace-normal text-center max-w-[40rem] mx-auto">
                 整合
                 <span className="text-blue-700 font-bold mx-1">創新</span>、數據、心理、美感，
                 善用團隊與數位工具、
