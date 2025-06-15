@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Play } from "lucide-react";
 import { useState } from "react";
@@ -14,14 +13,14 @@ const Hero = () => {
       {/* 圓弧色塊裝飾 */}
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
-      <div className="container mx-auto px-2 md:px-6 py-8 md:py-16 flex flex-col md:flex-row items-center justify-between gap-y-8 md:gap-x-6 lg:gap-x-4">
-        {/* 左側 Logo + 標語：flex-[2] 右側影片 flex-[1] 約7:3 */}
-        <div className="flex-[2] flex flex-col items-start justify-center max-w-2xl w-full md:pr-0 lg:pr-2 mb-10 md:mb-0">
+      <div className="container mx-auto px-2 md:px-6 py-8 md:py-16 flex flex-col md:flex-row items-center justify-between gap-y-6 md:gap-x-3 lg:gap-x-4">
+        {/* 左側 Logo + 標語：flex-[4] 右側影片 flex-[6] (約4:6比例) */}
+        <div className="flex-[4] flex flex-col items-start justify-center max-w-lg w-full md:pr-0 lg:pr-2 mb-8 md:mb-0">
           {/* 去背扁平型Logo，左對齊且更大更扁 */}
           <img
             src={LOGO}
             alt="Logo"
-            className="w-full max-w-[410px] md:max-w-[520px] h-[95px] md:h-[135px] object-contain mb-5 transition-all duration-300"
+            className="w-full max-w-[340px] md:max-w-[400px] h-[82px] md:h-[112px] object-contain mb-5 transition-all duration-300"
             style={{
               background: "none",
               border: "none",
@@ -49,9 +48,9 @@ const Hero = () => {
             </span>
           </div>
         </div>
-        {/* 右側 影片區：約3成寬度，容器保證16:9且不被壓縮 */}
-        <div className="flex-[1] flex items-center justify-center w-full max-w-[450px] md:max-w-[370px] lg:max-w-[420px] mt-2 md:mt-0">
-          <div className="relative w-full aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[150px] md:min-h-[200px]">
+        {/* 右側 影片區：約6成寬度，容器保證16:9且不被壓縮 */}
+        <div className="flex-[6] flex items-center justify-center w-full max-w-full mt-2 md:mt-0">
+          <div className="relative w-full max-w-[610px] md:max-w-[730px] aspect-[16/9] rounded-3xl shadow-2xl overflow-hidden bg-slate-50 border border-slate-100 min-h-[170px] md:min-h-[260px]">
             {!showVideo ? (
               <>
                 <img
@@ -59,8 +58,8 @@ const Hero = () => {
                   alt="系所介紹影片"
                   className="w-full h-full object-cover object-center aspect-[16/9] transition-opacity"
                   style={{
-                    minHeight: "150px",
-                    borderRadius: "1.5rem",
+                    minHeight: "170px",
+                    borderRadius: "1.5rem"
                   }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-slate-900/25">
@@ -81,11 +80,11 @@ const Hero = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
-                  minHeight: "150px",
+                  minHeight: "170px",
                   width: "100%",
                   borderRadius: "1.5rem",
                   height: "100%",
-                  maxHeight: "320px"
+                  maxHeight: "390px"
                 }}
               />
             )}
