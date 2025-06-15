@@ -1,180 +1,148 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Palette, BookOpen, Users, Video, Brain, Smartphone, GraduationCap, Building, Star } from "lucide-react";
+import { GraduationCap, Building } from "lucide-react";
+
+const features = [
+  {
+    title: "行銷美學",
+    img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800&auto=format&fit=crop",
+    color: "from-pink-400/70 to-rose-400/10",
+    accent: "bg-pink-100/60 text-pink-700",
+    oneLiner: "視覺設計融合創意，打造品牌美學。",
+    tags: ["美感設計", "創意思考", "品牌視覺"],
+  },
+  {
+    title: "數位行銷實務",
+    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop",
+    color: "from-cyan-400/60 to-blue-400/5",
+    accent: "bg-cyan-100/70 text-cyan-700",
+    oneLiner: "結合最新工具與平台，社群實作一把罩。",
+    tags: ["社群經營", "內容行銷", "數據分析"],
+  },
+  {
+    title: "消費者心理學",
+    img: "https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=800&auto=format&fit=crop",
+    color: "from-purple-400/70 to-violet-400/10",
+    accent: "bg-purple-100/80 text-purple-700",
+    oneLiner: "洞察消費動機，科學化決策才是真行銷。",
+    tags: ["行為分析", "心理洞察", "市場研究"],
+  },
+  {
+    title: "學術研討・業界連結",
+    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop",
+    color: "from-blue-400/70 to-teal-400/10",
+    accent: "bg-blue-100/60 text-blue-700",
+    oneLiner: "學研業界並進，實踐與理論同步走。",
+    tags: ["學術交流", "企業導師", "實習媒合"],
+  },
+];
+
+const specialPrograms = [
+  {
+    icon: GraduationCap,
+    title: "學碩一貫方案",
+    subtitle: "五年拿雙學位，領先規劃職涯",
+    bg: "from-orange-400/90 to-red-400/70",
+    bullets: [
+      "縮短修業年限，提早進入職場",
+      "彈性選課，研究力養成",
+      "校推薦優錄，獨家保障"
+    ]
+  },
+  {
+    icon: Building,
+    title: "產學合作計畫",
+    subtitle: "業界攜手，專案實戰經驗",
+    bg: "from-blue-400/90 to-slate-700/80",
+    bullets: [
+      "大廠/新創專案合作",
+      "實習媒合，職涯銜接",
+      "企業導師一對一輔導"
+    ]
+  }
+];
 
 const Features = () => {
-  const features = [
-    {
-      title: "行銷美學",
-      description: "結合美學設計與行銷策略，培養學生的視覺行銷素養",
-      highlights: ["視覺設計", "品牌美學", "創意思維"],
-      color: "text-pink-600",
-      bg: "from-pink-50 to-rose-50",
-      border: "border-pink-200/30",
-      icon: Palette
-    },
-    {
-      title: "學術研討會 (CMR)",
-      description: "定期舉辦學術研討會，與業界專家交流最新行銷趨勢",
-      highlights: ["學術交流", "趨勢分析", "研究發表"],
-      color: "text-blue-600",
-      bg: "from-blue-50 to-indigo-50",
-      border: "border-blue-200/30",
-      icon: BookOpen
-    },
-    {
-      title: "職人講座",
-      description: "邀請業界專家分享實務經驗，拓展學生的視野與人脈",
-      highlights: ["業界交流", "實務分享", "職涯規劃"],
-      color: "text-green-600",
-      bg: "from-green-50 to-emerald-50",
-      border: "border-green-200/30",
-      icon: Users
-    },
-    {
-      title: "線上家長座談",
-      description: "定期舉辦家長座談會，讓家長了解學生學習狀況與系所發展",
-      highlights: ["親師溝通", "學習追蹤", "家庭支持"],
-      color: "text-orange-600",
-      bg: "from-orange-50 to-red-50",
-      border: "border-orange-200/30",
-      icon: Video
-    },
-    {
-      title: "消費者心理學",
-      description: "深入探討消費者行為與心理，建立科學化行銷決策基礎",
-      highlights: ["行為分析", "心理研究", "決策科學"],
-      color: "text-purple-600",
-      bg: "from-purple-50 to-violet-50",
-      border: "border-purple-200/30",
-      icon: Brain
-    },
-    {
-      title: "數位行銷實務",
-      description: "結合最新數位工具與平台，培養學生的數位行銷技能",
-      highlights: ["社群媒體", "數據分析", "內容行銷"],
-      color: "text-teal-600",
-      bg: "from-teal-50 to-cyan-50",
-      border: "border-teal-200/30",
-      icon: Smartphone
-    }
-  ];
-
   return (
-    <section id="features" className="py-40 bg-gradient-to-b from-slate-50/50 to-white relative overflow-hidden">
-      {/* 精緻背景 */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.02),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(249,115,22,0.02),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.008)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.008)_1px,transparent_1px)] bg-[size:120px_120px]"></div>
+    <section className="py-24 md:py-40 bg-gradient-to-b from-slate-50/50 to-white relative overflow-hidden">
+      {/* 動態背景 */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.05),transparent_60%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_70%,rgba(249,115,22,0.045),transparent_60%)]"></div>
       </div>
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-8xl mx-auto">
-          {/* 精緻標題區 */}
-          <div className="text-center mb-32">
-            <Badge className="bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border border-green-200/30 px-10 py-4 rounded-full mb-10 font-medium text-lg">
-              <GraduationCap className="w-5 h-5 mr-3" />
-              教學特色與優勢
+          {/* 精簡大標 */}
+          <div className="text-center mb-16 animate-fade-in">
+            <Badge className="bg-gradient-to-r from-teal-100 to-blue-50 text-teal-700 border border-teal-200/30 px-8 py-3 rounded-full mb-7 font-medium text-lg">
+              教學特色精華
             </Badge>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-12 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 bg-clip-text text-transparent tracking-tight">
-              教學特色
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-teal-800 bg-clip-text text-transparent tracking-tight">
+              色彩・活潑・實戰
             </h2>
-            <p className="text-2xl md:text-3xl text-slate-600 max-w-6xl mx-auto leading-relaxed font-light">
-              多元化的教學內容與創新的學習模式，培養學生成為具備全方位行銷能力的專業人才
+            <p className="text-xl md:text-2xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-light">
+              精選特色內容、豐富圖像，讓你一眼看懂本系精髓
             </p>
           </div>
 
-          {/* 特色網格 */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
-            {features.map((feature, index) => (
-              <Card key={index} className={`group hover:shadow-2xl transition-all duration-700 border ${feature.border} bg-gradient-to-br ${feature.bg} hover:scale-105 relative overflow-hidden rounded-3xl`}>
-                <CardHeader className="pb-8 relative z-10 p-10">
-                  <div className={`w-20 h-20 rounded-3xl bg-white flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
-                    <feature.icon className={`w-10 h-10 ${feature.color}`} />
+          {/* 教學特色－大圖拼貼 */}
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 mb-24">
+            {features.map((f, idx) => (
+              <div
+                key={f.title}
+                className={`group flex flex-col-reverse md:flex-col ${idx % 2 === 1 ? "md:justify-end" : ""} relative animate-fade-in`}
+                style={{ animationDelay: `${0.05 + idx * 0.13}s`, animationFillMode: "both" }}
+              >
+                <Card className={`relative overflow-hidden border-0 bg-gradient-to-br ${f.color} shadow-xl group-hover:scale-105 transition-transform duration-500 min-h-[315px]`}>
+                  <div className="absolute inset-0">
+                    <img
+                      src={f.img}
+                      alt={f.title}
+                      className="w-full h-full object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-500 scale-105"
+                      draggable={false}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/60 to-transparent"></div>
                   </div>
-                  <CardTitle className="text-2xl text-slate-900 group-hover:text-blue-600 transition-colors duration-500 mb-4 leading-tight">
-                    {feature.title}
-                  </CardTitle>
-                  <CardDescription className="text-slate-600 leading-relaxed text-lg">
-                    {feature.description}
-                  </CardDescription>
+                  <CardHeader className="relative z-10 p-8 pb-6">
+                    <CardTitle className="text-2xl md:text-3xl font-bold text-slate-900 mb-2 drop-shadow">{f.title}</CardTitle>
+                    <div className="text-[1.09rem] text-slate-800 mb-6 font-medium">{f.oneLiner}</div>
+                  </CardHeader>
+                  <CardContent className="relative z-10 px-8 pb-7 flex flex-wrap gap-3">
+                    {f.tags.map((tag, i) => (
+                      <Badge key={i} className={`rounded-full text-base ${f.accent} px-5 py-2 font-semibold`}>{tag}</Badge>
+                    ))}
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          {/* 主計畫區塊 */}
+          <div className="grid md:grid-cols-2 gap-8 animate-fade-in">
+            {specialPrograms.map((s, i) => (
+              <Card key={i} className={`relative border-0 text-white rounded-[2rem] overflow-hidden bg-gradient-to-br ${s.bg} shadow-2xl hover:scale-105 transition-transform duration-500`}>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_30%,rgba(255,255,255,0.07),transparent_67%)]"></div>
+                <CardHeader className="relative z-10 p-10 pb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mb-6 border border-white/25">
+                    <s.icon className="w-9 h-9 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl md:text-3xl font-bold mb-2 drop-shadow">{s.title}</CardTitle>
+                  <div className="text-lg text-white/90 mb-4">{s.subtitle}</div>
                 </CardHeader>
                 <CardContent className="relative z-10 p-10 pt-0">
-                  <div className="flex flex-wrap gap-3">
-                    {feature.highlights.map((highlight, i) => (
-                      <Badge key={i} variant="secondary" className="bg-white/80 text-slate-700 hover:bg-white transition-colors px-4 py-2 rounded-full">
-                        {highlight}
-                      </Badge>
+                  <div className="space-y-3">
+                    {s.bullets.map((item, idx) => (
+                      <div key={idx} className="flex items-center space-x-4">
+                        <div className="w-2.5 h-2.5 bg-white rounded-full" />
+                        <span className="text-white/90 text-base">{item}</span>
+                      </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
             ))}
-          </div>
-
-          {/* 特別計畫區 */}
-          <div className="grid lg:grid-cols-2 gap-12">
-            <Card className="bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white border-0 shadow-2xl relative overflow-hidden hover:scale-105 transition-transform duration-500 rounded-[2rem]">
-              {/* 背景效果 */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.1),transparent_70%)]"></div>
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-              
-              <CardHeader className="relative z-10 p-12">
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-3xl flex items-center justify-center mb-8 border border-orange-400/30">
-                  <GraduationCap className="w-10 h-10 text-orange-300" />
-                </div>
-                <CardTitle className="text-4xl text-orange-400 mb-6 font-bold">學碩一貫方案</CardTitle>
-                <CardDescription className="text-blue-200 text-xl leading-relaxed">
-                  五年完成學士與碩士學位，提早進入研究領域
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="relative z-10 p-12 pt-0">
-                <div className="space-y-6">
-                  {[
-                    "縮短修業年限，提早進入職場",
-                    "深化專業知識，培養研究能力", 
-                    "優先選課權，彈性學習安排"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-6">
-                      <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex-shrink-0"></div>
-                      <span className="text-blue-100 text-lg">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-orange-600 via-red-600 to-red-700 text-white border-0 shadow-2xl relative overflow-hidden hover:scale-105 transition-transform duration-500 rounded-[2rem]">
-              {/* 背景效果 */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.1),transparent_70%)]"></div>
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-              
-              <CardHeader className="relative z-10 p-12">
-                <div className="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mb-8 border border-white/30">
-                  <Building className="w-10 h-10 text-white" />
-                </div>
-                <CardTitle className="text-4xl mb-6 font-bold">產學合作計畫</CardTitle>
-                <CardDescription className="text-orange-100 text-xl leading-relaxed">
-                  與知名企業合作，提供實習與就業機會
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="relative z-10 p-12 pt-0">
-                <div className="space-y-6">
-                  {[
-                    "實習機會媒合，累積實務經驗",
-                    "業界導師制度，職涯指導",
-                    "就業媒合服務，無縫接軌職場"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-6">
-                      <div className="w-3 h-3 bg-white rounded-full flex-shrink-0"></div>
-                      <span className="text-orange-100 text-lg">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
