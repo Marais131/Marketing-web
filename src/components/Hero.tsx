@@ -23,7 +23,7 @@ const Hero = () => {
             <img
               src="/lovable-uploads/603de662-92e7-46c2-b6f8-d3f7e42e804e.png"
               alt="系所 Logo"
-              className="w-36 md:w-44 rounded-xl drop-shadow-lg mb-2"
+              className="w-52 md:w-64 lg:w-72 rounded-xl drop-shadow-lg mb-2"
             />
 
             <Badge className="bg-gradient-to-r from-teal-500/20 to-blue-500/20 text-teal-300 border border-teal-400/30 px-7 py-2 rounded-full mb-3 text-base font-semibold flex items-center">
