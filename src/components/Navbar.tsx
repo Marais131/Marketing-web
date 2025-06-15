@@ -51,7 +51,7 @@ const Navbar = () => {
               // 移除教學特色
               { path: '/faculty', label: '師資陣容' },
               { path: '/activities', label: '活動成果' },
-              { path: '/admissions', label: '招生資訊' },
+              { path: '/admissions', label: '入學與未來' },
               { path: '/contact', label: '聯絡我們' }
             ].map((item) => (
               <Link 
@@ -100,7 +100,7 @@ const Navbar = () => {
                 // 移除教學特色
                 { path: '/faculty', label: '師資陣容' },
                 { path: '/activities', label: '活動成果' },
-                { path: '/admissions', label: '招生資訊' },
+                { path: '/admissions', label: '入學與未來' },
                 { path: '/contact', label: '聯絡我們' }
               ].map((item) => (
                 <Link 

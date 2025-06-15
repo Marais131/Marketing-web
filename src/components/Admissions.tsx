@@ -77,7 +77,7 @@ const Admissions = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-              招生<span className="text-orange-500">資訊</span>
+              入學與未來<span className="text-orange-500"></span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               多元的入學管道與完善的教育資源，為你的行銷職涯奠定堅實基礎
