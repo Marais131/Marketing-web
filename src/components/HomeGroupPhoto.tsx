@@ -9,13 +9,13 @@ const HomeGroupPhoto = () => (
       {/* 團體合照 */}
       <div className="relative group">
         <img
-          src="/lovable-uploads/603de662-92e7-46c2-b6f8-d3f7e42e804e.png"
+          src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1200&auto=format&fit=crop"
           alt="品牌行銷系團體合照"
           className="w-full max-w-4xl rounded-3xl shadow-2xl object-cover border-8 border-white group-hover:scale-105 transition-transform duration-500"
           style={{ maxHeight: '600px', objectFit: 'cover' }}
           onError={(e) => {
-            console.log('圖片載入失敗:', e);
-            e.currentTarget.src = 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1000&auto=format&fit=crop';
+            console.log('主要圖片載入失敗，使用備用圖片');
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1200&auto=format&fit=crop';
           }}
         />
         {/* 光暈效果 */}
