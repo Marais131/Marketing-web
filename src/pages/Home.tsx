@@ -1,5 +1,7 @@
+
 import Hero from "@/components/Hero";
 import AdmissionHighlight from "@/components/AdmissionHighlight";
+import PhotoWall from "@/components/PhotoWall";
 import PhotoGallery from "@/components/PhotoGallery";
 import NewsSection from "@/components/NewsSection";
 import KeyFeatures from "@/components/KeyFeatures";
@@ -10,6 +12,9 @@ const Home = () => {
   return (
     <div className="relative">
       <Hero />
+
+      {/* 圖片流動牆 PhotoWall（新）：呈現真實校園面貌 */}
+      <PhotoWall />
 
       {/* 團體合照區塊 */}
       <HomeGroupPhoto />
@@ -31,3 +36,4 @@ const Home = () => {
 };
 
 export default Home;
+
