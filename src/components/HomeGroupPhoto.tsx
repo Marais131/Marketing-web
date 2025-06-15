@@ -4,18 +4,36 @@
  */
 
 const HomeGroupPhoto = () => (
-  <section className="py-12 md:py-20 bg-white relative z-20">
-    <div className="container mx-auto px-6 flex flex-col items-center gap-6">
-      <img
-        src="/lovable-uploads/603de662-92e7-46c2-b6f8-d3f7e42e804e.png"
-        alt="團體合照"
-        className="w-full max-w-3xl rounded-3xl shadow-xl object-cover border-4 border-white"
-        style={{ maxHeight: '520px', objectFit: 'cover' }}
-      />
-      <h2 className="text-2xl md:text-3xl font-semibold text-slate-700 text-center mt-4">
-        我們是一個充滿創意與行動力的團隊 <br className="hidden md:inline" />
-        <span className="text-blue-600">品牌行銷人</span> = 團結 &middot; 多元 &middot; 創新！
-      </h2>
+  <section className="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50 relative z-20">
+    <div className="container mx-auto px-6 flex flex-col items-center gap-8">
+      {/* 團體合照 */}
+      <div className="relative group">
+        <img
+          src="/lovable-uploads/603de662-92e7-46c2-b6f8-d3f7e42e804e.png"
+          alt="品牌行銷系團體合照"
+          className="w-full max-w-4xl rounded-3xl shadow-2xl object-cover border-8 border-white group-hover:scale-105 transition-transform duration-500"
+          style={{ maxHeight: '600px', objectFit: 'cover' }}
+          onError={(e) => {
+            console.log('圖片載入失敗:', e);
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1000&auto=format&fit=crop';
+          }}
+        />
+        {/* 光暈效果 */}
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+      
+      {/* 標語文字 */}
+      <div className="text-center max-w-4xl">
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4 leading-tight">
+          我們是一個充滿創意與行動力的團隊
+        </h2>
+        <p className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
+          品牌行銷人 = 團結 &middot; 多元 &middot; 創新！
+        </p>
+        <div className="mt-6 flex justify-center">
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+        </div>
+      </div>
     </div>
   </section>
 );
