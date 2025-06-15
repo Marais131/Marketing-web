@@ -13,14 +13,14 @@ const Hero = () => {
       <div className="absolute -z-10 top-0 -left-24 w-[34rem] h-[38rem] bg-orange-100/50 rounded-full blur-3xl"></div>
       <div className="absolute -z-10 bottom-0 right-0 w-[32rem] h-[32rem] bg-blue-200/40 rounded-full blur-3xl"></div>
       <div className="container mx-auto px-2 md:px-6 py-8 md:py-14 flex flex-col md:flex-row items-center justify-between gap-y-6 md:gap-x-8">
-        {/* 左側 Logo + 標語區塊（緊湊版） */}
-        <div className="flex-[4] flex flex-col items-start justify-center w-full max-w-2xl mb-4 md:mb-0">
-          <div className="w-full h-full bg-gradient-to-br from-orange-100/80 via-white to-blue-100/70 rounded-3xl shadow-lg p-3 md:p-4">
+        {/* 左側 Logo + 標語大卡片 */}
+        <div className="flex-[4] flex flex-col justify-stretch w-full max-w-2xl mb-0">
+          <div className="w-full h-full bg-gradient-to-br from-orange-100/90 via-white to-blue-100/80 rounded-3xl shadow-xl p-7 md:p-10 flex flex-col gap-4 justify-center min-h-[230px] md:min-h-[320px]">
             {/* Logo */}
             <img
               src={LOGO}
               alt="Logo"
-              className="w-full max-w-[190px] md:max-w-[220px] h-[38px] md:h-[60px] object-contain mb-2"
+              className="w-full max-w-[230px] md:max-w-[260px] h-[48px] md:h-[70px] object-contain mb-3"
               style={{
                 background: "none",
                 border: "none",
@@ -31,25 +31,28 @@ const Hero = () => {
                 display: "block"
               }}
             />
-            {/* 特色Badge */}
-            <Badge className="bg-gradient-to-r from-orange-100 to-blue-100 text-blue-800 border border-blue-200 rounded-full px-4 py-1 mb-1 text-xs flex items-center font-semibold shadow-sm">
-              <Sparkles className="w-4 h-4 mr-1" />
+            {/* 條狀特色Badge */}
+            <Badge className="bg-gradient-to-r from-blue-100 to-orange-50 text-blue-900 border border-blue-200 rounded-full px-7 py-2 mb-3 text-lg flex items-center font-bold shadow">
+              <Sparkles className="w-5 h-5 mr-2" />
               ブランド新世代整合者
-              <Zap className="w-4 h-4 ml-1" />
+              <Zap className="w-5 h-5 ml-2" />
             </Badge>
-            {/* 主標題字體縮小，間距壓縮 */}
-            <h1 className="font-black text-base md:text-lg lg:text-xl text-blue-900 leading-snug mb-1">
-              以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，培養新世代行銷人才
+            {/* 主標題 (斷行，大字) */}
+            <h1 className="font-black text-2xl md:text-4xl lg:text-5xl text-blue-900 leading-snug mb-2 tracking-tight">
+              <span className="block">
+                以 <span className="text-teal-600 font-extrabold">品牌端視野</span>，
+              </span>
+              <span className="block">培養新世代行銷人才</span>
             </h1>
-            {/* 副標題字體與間距壓縮 */}
-            <div className="text-xs md:text-sm text-slate-700 font-semibold mb-1">
+            {/* 副標題 (放大、明顯) */}
+            <div className="text-lg md:text-2xl text-slate-700 font-semibold mb-1">
               你不只是學行銷，<span className="text-orange-600 font-bold">我們培養領導者</span>
             </div>
-            {/* 精簡說明，單行，字體壓縮 */}
-            <div className="text-[11px] md:text-xs text-slate-600 font-medium whitespace-nowrap overflow-x-auto">
+            {/* 精簡說明 (單行顯眼、放大、著重跳色) */}
+            <div className="text-base md:text-lg text-slate-700 font-medium leading-snug whitespace-normal">
               整合
-              <span className="text-blue-700 font-bold mx-1">創新</span>、
-              數據、心理、美感，善用團隊與數位工具、
+              <span className="text-blue-700 font-bold mx-1">創新</span>、數據、心理、美感，
+              善用團隊與數位工具、
               <span className="text-blue-700 font-bold mx-1">主導市場未來</span>
             </div>
           </div>
