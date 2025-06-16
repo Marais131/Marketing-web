@@ -14,19 +14,19 @@ const Navbar = () => {
     <nav className="relative w-full bg-white/90 backdrop-blur-xl border-b border-slate-200/40 z-50 shadow-sm">
       <div className="container mx-auto px-2 sm:px-4 py-3">
         <div className="flex items-center justify-between gap-x-3">
-          {/* Logo 區域（加icon） */}
+          {/* Logo 區域（調整間距和尺寸） */}
           <Link
             to="/"
             className="flex items-center group"
             style={{ minHeight: "74px" }}
           >
-            <House className="text-teal-600 mr-3 w-7 h-7 md:w-8 md:h-8" />
+            <House className="text-teal-600 mr-2 w-7 h-7 md:w-8 md:h-8" />
             <div className="relative flex items-center">
               <img 
                 src="/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png" 
                 alt="文化大學行銷所 Logo"
-                className="h-[65px] md:h-[80px] w-auto max-w-[410px] object-contain transition-transform duration-300"
-                style={{ minWidth: "270px", maxWidth: "420px" }}
+                className="h-[75px] md:h-[90px] w-auto max-w-[450px] object-contain transition-transform duration-300"
+                style={{ minWidth: "300px", maxWidth: "460px" }}
               />
             </div>
           </Link>
