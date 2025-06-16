@@ -55,7 +55,7 @@ const SEOHead = ({
     setMetaTag('twitter:description', description);
     setMetaTag('twitter:image', image);
     
-    // 教育機構Schema標記
+    // 行銷系教育機構Schema標記
     const addSchemaMarkup = () => {
       const existingSchema = document.querySelector('script[type="application/ld+json"]');
       if (existingSchema) {
@@ -66,20 +66,45 @@ const SEOHead = ({
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "中國文化大學行銷學系",
-        "alternateName": "文化大學行銷所",
+        "alternateName": ["文化大學行銷系", "文化行銷系", "CCU行銷系"],
         "url": window.location.origin,
         "description": description,
         "address": {
           "@type": "PostalAddress",
-          "addressCountry": "TW",
-          "addressRegion": "台北市"
+          "streetAddress": "華岡路55號",
+          "addressLocality": "士林區",
+          "addressRegion": "台北市",
+          "addressCountry": "TW"
         },
         "foundingDate": "1962",
-        "educationalCredentialAwarded": "碩士學位",
-        "hasCredential": {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "行銷學碩士"
-        }
+        "educationalCredentialAwarded": ["學士學位", "碩士學位"],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "行銷學士"
+          },
+          {
+            "@type": "EducationalOccupationalCredential", 
+            "credentialCategory": "行銷學碩士"
+          }
+        ],
+        "department": {
+          "@type": "CollegeOrUniversity",
+          "name": "行銷學系",
+          "alternateName": "行銷系"
+        },
+        "offers": [
+          {
+            "@type": "Course",
+            "name": "品牌策略課程",
+            "description": "專注品牌端思維的行銷課程"
+          },
+          {
+            "@type": "Course", 
+            "name": "消費者心理學",
+            "description": "深入探討消費者行為與心理"
+          }
+        ]
       };
       
       const script = document.createElement('script');
