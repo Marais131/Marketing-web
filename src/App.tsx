@@ -4,16 +4,15 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import AboutPage from "./pages/About";
-import FacultyPage from "./pages/Faculty";
-import ActivitiesPage from "./pages/Activities";
-import AdmissionsPage from "./pages/Admissions";
-import ContactPage from "./pages/Contact";
-import NotFound from "./pages/NotFound";
-import Articles from "./pages/Articles";
-// 移除舊 FeaturesPage
-import CurriculumHighlights from "./pages/CurriculumHighlights";
+import Home from "./pages/HomePage";
+import AboutPage from "./pages/AboutDepartment";
+import FacultyPage from "./pages/FacultyMembers";
+import ActivitiesPage from "./pages/StudentActivities";
+import AdmissionsPage from "./pages/AdmissionInfo";
+import ContactPage from "./pages/ContactUs";
+import NotFound from "./pages/NotFoundPage";
+import Articles from "./pages/NewsArticles";
+import CurriculumHighlights from "./pages/CourseHighlights";
 
 const queryClient = new QueryClient();
 
