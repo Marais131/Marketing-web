@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+# 品牌視覺中心網站
 
-## Project info
+這是一個基於現代化技術棧構建的品牌視覺中心網站。
 
-**URL**: https://lovable.dev/projects/19bdf394-9bf8-479a-a5a7-53ef8f938181
+## 技術棧
 
-## How can I edit this code?
+- **前端框架**: React 18 + TypeScript
+- **構建工具**: Vite
+- **UI 組件**: shadcn/ui + Radix UI
+- **樣式**: Tailwind CSS
+- **路由**: React Router DOM
+- **狀態管理**: TanStack Query
 
-There are several ways of editing your application.
+## 本地開發
 
-**Use Lovable**
+### 環境要求
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/19bdf394-9bf8-479a-a5a7-53ef8f938181) and start prompting.
+- Node.js 18+ 
+- npm 或 yarn
 
-Changes made via Lovable will be committed automatically to this repo.
+### 安裝和運行
 
-**Use your preferred IDE**
+```bash
+# 1. 克隆專案
+git clone <YOUR_REPOSITORY_URL>
+cd brand-vision-hub-demo
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# 2. 安裝依賴
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 3. 啟動開發服務器
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+開發服務器將在 `http://localhost:8080` 啟動。
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 可用的腳本
 
-**Use GitHub Codespaces**
+- `npm run dev` - 啟動開發服務器
+- `npm run build` - 構建生產版本
+- `npm run preview` - 預覽生產構建
+- `npm run lint` - 運行 ESLint 檢查
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 部署
 
-## What technologies are used for this project?
+### Vercel 部署（推薦）
 
-This project is built with:
+1. 將代碼推送到 GitHub
+2. 在 [Vercel](https://vercel.com) 創建新專案
+3. 連接 GitHub 倉庫
+4. Vercel 會自動檢測 Vite 專案並部署
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Netlify 部署
 
-## How can I deploy this project?
+1. 將代碼推送到 GitHub
+2. 在 [Netlify](https://netlify.com) 創建新專案
+3. 連接 GitHub 倉庫
+4. 構建命令：`npm run build`
+5. 發布目錄：`dist`
 
-Simply open [Lovable](https://lovable.dev/projects/19bdf394-9bf8-479a-a5a7-53ef8f938181) and click on Share -> Publish.
+### 其他平台
 
-## Can I connect a custom domain to my Lovable project?
+您也可以部署到任何支持靜態網站的平台，如：
+- GitHub Pages
+- AWS S3 + CloudFront
+- Firebase Hosting
+- 阿里雲 OSS
+- 騰訊雲 COS
 
-Yes, you can!
+## 專案結構
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```
+src/
+├── components/     # 可重用組件
+│   ├── ui/        # shadcn/ui 組件
+│   └── ...        # 自定義組件
+├── pages/         # 頁面組件
+├── hooks/         # 自定義 Hooks
+├── lib/           # 工具函數
+└── ...
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 自定義域名
+
+部署後，您可以在部署平台設置自定義域名。
+
+## 貢獻
+
+歡迎提交 Issue 和 Pull Request！
