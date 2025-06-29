@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 🚀 Marketing Web 自動部署腳本
+# 📦 Marketing Web 自動儲存腳本
 # 使用方法: ./deploy.sh "提交訊息"
 
-echo "🚀 開始自動部署 Marketing Web..."
+echo "📦 開始自動儲存 Marketing Web..."
 echo "=================================="
 
 # 檢查是否有提交訊息
@@ -28,9 +28,16 @@ git push origin main
 
 if [ $? -eq 0 ]; then
     echo "✅ 成功推送到 GitHub"
-    echo "🌐 Vercel 將在 1-3 分鐘內自動部署"
-    echo "📱 網站地址: https://marketing-web-three.vercel.app"
-    echo "🔐 管理後台: https://marketing-web-three.vercel.app/admin/login"
+    echo ""
+    echo "📋 接下來的步驟："
+    echo "   1. 前往 Vercel Dashboard"
+    echo "   2. 點擊你的 marketing-web 項目"
+    echo "   3. 點擊 'Redeploy' 按鈕"
+    echo "   4. 等待 2-3 分鐘完成部署"
+    echo ""
+    echo "🌐 部署後的網址:"
+    echo "   📱 網站: https://marketing-web-three.vercel.app"
+    echo "   🔐 管理後台: https://marketing-web-three.vercel.app/admin/login"
     echo ""
     echo "🎯 可用帳號:"
     echo "   👨‍💼 admin / admin123 (系統管理員)"
@@ -42,4 +49,4 @@ else
 fi
 
 echo ""
-echo "🎊 部署完成！" 
+echo "🎊 儲存完成！請手動部署到 Vercel" 
