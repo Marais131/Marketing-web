@@ -1,125 +1,221 @@
+import { BookOpen, Star, LayoutGrid, Target, Users, Lightbulb, TrendingUp } from "lucide-react";
 
-import { BookOpen, Star, LayoutGrid } from "lucide-react";
-
-// highlight 區塊資料 
-const highlights = [
+// 四環能力核心架構
+const coreAbilities = [
   {
-    title: "獨特跨域課程",
-    subtitle: "行銷 × 心理 × 邏輯 × 實戰",
-    description:
-      "以心理學、邏輯學打底，強化你的消費者洞察與策略思維，搭配業界導師真實電商專案實作，課程內容更跨界且緊貼產業最新脈動。",
-    icon: BookOpen,
-    background: "from-cyan-100 via-blue-50 to-purple-100",
-    text: "text-cyan-900",
-    image: "/lovable-uploads/d3bb2780-7b61-43e4-b4e3-972e02c9080f.png",
-    imageAlt: "課程架構示意",
+    title: "行銷基石專業",
+    subtitle: "Marketing Foundation",
+    description: "奠定策略語言與管理思維，從行銷學、品牌管理到策略管理，建構完整的行銷理論框架與商業思維。",
+    icon: Target,
+    background: "from-blue-100 via-blue-50 to-indigo-100",
+    text: "text-blue-900",
+    courses: ["行銷學", "品牌管理", "策略管理", "服務行銷", "定價策略"],
+    color: "blue"
   },
   {
-    title: "五年學碩一貫",
-    subtitle: "4+1計畫，直達職涯高峰",
-    description:
-      "五年完成學士及碩士，職場競爭力全面提升！針對「品牌經理」、「產品經理」、「數位行銷」設有明確職涯路徑與專業培育。",
-    icon: Star,
-    background: "from-purple-100 via-pink-50 to-cyan-100",
-    text: "text-purple-900",
-    image: "/lovable-uploads/d765d1d6-444b-4bfe-9856-74ed5e61a8ef.png",
-    imageAlt: "職涯發展路徑圖",
+    title: "消費者洞察力",
+    subtitle: "Consumer Insights",
+    description: "從心理機制到研究方法，透過普通心理學→消費者心理學→認知心理學三連修，深度理解消費者行為。",
+    icon: Users,
+    background: "from-green-100 via-green-50 to-emerald-100",
+    text: "text-green-900",
+    courses: ["普通心理學", "消費者心理學", "認知心理學", "市場調查", "實驗設計"],
+    color: "green"
   },
   {
-    title: "品牌端核心職能",
-    subtitle: "四大能力全方位培養",
-    description:
-      "品牌管理、消費者洞察、策略企劃、創意執行，學會領導團隊、協作跨域、精準決策，成為市場引領者。",
+    title: "企劃與執行力",
+    subtitle: "Planning & Execution",
+    description: "把洞察轉化為可衡量的行動，透過數位實戰課程在真實情境中反覆演練KPI設定與成效追蹤。",
     icon: LayoutGrid,
-    background: "from-teal-100 via-orange-50 to-blue-50",
-    text: "text-teal-900",
-    image: "",
-    imageAlt: "",
+    background: "from-purple-100 via-purple-50 to-violet-100",
+    text: "text-purple-900",
+    courses: ["行銷企劃實務", "網路廣告投放", "社群行銷實戰", "跨境電商實戰", "Google廣告投放"],
+    color: "purple"
   },
+  {
+    title: "創新創意思維",
+    subtitle: "Innovation & Creativity",
+    description: "用差異化內容與美感放大價值，從創意思考到美學素養，培養與設計團隊「說同一種語言」的能力。",
+    icon: Lightbulb,
+    background: "from-orange-100 via-orange-50 to-red-100",
+    text: "text-orange-900",
+    courses: ["創意文案設計", "故事行銷", "影像敘事", "行銷美學素養", "網路直播企劃"],
+    color: "orange"
+  }
 ];
 
-const abilityIcons = [
-  { icon: BookOpen, label: "品牌管理" },
-  { icon: LayoutGrid, label: "企劃與執行" },
-  { icon: Star, label: "數據洞察" },
-  // 保留代表性
+// 學年配置路徑
+const yearlyPath = [
+  {
+    year: "大一",
+    focus: "認知輸入",
+    description: "建立「市場×人心」語言，啟動創意與美感感知",
+    icon: BookOpen,
+    courses: ["行銷學", "普通心理學", "創意思考", "美學素養"]
+  },
+  {
+    year: "大二", 
+    focus: "技術深化",
+    description: "將品牌與服務串入心理機制，用邏輯拆解策略",
+    icon: Star,
+    courses: ["服務行銷", "品牌管理", "消費者心理學", "邏輯學"]
+  },
+  {
+    year: "大三",
+    focus: "策略成形", 
+    description: "把洞察轉成跨媒體策略並以研究驗證",
+    icon: TrendingUp,
+    courses: ["定價策略", "認知心理學", "影像敘事", "市場調查", "實驗設計"]
+  },
+  {
+    year: "大四",
+    focus: "整合實戰",
+    description: "產出「洞察→策略→素材→投放→成效」閉環專案",
+    icon: LayoutGrid,
+    courses: ["行銷專題製作", "社群實戰", "電商實戰", "投放系列課程"]
+  }
 ];
 
 const CurriculumHighlightsGrid = () => {
   return (
-    <section className="py-14 min-h-screen bg-gradient-to-b from-blue-50 via-white to-purple-50 w-full">
-      <div className="container max-w-6xl mx-auto px-3">
-        <div className="text-center mb-14 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-700 via-cyan-600 to-purple-700 bg-clip-text text-transparent drop-shadow">
-            課程亮點 Highlights
+    <section className="py-20 min-h-screen bg-gradient-to-b from-slate-50 via-white to-blue-50 w-full">
+      <div className="container max-w-7xl mx-auto px-6">
+        
+        {/* 標題區 */}
+        <div className="text-center mb-20 animate-fade-in">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-700 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
+            四環能力導向課程設計
           </h1>
-          <p className="text-lg md:text-xl text-slate-700/90 font-medium mb-6">
-            現代品牌行銷 × 跨域專業 × 五年一貫學碩 × 協作創新
+          <p className="text-xl md:text-2xl text-slate-700 font-medium mb-4">
+            以「品牌／產品端（甲方）思維」為唯一定位
+          </p>
+          <p className="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            將行銷人應具備的專業拆解為四大核心能力，所有課程皆環繞這四環能力鋪排，
+            象徵能力環環相扣的完整培育體系。
           </p>
         </div>
 
-        {/* 新版三大 highlight 卡片 - 全寬圖片/視覺區塊 + 文字疊加，左右分離 */}
-        <div className="flex flex-col gap-12">
-          {highlights.map((item, idx) => (
-            <div
-              key={item.title}
-              className={`
-                relative rounded-3xl overflow-hidden shadow-lg grid 
-                md:grid-cols-2
-                ${idx % 2 === 1 ? "md:flex-row-reverse" : ""} 
-                bg-gradient-to-br ${item.background}
-                group
-                min-h-[340px]
-              `}
-            >
-              {/* 圖片區：左(奇數)／右(偶數)*/}
-              <div className="relative h-56 md:h-auto md:min-h-[340px]">
-                {item.image ? (
-                  <img
-                    src={item.image}
-                    alt={item.imageAlt}
-                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-white/60">
-                    <span className="rounded-full bg-white/85 shadow p-12">
-                      <item.icon className="w-16 h-16 text-blue-600" />
-                    </span>
+        {/* 四環能力核心 */}
+        <div className="mb-24">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-800">
+            四大核心能力模組
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {coreAbilities.map((ability, index) => (
+              <div
+                key={ability.title}
+                className={`group relative rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br ${ability.background} hover:shadow-2xl transition-all duration-500 hover:scale-105`}
+              >
+                <div className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div className={`w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <ability.icon className={`w-8 h-8 text-${ability.color}-600`} />
+                    </div>
+                    <div>
+                      <h3 className={`text-2xl font-bold ${ability.text} mb-1`}>{ability.title}</h3>
+                      <p className="text-slate-600 font-medium">{ability.subtitle}</p>
+                    </div>
                   </div>
-                )}
-                {/* 圖片上覆蓋漸層遮色，讓標題可讀 */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/75 via-white/30 to-transparent pointer-events-none" />
+                  
+                  <p className={`${ability.text} text-lg mb-6 leading-relaxed`}>
+                    {ability.description}
+                  </p>
+                  
+                  <div className="space-y-2">
+                    <p className="text-sm font-semibold text-slate-700 mb-3">代表課程：</p>
+                    <div className="flex flex-wrap gap-2">
+                      {ability.courses.map((course, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-white/70 backdrop-blur-sm rounded-full text-sm font-medium text-slate-700 border border-white/50"
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
-              {/* 文字內容區 */}
-              <div className={`flex flex-col justify-center p-6 md:p-10 z-10 ${item.text}`}>
-                <span className="flex items-center gap-2 mb-2">
-                  <item.icon className="w-8 h-8 text-blue-600" />
-                  <span className="font-semibold text-lg md:text-xl tracking-wide">
-                    {item.subtitle}
-                  </span>
-                </span>
-                <h2 className="font-extrabold text-2xl md:text-3xl mb-3">{item.title}</h2>
-                <p className="text-base md:text-lg mb-1">{item.description}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* 四大能力條，維持橫向 */}
-        <div className="mt-16 mb-8 flex justify-center items-center gap-6 md:gap-10 animate-fade-in flex-wrap">
-          {abilityIcons.map(({ icon: Icon, label }, idx) => (
-            <div key={idx} className="flex flex-col items-center group">
-              <span className="rounded-full p-3 bg-gradient-to-tr from-blue-200 via-cyan-200 to-purple-200 shadow mb-2">
-                <Icon className="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-200" />
-              </span>
-              <div className="text-slate-700 font-medium text-sm">{label}</div>
+        {/* 縱向學年配置 */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-800">
+            縱向學年配置路徑
+          </h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {yearlyPath.map((year, index) => (
+              <div
+                key={year.year}
+                className="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200/50"
+              >
+                {/* 年份標籤 */}
+                <div className={`h-2 bg-gradient-to-r ${
+                  index === 0 ? 'from-blue-500 to-blue-600' :
+                  index === 1 ? 'from-green-500 to-green-600' :
+                  index === 2 ? 'from-purple-500 to-purple-600' :
+                  'from-orange-500 to-orange-600'
+                }`}></div>
+                
+                <div className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-3 ${
+                      index === 0 ? 'bg-blue-100 text-blue-600' :
+                      index === 1 ? 'bg-green-100 text-green-600' :
+                      index === 2 ? 'bg-purple-100 text-purple-600' :
+                      'bg-orange-100 text-orange-600'
+                    }`}>
+                      <year.icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-800">{year.year}</h3>
+                      <p className="text-sm font-semibold text-slate-600">{year.focus}</p>
+                    </div>
+                  </div>
+                  
+                  <p className="text-slate-700 text-sm mb-4 leading-relaxed">
+                    {year.description}
+                  </p>
+                  
+                  <div className="space-y-1">
+                    {year.courses.map((course, idx) => (
+                      <div key={idx} className="text-xs text-slate-600 bg-slate-50 px-2 py-1 rounded">
+                        {course}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 特色制度 */}
+        <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 rounded-3xl p-12 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.1),transparent_70%)]"></div>
+          <div className="relative z-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">進階制度與國際視野</h2>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <h3 className="text-xl font-bold mb-4 text-blue-300">4+1 學碩一貫</h3>
+                <p className="text-blue-100 leading-relaxed">
+                  大三下達指定成績門檻即可申請預修碩士課程，於大四並修，五年同時取得學士、碩士學位，
+                  直達職涯高峰。
+                </p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <h3 className="text-xl font-bold mb-4 text-green-300">國際鏈結</h3>
+                <p className="text-green-100 leading-relaxed">
+                  鼓勵高年級生利用交換或雙聯機會，把海外行銷個案帶回作為專題素材，
+                  培養全球視野。
+                </p>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-        <div className="text-center mt-2 mb-5 text-base text-slate-600">
-          完整訓練品牌端人才 ‧ 掌握未來行銷趨勢 ‧ 由實戰到學術一條龍
-        </div>
+
       </div>
     </section>
   );
