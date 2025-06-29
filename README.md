@@ -64,8 +64,6 @@ npm run dev
 - GitHub Pages
 - AWS S3 + CloudFront
 - Firebase Hosting
-- 阿里雲 OSS
-- 騰訊雲 COS
 
 ## 專案結構
 
