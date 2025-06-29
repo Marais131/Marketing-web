@@ -19,71 +19,40 @@ const AdminLogin = () => {
     setIsLoading(true);
     setError('');
 
-    try {
-      // 首先檢查是否為演示帳號
-      const isDemoAccount = (formData.username === 'demo' && formData.password === 'demo') ||
-                           (formData.username === 'admin' && formData.password === 'admin123') ||
-                           (formData.username === 'mkt' && formData.password === 'mkt123');
+    // 檢查是否為有效的演示帳號
+    const validCredentials = [
+      { username: 'demo', password: 'demo', name: '演示用戶', avatar: '🎭', role: 'demo' },
+      { username: 'admin', password: 'admin123', name: '系統管理員', avatar: '👨‍💼', role: 'admin' },
+      { username: 'mkt', password: 'mkt123', name: '行銷系管理員', avatar: '🎯', role: 'editor' }
+    ];
 
-      if (isDemoAccount) {
-        // 演示模式登入
-        const demoUser = {
-          username: formData.username === 'demo' ? 'demo' : formData.username,
-          name: formData.username === 'demo' ? '演示用戶' : 
-                formData.username === 'admin' ? '系統管理員' : '行銷系管理員',
-          avatar: formData.username === 'demo' ? '🎭' : 
-                  formData.username === 'admin' ? '👨‍💼' : '🎯',
-          role: formData.username === 'admin' ? 'admin' : 'editor',
-          isDemo: true
-        };
-        
-        localStorage.setItem('adminToken', 'demo-token-' + Date.now());
-        localStorage.setItem('adminUser', JSON.stringify(demoUser));
-        window.location.href = '/admin/dashboard';
-        return;
-      }
+    const validAccount = validCredentials.find(
+      cred => cred.username === formData.username && cred.password === formData.password
+    );
 
-      // 嘗試連接後端API
-      const response = await fetch('http://localhost:3001/api/admin/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('adminToken', data.token);
-        localStorage.setItem('adminUser', JSON.stringify(data.user));
-        window.location.href = '/admin/dashboard';
-      } else {
-        setError('帳號或密碼錯誤');
-      }
-    } catch (err) {
-      // 後端不可用時，檢查是否為有效帳號，自動進入演示模式
-      const validAccounts = ['admin', 'mkt'];
-      const validPasswords = ['admin123', 'mkt123'];
+    if (validAccount) {
+      // 直接進入演示模式
+      const demoUser = {
+        username: validAccount.username,
+        name: validAccount.name,
+        avatar: validAccount.avatar,
+        role: validAccount.role,
+        isDemo: true
+      };
       
-      if (validAccounts.includes(formData.username) && 
-          validPasswords.includes(formData.password)) {
-        const demoUser = {
-          username: formData.username,
-          name: formData.username === 'admin' ? '系統管理員' : '行銷系管理員',
-          avatar: formData.username === 'admin' ? '👨‍💼' : '🎯',
-          role: formData.username === 'admin' ? 'admin' : 'editor',
-          isDemo: true
-        };
-        
-        localStorage.setItem('adminToken', 'demo-token-' + Date.now());
-        localStorage.setItem('adminUser', JSON.stringify(demoUser));
+      localStorage.setItem('adminToken', 'demo-token-' + Date.now());
+      localStorage.setItem('adminUser', JSON.stringify(demoUser));
+      
+      // 延遲一下讓用戶看到載入效果
+      setTimeout(() => {
         window.location.href = '/admin/dashboard';
-      } else {
-        setError('演示模式：請使用 admin/admin123 或 mkt/mkt123 或 demo/demo');
-      }
-    } finally {
-      setIsLoading(false);
+      }, 1000);
+      return;
     }
+
+    // 如果不是有效帳號，顯示錯誤
+    setError('帳號或密碼錯誤！請使用以下演示帳號：admin/admin123、mkt/mkt123 或 demo/demo');
+    setIsLoading(false);
   };
 
   return (
