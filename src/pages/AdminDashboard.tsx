@@ -139,9 +139,16 @@ const AdminDashboard = () => {
               <div className="text-2xl">{getAdminUser().avatar}</div>
               <div>
                 <p className="font-semibold text-[#1A4C7A]">{getAdminUser().name}</p>
-                <p className="text-xs text-gray-500">已登入</p>
+                <p className="text-xs text-gray-500">
+                  {getAdminUser().isDemo ? '演示模式' : '已登入'}
+                </p>
               </div>
             </div>
+            {getAdminUser().isDemo && (
+              <div className="mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-700">
+                🎭 您正在使用演示模式，所有操作都是模擬的
+              </div>
+            )}
           </div>
 
           <nav className="space-y-2">

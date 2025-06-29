@@ -20,7 +20,30 @@ const AdminLogin = () => {
     setError('');
 
     try {
-      // 連接到後端API進行登入
+      // 首先檢查是否為演示帳號
+      const isDemoAccount = (formData.username === 'demo' && formData.password === 'demo') ||
+                           (formData.username === 'admin' && formData.password === 'admin123') ||
+                           (formData.username === 'mkt' && formData.password === 'mkt123');
+
+      if (isDemoAccount) {
+        // 演示模式登入
+        const demoUser = {
+          username: formData.username === 'demo' ? 'demo' : formData.username,
+          name: formData.username === 'demo' ? '演示用戶' : 
+                formData.username === 'admin' ? '系統管理員' : '行銷系管理員',
+          avatar: formData.username === 'demo' ? '🎭' : 
+                  formData.username === 'admin' ? '👨‍💼' : '🎯',
+          role: formData.username === 'admin' ? 'admin' : 'editor',
+          isDemo: true
+        };
+        
+        localStorage.setItem('adminToken', 'demo-token-' + Date.now());
+        localStorage.setItem('adminUser', JSON.stringify(demoUser));
+        window.location.href = '/admin/dashboard';
+        return;
+      }
+
+      // 嘗試連接後端API
       const response = await fetch('http://localhost:3001/api/admin/login', {
         method: 'POST',
         headers: {
@@ -38,7 +61,26 @@ const AdminLogin = () => {
         setError('帳號或密碼錯誤');
       }
     } catch (err) {
-      setError('登入失敗，請確認後端服務器是否啟動');
+      // 後端不可用時，檢查是否為有效帳號，自動進入演示模式
+      const validAccounts = ['admin', 'mkt'];
+      const validPasswords = ['admin123', 'mkt123'];
+      
+      if (validAccounts.includes(formData.username) && 
+          validPasswords.includes(formData.password)) {
+        const demoUser = {
+          username: formData.username,
+          name: formData.username === 'admin' ? '系統管理員' : '行銷系管理員',
+          avatar: formData.username === 'admin' ? '👨‍💼' : '🎯',
+          role: formData.username === 'admin' ? 'admin' : 'editor',
+          isDemo: true
+        };
+        
+        localStorage.setItem('adminToken', 'demo-token-' + Date.now());
+        localStorage.setItem('adminUser', JSON.stringify(demoUser));
+        window.location.href = '/admin/dashboard';
+      } else {
+        setError('演示模式：請使用 admin/admin123 或 mkt/mkt123 或 demo/demo');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -134,6 +176,9 @@ const AdminLogin = () => {
             <div className="text-xs text-blue-600 text-center space-y-1">
               <div>👨‍💼 admin / admin123 (系統管理員)</div>
               <div>🎯 mkt / mkt123 (行銷系管理員)</div>
+              <div className="mt-2 pt-2 border-t border-blue-200">
+                <div>🎭 demo / demo (演示模式)</div>
+              </div>
             </div>
           </div>
         </CardContent>
