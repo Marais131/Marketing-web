@@ -1,52 +1,56 @@
 #!/bin/bash
 
-# 📦 Marketing Web 自動儲存腳本
-# 使用方法: ./deploy.sh "提交訊息"
+# 顏色定義
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
 
-echo "📦 開始自動儲存 Marketing Web..."
-echo "=================================="
-
-# 檢查是否有提交訊息
-if [ -z "$1" ]; then
-    echo "⚠️  請提供提交訊息"
-    echo "使用方法: ./deploy.sh \"你的提交訊息\""
-    exit 1
+# 獲取提交訊息
+COMMIT_MESSAGE="$1"
+if [ -z "$COMMIT_MESSAGE" ]; then
+    COMMIT_MESSAGE="更新網站內容"
 fi
 
+echo -e "${BLUE}📦 開始儲存 Marketing Web...${NC}"
+echo "=================================="
+
 # 檢查是否有未提交的更改
-if [[ -n $(git status -s) ]]; then
-    echo "📝 發現未提交的更改，正在提交..."
+if [ -n "$(git status --porcelain)" ]; then
+    echo -e "${YELLOW}📝 發現未提交的更改，正在提交...${NC}"
     git add .
-    git commit -m "$1"
+    git commit -m "$COMMIT_MESSAGE"
 else
-    echo "✅ 沒有新的更改需要提交"
+    echo -e "${GREEN}✅ 沒有未提交的更改${NC}"
 fi
 
 # 推送到 GitHub
-echo "📤 推送到 GitHub..."
+echo -e "${BLUE}📤 推送到 GitHub...${NC}"
 git push origin main
 
 if [ $? -eq 0 ]; then
-    echo "✅ 成功推送到 GitHub"
+    echo -e "${GREEN}✅ 成功推送到 GitHub${NC}"
     echo ""
-    echo "📋 接下來的步驟："
-    echo "   1. 前往 Vercel Dashboard"
-    echo "   2. 點擊你的 marketing-web 項目"
-    echo "   3. 點擊 'Redeploy' 按鈕"
-    echo "   4. 等待 2-3 分鐘完成部署"
+    echo -e "${PURPLE}📋 接下來請手動部署：${NC}"
+    echo -e "${CYAN}   1. 前往 Vercel Dashboard${NC}"
+    echo -e "${CYAN}   2. 點擊你的 marketing-web 項目${NC}"
+    echo -e "${CYAN}   3. 點擊 'Redeploy' 按鈕${NC}"
+    echo -e "${CYAN}   4. 等待 2-3 分鐘完成部署${NC}"
     echo ""
-    echo "🌐 部署後的網址:"
-    echo "   📱 網站: https://marketing-web-three.vercel.app"
-    echo "   🔐 管理後台: https://marketing-web-three.vercel.app/admin/login"
+    echo -e "${BLUE}🌐 網站地址:${NC}"
+    echo -e "${CYAN}   📱 網站: https://marketing-web-three.vercel.app${NC}"
+    echo -e "${CYAN}   🔐 管理後台: https://marketing-web-three.vercel.app/admin/login${NC}"
     echo ""
-    echo "🎯 可用帳號:"
-    echo "   👨‍💼 admin / admin123 (系統管理員)"
-    echo "   🎯 mkt / mkt123 (行銷系管理員)"
-    echo "   🎭 demo / demo (演示模式)"
+    echo -e "${YELLOW}🎯 可用帳號:${NC}"
+    echo -e "${CYAN}   👨‍💼 admin / admin123 (系統管理員)${NC}"
+    echo -e "${CYAN}   🎯 mkt / mkt123 (行銷系管理員)${NC}"
+    echo -e "${CYAN}   🎭 demo / demo (演示模式)${NC}"
+    echo ""
+    echo -e "${GREEN}🎊 代碼已儲存！請手動部署到 Vercel${NC}"
 else
-    echo "❌ 推送失敗，請檢查網路連接或 Git 設置"
+    echo -e "${RED}❌ 推送失敗${NC}"
     exit 1
-fi
-
-echo ""
-echo "🎊 儲存完成！請手動部署到 Vercel" 
+fi 
