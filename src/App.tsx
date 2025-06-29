@@ -13,6 +13,8 @@ import ContactPage from "./pages/ContactUs";
 import NotFound from "./pages/NotFoundPage";
 import Articles from "./pages/NewsArticles";
 import CurriculumHighlights from "./pages/CourseHighlights";
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,8 @@ const App = () => (
             <Route path="admissions" element={<AdmissionsPage />} />
             <Route path="contact" element={<ContactPage />} />
           </Route>
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

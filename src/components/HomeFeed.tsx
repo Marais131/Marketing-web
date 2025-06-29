@@ -1,7 +1,6 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Calendar, ChevronRight, Users, Award, Briefcase, MapPin, Clock } from "lucide-react";
+import { Camera, Calendar, ChevronRight, Users, Award, Briefcase, MapPin, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { sampleArticles } from "@/components/ArticlePreviewCard";
 import { Link } from "react-router-dom";
@@ -15,7 +14,7 @@ const news = [
     image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=300&fit=crop&q=80",
     description: "歡迎優秀學子加入我們的行銷研究所大家庭，共同探索消費者行為與數位行銷的奧秘",
     icon: Users,
-    color: "from-teal-500 to-teal-600",
+    color: "from-[#1A4C7A] to-[#2A7DB1]",
     location: "大恩館",
     time: "09:00-17:00"
   },
@@ -27,7 +26,7 @@ const news = [
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&q=80",
     description: "學生與企業合作專案精彩成果展示，展現理論與實務結合的學習成效",
     icon: Briefcase,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#2A7DB1] to-[#3CB1B6]",
     location: "曉峰紀念館",
     time: "14:00-16:30"
   },
@@ -39,7 +38,7 @@ const news = [
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop&q=80",
     description: "恭喜本系學生團隊在全國行銷競賽中脫穎而出，展現卓越的創意思維與執行能力",
     icon: Award,
-    color: "from-green-500 to-green-600",
+    color: "from-[#3CB1B6] to-[#1A4C7A]",
     location: "台北世貿",
     time: "全天"
   }
@@ -65,140 +64,144 @@ const activities = [
 ];
 
 const HomeFeed = () => (
-  <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-teal-50/30 relative overflow-hidden">
-    <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-teal-100/40 to-transparent rounded-full blur-2xl"></div>
-    <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-blue-100/40 to-transparent rounded-full blur-2xl"></div>
-    <div className="container mx-auto px-6 z-10 relative">
-      {/* 標題 */}
-      <div className="text-center mb-14">
-        <Badge className="bg-gradient-to-r from-teal-100 to-blue-100 text-teal-700 border border-teal-200/40 px-6 py-3 rounded-full mb-6 text-sm font-medium shadow-sm">
-          <Calendar className="w-4 h-4 mr-2" />
+  <section className="py-24 bg-white relative overflow-hidden">
+    {/* 背景裝飾 */}
+    <div className="absolute top-0 right-0 w-96 h-96 bg-[#3CB1B6]/5 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1A4C7A]/5 rounded-full blur-3xl"></div>
+    
+    <div className="container mx-auto px-6 relative z-10">
+      {/* 主標題區 - 大膽現代 */}
+      <div className="text-center mb-20">
+        <h2 className="text-[4rem] md:text-[5rem] lg:text-[6rem] font-black text-[#1A4C7A] mb-6 leading-[0.9] tracking-tight">
           最新動態
-        </Badge>
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-4">
-          消息 & 活動精選
         </h2>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          換個角度感受行銷系的脈動！<br />
-          實況消息 x 亮點活動搶先看
+        <p className="text-xl md:text-2xl text-[#2A7DB1] font-medium max-w-2xl mx-auto">
+          掌握系所脈動，不錯過任何精彩時刻
         </p>
       </div>
-      {/* 內容 二欄 Responsive */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-9 mb-16">
-        {/* 左：消息 News */}
-        <div className="flex flex-col gap-6">
-          {news.map(item => {
-            const Icon = item.icon;
-            return (
-              <Card key={item.id} className="hover:shadow-2xl transition">
-                <div className="relative">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-48 object-cover rounded-t-xl"
-                  />
-                  <Badge className={`absolute top-4 left-4 bg-gradient-to-r ${item.color} text-white border-0 text-xs`}>
-                    <Icon className="w-3 h-3 mr-1" />
-                    {item.category}
-                  </Badge>
-                  <div className="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-lg text-xs font-medium text-slate-700 shadow">
-                    {new Date(item.date).toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' })}
-                  </div>
-                </div>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-bold text-slate-800 line-clamp-2">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0 space-y-2">
-                  <p className="text-slate-600 text-sm line-clamp-3">{item.description}</p>
-                  <div className="flex items-center gap-3 text-xs text-slate-500">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3" />{item.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />{item.time}
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
-          {/* 專欄精選區塊（簡版） */}
-          <div className="my-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Badge className="bg-gradient-to-r from-blue-100 to-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full shadow-sm border border-blue-200">
-                專欄精選
-              </Badge>
-              <span className="text-slate-600 text-xs">產學、老師觀點新知搶先看</span>
-            </div>
-            <div className="flex gap-3 flex-wrap">
-              {sampleArticles.slice(0, 3).map(article => (
-                <div key={article.id} className="flex flex-col w-40 bg-white/95 rounded-lg shadow hover:shadow-md overflow-hidden border border-slate-100">
-                  {article.image && (
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-20 object-cover"
-                    />
-                  )}
-                  <div className="p-2 flex flex-col gap-0.5">
-                    <span className="text-xs text-teal-700 font-semibold">{article.category}</span>
-                    <div className="text-xs text-slate-800 font-bold truncate">{article.title}</div>
-                  </div>
-                </div>
-              ))}
-              <Link to="/articles" className="flex items-center justify-center w-32 h-20 bg-gradient-to-r from-teal-600 to-blue-600 text-white rounded-lg font-bold shadow hover:from-teal-700 hover:to-blue-700 transition ml-2">
-                全部專欄
-                <ChevronRight className="w-4 h-4 ml-1" />
-              </Link>
-            </div>
-          </div>
-        </div>
-        {/* 右：活動照片 */}
-        <div className="flex flex-col gap-6">
-          {activities.map(activity => (
-            <Card key={activity.id} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-br from-white to-slate-50/50">
-              <div className="relative">
+
+      {/* 新聞卡片 - 單排大卡片設計 */}
+      <div className="space-y-8 mb-20">
+        {news.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <Card key={item.id} className={`group border-0 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden ${
+              index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+            } flex flex-col md:flex`}>
+              {/* 圖片區域 */}
+              <div className="relative md:w-1/2">
                 <img
-                  src={activity.image}
-                  alt={activity.title}
-                  className="w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-700"
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute bottom-4 left-4 flex gap-3">
-                  <Badge className="bg-white/20 text-white border border-white/30 backdrop-blur-sm">
-                    <Users className="w-3 h-3 mr-1" />
-                    {activity.participants} 參與
-                  </Badge>
-                  <Badge className="bg-teal-500/80 text-white border-0 backdrop-blur-sm">
-                    {activity.year}
-                  </Badge>
-                </div>
-                <Badge className="absolute top-4 right-4 bg-gradient-to-r from-teal-500 to-blue-500 text-white border-0 text-xs">
-                  活動精華
+                <Badge className={`absolute top-6 left-6 bg-gradient-to-r ${item.color} text-white border-0 px-4 py-2 text-sm font-semibold`}>
+                  <Icon className="w-4 h-4 mr-2" />
+                  {item.category}
                 </Badge>
+                <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl text-sm font-bold text-[#1A4C7A]">
+                  {new Date(item.date).toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' })}
+                </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-md font-bold text-slate-800 mb-2 group-hover:text-teal-600">
-                  {activity.title}
+              
+              {/* 內容區域 */}
+              <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                <h3 className="text-2xl md:text-3xl font-bold text-[#1A4C7A] mb-4 group-hover:text-[#2A7DB1] transition-colors">
+                  {item.title}
                 </h3>
-                <p className="text-slate-600 text-sm mb-2">
-                  {activity.description}
+                <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                  {item.description}
+                </p>
+                <div className="flex items-center gap-6 text-sm text-slate-500 mb-6">
+                  <span className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    {item.location}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Clock className="w-4 h-4" />
+                    {item.time}
+                  </span>
+                </div>
+                <Button className="bg-[#1A4C7A] hover:bg-[#2A7DB1] text-white px-6 py-3 rounded-xl w-fit group">
+                  了解更多
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </Card>
+          );
+        })}
+      </div>
+
+      {/* 專欄文章區塊 - 重新設計 */}
+      <div className="bg-gradient-to-br from-[#1A4C7A]/5 to-[#3CB1B6]/5 rounded-3xl p-8 md:p-12 mb-20">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h3 className="text-3xl md:text-4xl font-bold text-[#1A4C7A] mb-2">專欄精選</h3>
+            <p className="text-lg text-[#2A7DB1]">產學觀點 × 專業見解</p>
+          </div>
+          <Link 
+            to="/articles" 
+            className="hidden md:flex items-center gap-2 text-[#1A4C7A] hover:text-[#2A7DB1] font-semibold transition-colors group"
+          >
+            查看全部
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {sampleArticles.slice(0, 3).map(article => (
+            <Card key={article.id} className="group border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              {article.image && (
+                <div className="relative overflow-hidden">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+              )}
+              <CardContent className="p-6">
+                <Badge className="bg-[#3CB1B6]/10 text-[#3CB1B6] border-0 mb-3 text-xs font-semibold">
+                  {article.category}
+                </Badge>
+                <h4 className="text-lg font-bold text-[#1A4C7A] mb-2 line-clamp-2 group-hover:text-[#2A7DB1] transition-colors">
+                  {article.title}
+                </h4>
+                <p className="text-slate-600 text-sm line-clamp-3">
+                  {article.excerpt}
                 </p>
               </CardContent>
             </Card>
           ))}
         </div>
+        
+        {/* 移動端查看全部按鈕 */}
+        <div className="md:hidden mt-8 text-center">
+          <Link 
+            to="/articles" 
+            className="inline-flex items-center gap-2 bg-[#1A4C7A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#2A7DB1] transition-colors"
+          >
+            查看全部專欄
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
-      {/* CTA 區域 */}
-      <div className="text-center bg-gradient-to-r from-slate-50 to-teal-50/50 rounded-2xl p-10 border border-slate-200/50">
-        <h3 className="text-xl font-bold text-slate-800 mb-2">
-          想看更多繽紛校園/活動消息？
+
+      {/* CTA 區域 - 簡化設計 */}
+      <div className="text-center bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] rounded-3xl p-12 text-white">
+        <h3 className="text-3xl md:text-4xl font-bold mb-4">
+          想了解更多校園動態？
         </h3>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
-          <Button className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl shadow-lg">
-            <Camera className="w-4 h-4 mr-2" />
+        <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          關注我們的最新消息，不錯過任何精彩活動
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button className="bg-white text-[#1A4C7A] hover:bg-white/90 px-8 py-4 text-lg rounded-xl font-bold shadow-lg hover:scale-105 transition-all">
+            <Camera className="w-5 h-5 mr-2" />
             校園活動相簿
           </Button>
-          <Button variant="outline" className="border-2 border-teal-600 text-teal-600 hover:bg-teal-50 px-8 py-3 rounded-xl">
+          <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 text-lg rounded-xl font-bold hover:scale-105 transition-all">
             聯絡我們
           </Button>
         </div>
