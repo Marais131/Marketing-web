@@ -32,6 +32,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import { apiConfig } from '../lib/api';
 
 // 系統狀態類型定義
 interface SystemStatus {
@@ -140,7 +141,7 @@ const AdminDashboard = () => {
   const loadPublishedContent = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/content');
+      const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.content}`);
       if (response.ok) {
         const data = await response.json();
         setPublishedItems(data);
@@ -186,7 +187,7 @@ const AdminDashboard = () => {
   // 載入已上傳文件
   const loadUploadedFiles = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/media');
+      const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.media}`);
       if (response.ok) {
         const data = await response.json();
         setUploadedFiles(data);
@@ -223,7 +224,7 @@ const AdminDashboard = () => {
         author: getAdminUser().name
       };
 
-      const response = await fetch('http://localhost:3001/api/content', {
+      const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.content}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -439,7 +440,7 @@ const AdminDashboard = () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
       
-      const backendResponse = await fetch('http://localhost:3001/api/content', {
+              const backendResponse = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.content}`, {
         method: 'GET',
         signal: controller.signal
       });
@@ -464,7 +465,7 @@ const AdminDashboard = () => {
       newStatus.backend = {
         status: 'error',
         message: '無法連接後端',
-        details: '後端服務可能未啟動或端口被佔用。請檢查 http://localhost:3001 是否可訪問。常見原因：1) 服務未啟動 2) 端口衝突 3) 防火牆阻擋'
+        details: `後端服務可能未啟動或無法訪問。請檢查 ${apiConfig.baseURL} 是否可訪問。常見原因：1) 服務未啟動 2) 網路連接問題 3) 防火牆阻擋`
       };
     }
 
@@ -582,7 +583,7 @@ const AdminDashboard = () => {
   const loadOperationLogs = async () => {
     setIsLoadingLogs(true);
     try {
-      const response = await fetch('http://localhost:3001/api/operation-logs?limit=10');
+      const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.operationLogs}?limit=10`);
       if (response.ok) {
         const data = await response.json();
         setOperationLogs(data.logs || []);
@@ -620,7 +621,7 @@ const AdminDashboard = () => {
   // 載入用戶活動統計
   const loadUserActivityStats = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/user-activity-stats');
+      const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.userActivityStats}`);
       if (response.ok) {
         const data = await response.json();
         setUserActivityStats(data || []);
@@ -651,7 +652,7 @@ const AdminDashboard = () => {
   const logUserOperation = async (action, actionText, target, targetType, targetId, details) => {
     try {
       const currentUser = getAdminUser();
-      await fetch('http://localhost:3001/api/operation-logs', {
+      await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.operationLogs}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -6,6 +6,7 @@ import HomeFeed from "@/components/HomeFeed";
 import StudentFeedback from "@/components/StudentFeedback";
 import SEOHead from "@/components/SEOHead";
 import { useState, useEffect } from "react";
+import { apiConfig } from "../lib/api";
 
 const Home = () => {
   const [backendStatus, setBackendStatus] = useState<'checking' | 'connected' | 'offline'>('checking');
@@ -14,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const checkBackendStatus = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/content');
+        const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.content}`);
         if (response.ok) {
           setBackendStatus('connected');
         } else {

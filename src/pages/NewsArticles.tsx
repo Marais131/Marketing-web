@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ArticlePreviewCard, sampleArticles, Article } from "@/components/ArticlePreviewCard";
 import SEOHead from "@/components/SEOHead";
 import { Calendar, User } from "lucide-react";
+import { apiConfig } from "../lib/api";
 
 const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -12,7 +13,7 @@ const Articles = () => {
     const fetchArticles = async () => {
       try {
         // 從後端API獲取所有內容
-        const response = await fetch('http://localhost:3001/api/content');
+        const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.content}`);
         if (response.ok) {
           const publishedContent = await response.json();
           setBackendConnected(true);

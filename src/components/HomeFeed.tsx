@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { sampleArticles } from "@/components/ArticlePreviewCard";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { apiConfig } from "../lib/api";
 
 // 新聞項目類型定義
 interface NewsItem {
@@ -87,7 +88,7 @@ const HomeFeed = () => {
       try {
         setLoading(true);
         // 獲取首頁顯示的內容，限制6篇
-        const response = await fetch('http://localhost:3001/api/content/by-page/home?limit=6');
+        const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.contentByPage}/home?limit=6`);
         if (!response.ok) {
           throw new Error('無法載入文章');
         }
