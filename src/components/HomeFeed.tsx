@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Calendar, ChevronRight, Users, Award, Briefcase, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Camera, Calendar, ChevronRight, Users, Award, Briefcase, MapPin, Clock, ArrowRight, Star, Pin, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { sampleArticles } from "@/components/ArticlePreviewCard";
 import { Link } from "react-router-dom";
@@ -12,61 +12,28 @@ interface NewsItem {
   title: string;
   category: string;
   date: string;
-  image: string;
-  description: string;
-  icon: any;
-  color: string;
-  location: string;
-  time: string;
+  image?: string;
+  description?: string;
+  content?: string;
+  icon?: any;
+  color?: string;
+  location?: string;
+  time?: string;
   type?: string;
-  isFromAdmin?: boolean;
+  author?: string;
+  isSticky?: boolean;
+  priority?: string;
+  views?: number;
+  displayPage?: string;
 }
-
-// 靜態新聞數據（作為備用）
-const staticNews: NewsItem[] = [
-  {
-    id: 1,
-    title: "113學年度碩士班甄試入學招生",
-    category: "招生訊息",
-    date: "2024-10-15",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=300&fit=crop&q=80",
-    description: "歡迎優秀學子加入我們的行銷研究所大家庭，共同探索消費者行為與數位行銷的奧秘",
-    icon: Users,
-    color: "from-[#1A4C7A] to-[#2A7DB1]",
-    location: "大恩館",
-    time: "09:00-17:00"
-  },
-  {
-    id: 2,
-    title: "產學合作專案成果發表會",
-    category: "學術活動",
-    date: "2024-10-20",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&q=80",
-    description: "學生與企業合作專案精彩成果展示，展現理論與實務結合的學習成效",
-    icon: Briefcase,
-    color: "from-[#2A7DB1] to-[#3CB1B6]",
-    location: "曉峰紀念館",
-    time: "14:00-16:30"
-  },
-  {
-    id: 3,
-    title: "全國行銷競賽榮獲第一名",
-    category: "榮譽消息",
-    date: "2024-10-12",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop&q=80",
-    description: "恭喜本系學生團隊在全國行銷競賽中脫穎而出，展現卓越的創意思維與執行能力",
-    icon: Award,
-    color: "from-[#3CB1B6] to-[#1A4C7A]",
-    location: "台北世貿",
-    time: "全天"
-  }
-];
 
 // 圖標映射
 const iconMap = {
   "招生訊息": Users,
+  "招生資訊": Users,
   "學術活動": Briefcase,
   "榮譽消息": Award,
+  "競賽成果": Award,
   "一般公告": Calendar,
   "活動": Camera,
   "講座": Briefcase,
@@ -79,14 +46,19 @@ const iconMap = {
   "重要公告": Award,
   "系統公告": Calendar,
   "緊急通知": Award,
-  "新聞": Award
+  "新聞": Award,
+  "教師專欄": Users,
+  "產業分享": Briefcase,
+  "實習": Briefcase
 };
 
 // 顏色映射
 const colorMap = {
   "招生訊息": "from-[#1A4C7A] to-[#2A7DB1]",
+  "招生資訊": "from-[#1A4C7A] to-[#2A7DB1]",
   "學術活動": "from-[#2A7DB1] to-[#3CB1B6]",
   "榮譽消息": "from-[#3CB1B6] to-[#1A4C7A]",
+  "競賽成果": "from-[#3CB1B6] to-[#1A4C7A]",
   "一般公告": "from-[#1A4C7A] to-[#3CB1B6]",
   "活動": "from-[#2A7DB1] to-[#1A4C7A]",
   "講座": "from-[#2A7DB1] to-[#3CB1B6]",
@@ -99,277 +71,165 @@ const colorMap = {
   "重要公告": "from-[#2A7DB1] to-[#1A4C7A]",
   "系統公告": "from-[#3CB1B6] to-[#2A7DB1]",
   "緊急通知": "from-[#1A4C7A] to-[#2A7DB1]",
-  "新聞": "from-[#3CB1B6] to-[#2A7DB1]"
+  "新聞": "from-[#3CB1B6] to-[#2A7DB1]",
+  "教師專欄": "from-[#2A7DB1] to-[#3CB1B6]",
+  "產業分享": "from-[#3CB1B6] to-[#1A4C7A]",
+  "實習": "from-[#1A4C7A] to-[#2A7DB1]"
 };
 
-const activities = [
-  {
-    id: 1,
-    title: "學術研討會盛況",
-    description: "師生齊聚一堂，共同探討行銷學術前沿議題，促進知識交流與創新思維碰撞",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&q=80",
-    participants: "80+",
-    year: "2024"
-  },
-  {
-    id: 2,
-    title: "產學合作成果展",
-    description: "學生團隊展示與企業合作的創新專案成果，展現理論與實務完美結合的學習成效",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop&q=80",
-    participants: "120+",
-    year: "2024"
-  }
-];
-
 const HomeFeed = () => {
-  const [news, setNews] = useState(staticNews);
+  const [articles, setArticles] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // 獲取管理後台發布的內容
   useEffect(() => {
-    const fetchPublishedContent = async () => {
+    const fetchArticles = async () => {
       try {
-        // 嘗試從後端 API 獲取數據
-        const response = await fetch('http://localhost:3001/api/content');
-        if (response.ok) {
-          const publishedContent = await response.json();
-          
-          // 轉換格式並合併數據
-          const formattedContent = publishedContent.map((item: any) => ({
-            id: item.id,
-            title: item.title,
-            category: item.category,
-            date: item.date,
-            image: item.images?.[0] || "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&q=80",
-            description: item.content,
-            icon: iconMap[item.category as keyof typeof iconMap] || Calendar,
-            color: colorMap[item.category as keyof typeof colorMap] || "from-[#1A4C7A] to-[#2A7DB1]",
-            location: "文化大學",
-            time: "詳見內容",
-            isFromAdmin: true
-          }));
-          
-          // 合併管理後台內容和靜態內容，管理後台內容優先顯示
-          const combinedNews = [...formattedContent, ...staticNews].slice(0, 6);
-          setNews(combinedNews);
-        } else {
-          // 如果 API 不可用，使用靜態數據
-          console.log('API 不可用，使用靜態數據');
-          setNews(staticNews);
+        setLoading(true);
+        // 獲取首頁顯示的內容，限制6篇
+        const response = await fetch('http://localhost:3001/api/content/by-page/home?limit=6');
+        if (!response.ok) {
+          throw new Error('無法載入文章');
         }
-      } catch (error) {
-        // 如果無法連接後端，使用靜態數據
-        console.log('無法連接後端，使用靜態數據:', error);
-        setNews(staticNews);
+        const data = await response.json();
+        setArticles(data);
+      } catch (err) {
+        console.error('載入文章失敗:', err);
+        setError(err.message);
+        // 使用默認數據作為後備
+        setArticles([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchPublishedContent();
+    fetchArticles();
   }, []);
+
+  const getPriorityIcon = (priority?: string) => {
+    switch (priority) {
+      case 'high':
+        return <Star className="w-3 h-3 text-red-500" />;
+      case 'low':
+        return <Star className="w-3 h-3 text-gray-400" />;
+      default:
+        return null;
+    }
+  };
 
   if (loading) {
     return (
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1A4C7A] mx-auto"></div>
-            <p className="mt-4 text-[#2A7DB1]">載入最新動態中...</p>
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">最新消息</h2>
+            <p className="text-gray-600">掌握系所最新動態與重要資訊</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                <div className="h-6 bg-gray-200 rounded mb-3"></div>
+                <div className="h-20 bg-gray-200 rounded mb-4"></div>
+                <div className="flex justify-between items-center">
+                  <div className="h-4 bg-gray-200 rounded w-20"></div>
+                  <div className="h-4 bg-gray-200 rounded w-16"></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
     );
   }
 
+  if (error) {
+    return (
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">最新消息</h2>
+          <p className="text-red-600 mb-4">載入失敗：{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            重新載入
+          </button>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* 背景裝飾 */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#3CB1B6]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1A4C7A]/5 rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-6 relative z-10">
-        {/* 主標題區 - 大膽現代 */}
-        <div className="text-center mb-20">
-          <h2 className="text-[4rem] md:text-[5rem] lg:text-[6rem] font-black text-[#1A4C7A] mb-6 leading-[0.9] tracking-tight">
-            最新動態
-          </h2>
-          <p className="text-xl md:text-2xl text-[#2A7DB1] font-medium max-w-2xl mx-auto">
-            掌握系所脈動，不錯過任何精彩時刻
-          </p>
-          {/* 顯示數據來源提示 */}
-          <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-500">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span>即時更新 • 來自管理後台</span>
-          </div>
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">最新消息</h2>
+          <p className="text-gray-600">掌握系所最新動態與重要資訊</p>
         </div>
-
-        {/* 新聞卡片 - 單排大卡片設計 */}
-        <div className="space-y-8 mb-20">
-          {news.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <Card key={item.id} className={`group border-0 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } flex flex-col md:flex relative`}>
-                {/* 管理後台內容標識 */}
-                {item.isFromAdmin && (
-                  <div className="absolute top-4 right-4 z-10 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    最新發布
+        
+        {articles.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">暫無最新消息</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.map((article, index) => (
+              <div key={article.id || index} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 relative">
+                {/* 置頂標識 */}
+                {article.isSticky && (
+                  <div className="absolute top-2 right-2">
+                    <Badge className="bg-red-600 text-white text-xs">
+                      <Pin className="w-3 h-3 mr-1" />
+                      置頂
+                    </Badge>
                   </div>
                 )}
                 
-                {/* 圖片區域 */}
-                <div className="relative md:w-1/2">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <Badge className={`absolute top-6 left-6 bg-gradient-to-r ${item.color} text-white border-0 px-4 py-2 text-sm font-semibold`}>
-                    <Icon className="w-4 h-4 mr-2" />
-                    {item.category}
-                  </Badge>
-                  <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl text-sm font-bold text-[#1A4C7A]">
-                    {new Date(item.date).toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' })}
-                  </div>
-                </div>
-                
-                {/* 內容區域 */}
-                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#1A4C7A] mb-4 group-hover:text-[#2A7DB1] transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                    {item.description}
-                  </p>
-                  <div className="flex items-center gap-6 text-sm text-slate-500 mb-6">
-                    <span className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      {item.location}
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <Clock className="w-4 h-4" />
-                      {item.time}
-                    </span>
-                  </div>
-                  <Button className="bg-[#1A4C7A] hover:bg-[#2A7DB1] text-white px-6 py-3 rounded-xl w-fit group">
-                    了解更多
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* 專欄文章區塊 - 重新設計 */}
-        <div className="bg-gradient-to-br from-[#1A4C7A]/5 to-[#3CB1B6]/5 rounded-3xl p-8 md:p-12 mb-20">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h3 className="text-3xl md:text-4xl font-bold text-[#1A4C7A] mb-2">專欄精選</h3>
-              <p className="text-lg text-[#2A7DB1]">產學觀點 × 專業見解</p>
-            </div>
-            <Link 
-              to="/articles" 
-              className="hidden md:flex items-center gap-2 text-[#1A4C7A] hover:text-[#2A7DB1] font-semibold transition-colors group"
-            >
-              查看全部
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-          
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* 先顯示管理後台的專欄文章 */}
-          {news.filter(item => item.type === 'article').slice(0, 3).map(article => (
-            <Card key={article.id} className="group border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              {article.image && (
-                <div className="relative overflow-hidden">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  {article.isFromAdmin && (
-                    <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">
-                      最新
-                    </div>
-                  )}
-                </div>
-              )}
-              <CardContent className="p-6">
-                <Badge className="bg-[#3CB1B6]/10 text-[#3CB1B6] border-0 mb-3 text-xs font-semibold">
-                  {article.category}
-                </Badge>
-                <h4 className="text-lg font-bold text-[#1A4C7A] mb-2 line-clamp-2 group-hover:text-[#2A7DB1] transition-colors">
-                  {article.title}
-                </h4>
-                <p className="text-slate-600 text-sm line-clamp-3">
-                  {article.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-          
-          {/* 如果管理後台專欄文章不足3篇，用靜態文章補足 */}
-          {news.filter(item => item.type === 'article').length < 3 && sampleArticles.slice(0, 3 - news.filter(item => item.type === 'article').length).map(article => (
-              <Card key={article.id} className="group border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                {article.image && (
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  </div>
-                )}
-                <CardContent className="p-6">
-                  <Badge className="bg-[#3CB1B6]/10 text-[#3CB1B6] border-0 mb-3 text-xs font-semibold">
+                <div className="flex items-center gap-2 mb-3">
+                  <Badge className="bg-blue-600 text-white text-xs">
                     {article.category}
                   </Badge>
-                  <h4 className="text-lg font-bold text-[#1A4C7A] mb-2 line-clamp-2 group-hover:text-[#2A7DB1] transition-colors">
-                    {article.title}
-                  </h4>
-                  <p className="text-slate-600 text-sm line-clamp-3">
-                    {article.excerpt}
-                  </p>
-                </CardContent>
-              </Card>
+                  {getPriorityIcon(article.priority)}
+                </div>
+                
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">
+                  {article.title}
+                </h3>
+                
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  {article.content || article.description}
+                </p>
+                
+                <div className="flex justify-between items-center text-sm text-gray-500">
+                  <div className="flex items-center gap-4">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      {article.date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Users className="w-4 h-4" />
+                      {article.author || '系統管理員'}
+                    </span>
+                  </div>
+                  <span className="flex items-center gap-1">
+                    <Eye className="w-4 h-4" />
+                    {article.views || 0}
+                  </span>
+                </div>
+              </div>
             ))}
           </div>
-          
-          {/* 移動端查看全部按鈕 */}
-          <div className="md:hidden mt-8 text-center">
-            <Link 
-              to="/articles" 
-              className="inline-flex items-center gap-2 bg-[#1A4C7A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#2A7DB1] transition-colors"
-            >
-              查看全部專欄
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-
-        {/* CTA 區域 - 簡化設計 */}
-        <div className="text-center bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] rounded-3xl p-12 text-white">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
-            想了解更多校園動態？
-          </h3>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            關注我們的最新消息，不錯過任何精彩活動
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-[#1A4C7A] hover:bg-white/90 px-8 py-4 text-lg rounded-xl font-bold shadow-lg hover:scale-105 transition-all">
-              <Camera className="w-5 h-5 mr-2" />
-              校園活動相簿
-            </Button>
-            <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 text-lg rounded-xl font-bold hover:scale-105 transition-all">
-              聯絡我們
-            </Button>
-          </div>
+        )}
+        
+        <div className="text-center mt-12">
+          <a 
+            href="/news" 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            查看更多消息
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </section>

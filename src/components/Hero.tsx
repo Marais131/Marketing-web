@@ -1,9 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const LOGO = "/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png";
 
 const Hero = () => {
   const [showVideo, setShowVideo] = useState(false);
+  const [heroContent, setHeroContent] = useState({
+    mainTitle: '品牌端行銷新世代',
+    subtitle: '以現代品牌視野，培養跨域行銷領袖',
+    tagline: '專業 × 創新 × 數據 × 美感 × 心理'
+  });
+
+  // 從後端獲取 Hero 內容
+  useEffect(() => {
+    const fetchHeroContent = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/website-content');
+        if (response.ok) {
+          const content = await response.json();
+          setHeroContent(content.hero);
+        }
+      } catch (error) {
+        console.log('無法獲取 Hero 內容，使用默認值:', error);
+      }
+    };
+
+    fetchHeroContent();
+  }, []);
 
   return (
     <section className="relative w-full bg-white min-h-[80vh] flex flex-col items-center justify-center py-16 md:py-24 overflow-hidden">
@@ -80,26 +102,26 @@ const Hero = () => {
           <img
             src={LOGO}
             alt="文化大學行銷系 Logo"
-            className="h-[110px] md:h-[140px] w-auto mb-2 md:mb-0 animate-float relative z-10"
-            style={{ minWidth: "120px", maxWidth: "240px" }}
+            className="h-[160px] md:h-[220px] lg:h-[250px] w-auto mb-2 md:mb-0 animate-float relative z-10"
+            style={{ minWidth: "180px", maxWidth: "350px" }}
           />
           {/* 主標題，淡入上移動畫 */}
           <h1
             className="text-[8vw] md:text-[6vw] lg:text-[5vw] font-black leading-[1.05] tracking-tight text-[#1A4C7A] text-center md:text-left drop-shadow-none opacity-0 translate-y-8 animate-heroTitle relative z-10"
             style={{ letterSpacing: "-0.04em" }}
           >
-            品牌端
+            {heroContent.mainTitle.split('行銷')[0]}
             <span className="text-[#2A7DB1]">行銷</span>
-            <span className="text-[#3CB1B6]">新世代</span>
+            <span className="text-[#3CB1B6]">{heroContent.mainTitle.split('行銷')[1]}</span>
           </h1>
         </div>
         {/* 副標題，滑入動畫 */}
         <div className="text-[1.5rem] md:text-3xl font-bold text-[#2A7DB1] text-center max-w-2xl mt-2 mb-2 opacity-0 -translate-x-8 animate-slideInLeft relative z-10">
-          以現代品牌視野，培養跨域行銷領袖
+          {heroContent.subtitle}
         </div>
         {/* 特色標語色塊，滑入動畫 */}
         <div className="inline-block rounded-full bg-[#3CB1B6]/10 px-10 py-4 text-[#3CB1B6] font-semibold text-xl shadow-sm mb-4 opacity-0 translate-x-8 animate-slideInRight relative z-10 backdrop-blur-sm border border-[#3CB1B6]/20">
-          專業 × 創新 × 數據 × 美感 × 心理
+          {heroContent.tagline}
         </div>
         {/* 影片區塊，scale-in 動畫 */}
         <div className="w-full flex items-center justify-center mt-6 relative z-10">

@@ -10,7 +10,11 @@ const demoContent = [
     date: '2024-01-15',
     views: 156,
     status: 'published',
-    images: []
+    images: [],
+    author: '行銷系',
+    displayPage: 'home',
+    isSticky: true,
+    priority: 'high'
   },
   {
     id: 2,
@@ -21,7 +25,11 @@ const demoContent = [
     date: '2024-01-10',
     views: 89,
     status: 'published',
-    images: []
+    images: [],
+    author: '行銷系',
+    displayPage: 'activities',
+    isSticky: false,
+    priority: 'normal'
   },
   {
     id: 3,
@@ -32,7 +40,11 @@ const demoContent = [
     date: '2024-01-08',
     views: 234,
     status: 'published',
-    images: []
+    images: [],
+    author: '行銷系',
+    displayPage: 'home',
+    isSticky: false,
+    priority: 'high'
   },
   {
     id: 4,
@@ -43,7 +55,11 @@ const demoContent = [
     date: '2024-01-05',
     views: 67,
     status: 'published',
-    images: []
+    images: [],
+    author: '行銷系',
+    displayPage: 'home',
+    isSticky: true,
+    priority: 'high'
   },
   {
     id: 5,
@@ -54,7 +70,57 @@ const demoContent = [
     date: '2024-01-03',
     views: 145,
     status: 'published',
-    images: []
+    images: [],
+    author: '行銷系',
+    displayPage: 'home',
+    isSticky: false,
+    priority: 'normal'
+  },
+  // 加入原本的靜態文章，讓所有文章統一管理
+  {
+    id: 6,
+    type: 'article',
+    title: '品牌思維如何打造高競爭力行銷人？',
+    content: '從產業實戰分享品牌經營的關鍵，結合行銷心理與數據洞察，打開嶄新職涯視角。深入探討現代行銷人才需要具備的核心能力，包括品牌策略思維、數據分析能力、消費者洞察等關鍵技能。',
+    category: '教師專欄',
+    date: '2024-05-30',
+    views: 342,
+    status: 'published',
+    images: ['https://images.unsplash.com/photo-1464983953574-0892a716854b?w=600&q=80'],
+    author: '王大明 教授',
+    displayPage: 'faculty',
+    isSticky: false,
+    priority: 'normal'
+  },
+  {
+    id: 7,
+    type: 'article',
+    title: '掌握消費者行為的三大心理技巧',
+    content: '用案例解析如何破解消費者行為迷思，精準行銷策略大公開。探討消費者決策過程中的心理機制，以及如何運用行為經濟學原理提升行銷效果。',
+    category: '教師專欄',
+    date: '2024-06-10',
+    views: 287,
+    status: 'published',
+    images: ['https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80'],
+    author: '李小美 老師',
+    displayPage: 'faculty',
+    isSticky: false,
+    priority: 'normal'
+  },
+  {
+    id: 8,
+    type: 'article',
+    title: 'AI大數據驅動的行銷產學研新未來',
+    content: '產學合作案例，揭秘產學如何聯動AI和數據思維帶來行銷新局。分析人工智慧和大數據技術在現代行銷中的應用，以及未來行銷產業的發展趨勢。',
+    category: '產業分享',
+    date: '2024-06-12',
+    views: 198,
+    status: 'published',
+    images: ['https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600&q=80'],
+    author: '產研團隊',
+    displayPage: 'news',
+    isSticky: false,
+    priority: 'normal'
   }
 ];
 
