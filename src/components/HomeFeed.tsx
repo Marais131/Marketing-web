@@ -18,6 +18,7 @@ interface NewsItem {
   color: string;
   location: string;
   time: string;
+  type?: string;
   isFromAdmin?: boolean;
 }
 
@@ -68,6 +69,16 @@ const iconMap = {
   "榮譽消息": Award,
   "一般公告": Calendar,
   "活動": Camera,
+  "講座": Briefcase,
+  "工作坊": Users,
+  "競賽": Award,
+  "行銷觀點": Users,
+  "產業分析": Briefcase,
+  "學習心得": Award,
+  "專業知識": Calendar,
+  "重要公告": Award,
+  "系統公告": Calendar,
+  "緊急通知": Award,
   "新聞": Award
 };
 
@@ -78,6 +89,16 @@ const colorMap = {
   "榮譽消息": "from-[#3CB1B6] to-[#1A4C7A]",
   "一般公告": "from-[#1A4C7A] to-[#3CB1B6]",
   "活動": "from-[#2A7DB1] to-[#1A4C7A]",
+  "講座": "from-[#2A7DB1] to-[#3CB1B6]",
+  "工作坊": "from-[#3CB1B6] to-[#1A4C7A]",
+  "競賽": "from-[#1A4C7A] to-[#2A7DB1]",
+  "行銷觀點": "from-[#1A4C7A] to-[#2A7DB1]",
+  "產業分析": "from-[#2A7DB1] to-[#3CB1B6]",
+  "學習心得": "from-[#3CB1B6] to-[#1A4C7A]",
+  "專業知識": "from-[#1A4C7A] to-[#3CB1B6]",
+  "重要公告": "from-[#2A7DB1] to-[#1A4C7A]",
+  "系統公告": "from-[#3CB1B6] to-[#2A7DB1]",
+  "緊急通知": "from-[#1A4C7A] to-[#2A7DB1]",
   "新聞": "from-[#3CB1B6] to-[#2A7DB1]"
 };
 
@@ -259,8 +280,41 @@ const HomeFeed = () => {
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {sampleArticles.slice(0, 3).map(article => (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* 先顯示管理後台的專欄文章 */}
+          {news.filter(item => item.type === 'article').slice(0, 3).map(article => (
+            <Card key={article.id} className="group border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              {article.image && (
+                <div className="relative overflow-hidden">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  {article.isFromAdmin && (
+                    <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">
+                      最新
+                    </div>
+                  )}
+                </div>
+              )}
+              <CardContent className="p-6">
+                <Badge className="bg-[#3CB1B6]/10 text-[#3CB1B6] border-0 mb-3 text-xs font-semibold">
+                  {article.category}
+                </Badge>
+                <h4 className="text-lg font-bold text-[#1A4C7A] mb-2 line-clamp-2 group-hover:text-[#2A7DB1] transition-colors">
+                  {article.title}
+                </h4>
+                <p className="text-slate-600 text-sm line-clamp-3">
+                  {article.description}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+          
+          {/* 如果管理後台專欄文章不足3篇，用靜態文章補足 */}
+          {news.filter(item => item.type === 'article').length < 3 && sampleArticles.slice(0, 3 - news.filter(item => item.type === 'article').length).map(article => (
               <Card key={article.id} className="group border-0 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 {article.image && (
                   <div className="relative overflow-hidden">

@@ -36,7 +36,7 @@ const AdminDashboard = () => {
     title: '',
     content: '',
     images: [],
-    category: '一般公告'
+    category: '招生訊息'
   });
 
   const [publishedItems, setPublishedItems] = useState([
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
           title: '',
           content: '',
           images: [],
-          category: '一般公告'
+          category: '招生訊息'
         });
         
         alert('✅ 發布成功！內容已同步到網站首頁');
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
           title: '',
           content: '',
           images: [],
-          category: '一般公告'
+          category: '招生訊息'
         });
         setIsPublishing(false);
         
@@ -161,10 +161,47 @@ const AdminDashboard = () => {
     setIsPublishing(false);
   };
 
+  const [dragActive, setDragActive] = useState(false);
+
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-    const imageUrls = files.map(file => URL.createObjectURL(file));
+    processFiles(files);
+  };
+
+  const processFiles = (files: File[]) => {
+    const imageFiles = files.filter(file => file.type.startsWith('image/'));
+    const imageUrls = imageFiles.map(file => ({
+      url: URL.createObjectURL(file),
+      name: file.name,
+      size: file.size
+    }));
     setPublishForm({ ...publishForm, images: [...publishForm.images, ...imageUrls] });
+  };
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const files = Array.from(e.dataTransfer.files);
+      processFiles(files);
+    }
+  };
+
+  const removeImage = (index: number) => {
+    const newImages = publishForm.images.filter((_, i) => i !== index);
+    setPublishForm({ ...publishForm, images: newImages });
   };
 
   const getAdminUser = () => {
@@ -297,50 +334,107 @@ const AdminDashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  {/* 發布類型選擇 */}
+                  {/* 發布類型選擇 - 改進版 */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-3">
-                      發布類型
+                      發布類型 <span className="text-[#3CB1B6]">（決定顯示位置）</span>
                     </label>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 gap-3">
                       {[
-                        { value: 'news', label: '📰 新聞', icon: '📰' },
-                        { value: 'event', label: '🎉 活動', icon: '🎉' },
-                        { value: 'notice', label: '📢 公告', icon: '📢' },
-                        { value: 'achievement', label: '🏆 成就', icon: '🏆' }
+                        { 
+                          value: 'news', 
+                          label: '📰 最新消息', 
+                          icon: '📰',
+                          description: '顯示在首頁「最新動態」區塊，大卡片展示',
+                          location: '首頁 → 最新動態'
+                        },
+                        { 
+                          value: 'article', 
+                          label: '📝 專欄文章', 
+                          icon: '📝',
+                          description: '顯示在首頁「專欄精選」區塊，小卡片展示',
+                          location: '首頁 → 專欄精選'
+                        },
+                        { 
+                          value: 'event', 
+                          label: '🎉 活動公告', 
+                          icon: '🎉',
+                          description: '顯示在活動頁面和首頁動態',
+                          location: '活動頁面 + 首頁動態'
+                        },
+                        { 
+                          value: 'notice', 
+                          label: '📢 重要公告', 
+                          icon: '📢',
+                          description: '顯示在首頁頂部重要位置',
+                          location: '首頁頂部公告'
+                        }
                       ].map((type) => (
                         <button
                           key={type.value}
                           onClick={() => setPublishForm({ ...publishForm, type: type.value })}
-                          className={`p-4 rounded-lg border-2 transition-all ${
+                          className={`p-4 rounded-lg border-2 transition-all text-left ${
                             publishForm.type === type.value
                               ? 'border-[#3CB1B6] bg-[#3CB1B6]/10'
                               : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
-                          <div className="text-2xl mb-1">{type.icon}</div>
-                          <div className="text-sm font-medium">{type.label}</div>
+                          <div className="flex items-start gap-3">
+                            <div className="text-2xl">{type.icon}</div>
+                            <div className="flex-1">
+                              <div className="font-medium text-gray-900 mb-1">{type.label}</div>
+                              <div className="text-sm text-gray-600 mb-2">{type.description}</div>
+                              <div className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded inline-block">
+                                📍 {type.location}
+                              </div>
+                            </div>
+                          </div>
                         </button>
                       ))}
                     </div>
                   </div>
 
-                  {/* 分類選擇 */}
+                  {/* 分類選擇 - 根據類型動態調整 */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      分類
+                      詳細分類
                     </label>
                     <select
                       value={publishForm.category}
                       onChange={(e) => setPublishForm({ ...publishForm, category: e.target.value })}
                       className="w-full p-3 border border-gray-200 rounded-lg focus:border-[#2A7DB1] focus:ring-[#2A7DB1]"
                     >
-                      <option value="一般公告">📢 一般公告</option>
-                      <option value="招生資訊">🎓 招生資訊</option>
-                      <option value="活動">🎉 活動</option>
-                      <option value="學術">📚 學術</option>
-                      <option value="實習">💼 實習</option>
-                      <option value="競賽">🏆 競賽</option>
+                      {publishForm.type === 'news' && (
+                        <>
+                          <option value="招生訊息">🎓 招生訊息</option>
+                          <option value="學術活動">📚 學術活動</option>
+                          <option value="榮譽消息">🏆 榮譽消息</option>
+                          <option value="一般公告">📢 一般公告</option>
+                        </>
+                      )}
+                      {publishForm.type === 'article' && (
+                        <>
+                          <option value="行銷觀點">💡 行銷觀點</option>
+                          <option value="產業分析">📊 產業分析</option>
+                          <option value="學習心得">📖 學習心得</option>
+                          <option value="專業知識">🎯 專業知識</option>
+                        </>
+                      )}
+                      {publishForm.type === 'event' && (
+                        <>
+                          <option value="活動">🎉 活動</option>
+                          <option value="講座">🎤 講座</option>
+                          <option value="工作坊">🛠️ 工作坊</option>
+                          <option value="競賽">🏆 競賽</option>
+                        </>
+                      )}
+                      {publishForm.type === 'notice' && (
+                        <>
+                          <option value="重要公告">🚨 重要公告</option>
+                          <option value="系統公告">⚙️ 系統公告</option>
+                          <option value="緊急通知">🔔 緊急通知</option>
+                        </>
+                      )}
                     </select>
                   </div>
 
@@ -371,14 +465,36 @@ const AdminDashboard = () => {
                     />
                   </div>
 
-                  {/* 圖片上傳 */}
+                  {/* 圖片上傳 - 改進版 */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       添加圖片（可選）
                     </label>
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#3CB1B6] transition-colors">
-                      <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-gray-600 mb-2">點擊上傳或拖拽圖片到這裡</p>
+                    
+                    {/* 拖拽上傳區域 */}
+                    <div 
+                      className={`border-2 border-dashed rounded-lg p-6 text-center transition-all ${
+                        dragActive 
+                          ? 'border-[#3CB1B6] bg-[#3CB1B6]/10' 
+                          : 'border-gray-300 hover:border-[#3CB1B6]'
+                      }`}
+                      onDragEnter={handleDrag}
+                      onDragLeave={handleDrag}
+                      onDragOver={handleDrag}
+                      onDrop={handleDrop}
+                    >
+                      <Upload className={`w-8 h-8 mx-auto mb-2 ${
+                        dragActive ? 'text-[#3CB1B6]' : 'text-gray-400'
+                      }`} />
+                      <p className={`mb-2 ${
+                        dragActive ? 'text-[#3CB1B6] font-medium' : 'text-gray-600'
+                      }`}>
+                        {dragActive ? '放開圖片即可上傳' : '拖拽圖片到這裡或點擊選擇'}
+                      </p>
+                      <p className="text-xs text-gray-500 mb-3">
+                        支援 JPG、PNG、GIF 格式，單檔最大 10MB
+                      </p>
+                      
                       <input
                         type="file"
                         multiple
@@ -394,6 +510,37 @@ const AdminDashboard = () => {
                         </Button>
                       </label>
                     </div>
+
+                    {/* 圖片預覽 */}
+                    {publishForm.images.length > 0 && (
+                      <div className="mt-4">
+                        <p className="text-sm font-medium text-gray-700 mb-3">
+                          已選擇 {publishForm.images.length} 張圖片
+                        </p>
+                        <div className="grid grid-cols-2 gap-3">
+                          {publishForm.images.map((image, index) => (
+                            <div key={index} className="relative group">
+                              <img
+                                src={typeof image === 'string' ? image : image.url}
+                                alt={`預覽 ${index + 1}`}
+                                className="w-full h-24 object-cover rounded-lg border"
+                              />
+                              <button
+                                onClick={() => removeImage(index)}
+                                className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                              {typeof image === 'object' && (
+                                <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-1 rounded-b-lg truncate">
+                                  {image.name}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* 發布按鈕 */}
