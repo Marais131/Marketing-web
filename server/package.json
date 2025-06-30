@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "文化大學行銷系網站管理後台 API",
   "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
