@@ -79,32 +79,86 @@ const AdminDashboard = () => {
   const handlePublish = async () => {
     setIsPublishing(true);
     
-    // 模擬發布過程
-    setTimeout(() => {
-      const newItem = {
-        id: Date.now(),
+    try {
+      // 準備發布數據
+      const publishData = {
         type: publishForm.type,
         title: publishForm.title,
         content: publishForm.content,
         category: publishForm.category,
-        date: new Date().toISOString().split('T')[0],
-        views: 0,
-        status: 'published'
+        images: publishForm.images,
+        date: new Date().toISOString().split('T')[0]
       };
-      
-      setPublishedItems([newItem, ...publishedItems]);
-      setPublishForm({
-        type: 'news',
-        title: '',
-        content: '',
-        images: [],
-        category: '一般公告'
+
+      // 嘗試發送到後端 API
+      const response = await fetch('http://localhost:3001/api/content', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(publishData)
       });
-      setIsPublishing(false);
+
+      if (response.ok) {
+        const result = await response.json();
+        
+        // 更新本地狀態
+        const newItem = {
+          id: result.id || Date.now(),
+          type: publishForm.type,
+          title: publishForm.title,
+          content: publishForm.content,
+          category: publishForm.category,
+          date: new Date().toISOString().split('T')[0],
+          views: 0,
+          status: 'published'
+        };
+        
+        setPublishedItems([newItem, ...publishedItems]);
+        setPublishForm({
+          type: 'news',
+          title: '',
+          content: '',
+          images: [],
+          category: '一般公告'
+        });
+        
+        alert('✅ 發布成功！內容已同步到網站首頁');
+      } else {
+        throw new Error('發布失敗');
+      }
+    } catch (error) {
+      console.log('API 不可用，使用演示模式:', error);
       
-      // 顯示成功訊息
-      alert('✅ 發布成功！內容已更新到網站首頁');
-    }, 2000);
+      // 演示模式 - 模擬發布
+      setTimeout(() => {
+        const newItem = {
+          id: Date.now(),
+          type: publishForm.type,
+          title: publishForm.title,
+          content: publishForm.content,
+          category: publishForm.category,
+          date: new Date().toISOString().split('T')[0],
+          views: 0,
+          status: 'published'
+        };
+        
+        setPublishedItems([newItem, ...publishedItems]);
+        setPublishForm({
+          type: 'news',
+          title: '',
+          content: '',
+          images: [],
+          category: '一般公告'
+        });
+        setIsPublishing(false);
+        
+        alert('🎭 演示模式：發布成功！（實際部署時會同步到網站首頁）');
+      }, 1000);
+      return;
+    }
+    
+    setIsPublishing(false);
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -136,14 +136,36 @@ app.post('/api/admin/upload', simpleAuth, upload.single('file'), (req, res) => {
 
 // 獲取網站內容（給前端使用）
 app.get('/api/content', (req, res) => {
-  res.json({
-    hero: {
-      title: '文化大學行銷系',
-      subtitle: '全台唯一品牌端行銷系所',
-      description: '培養新世代行銷專業人才'
-    },
-    news: publishedContent.filter(item => item.type === 'news'),
-    events: publishedContent.filter(item => item.type === 'event')
+  // 返回所有已發布的內容，按日期排序
+  const sortedContent = publishedContent
+    .filter(item => item.status === 'published')
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  
+  res.json(sortedContent);
+});
+
+// 發布內容的新 API（支持前端直接調用）
+app.post('/api/content', (req, res) => {
+  const { type, title, content, category, images } = req.body;
+  
+  const newContent = {
+    id: Date.now(),
+    type: type || 'news',
+    title,
+    content,
+    category: category || '一般公告',
+    date: new Date().toISOString().split('T')[0],
+    views: 0,
+    status: 'published',
+    images: images || []
+  };
+  
+  publishedContent.unshift(newContent);
+  
+  res.json({ 
+    message: '發布成功！',
+    id: newContent.id,
+    content: newContent
   });
 });
 
