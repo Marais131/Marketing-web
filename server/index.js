@@ -633,6 +633,148 @@ app.get('/api/content/by-page/:page', (req, res) => {
   }
 });
 
+// 根路由 - API狀態頁面
+app.get('/', (req, res) => {
+  const apiInfo = {
+    name: '文化大學行銷系 - 後端API服務',
+    version: '1.0.0',
+    status: 'running',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      content: '/api/content - 獲取所有內容',
+      contentByPage: '/api/content/by-page/:page - 按頁面獲取內容',
+      publish: '/api/publish - 發布新內容',
+      adminLogin: '/api/admin/login - 管理員登入',
+      adminContent: '/api/admin/content - 管理員內容管理',
+      operationLogs: '/api/operation-logs - 操作記錄',
+      userActivityStats: '/api/user-activity-stats - 用戶活動統計',
+      media: '/api/media - 媒體文件管理'
+    },
+    stats: {
+      totalContent: publishedContent.length,
+      totalOperationLogs: operationLogs.length,
+      uptime: process.uptime()
+    }
+  };
+
+  // 如果是瀏覽器請求，返回HTML頁面
+  if (req.headers.accept && req.headers.accept.includes('text/html')) {
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="zh-TW">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>文化大學行銷系 - 後端API服務</title>
+        <style>
+          body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #f5f5f5; 
+            color: #333;
+          }
+          .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+          }
+          h1 { 
+            color: #1e40af; 
+            border-bottom: 3px solid #3b82f6; 
+            padding-bottom: 10px; 
+          }
+          .status { 
+            background: #10b981; 
+            color: white; 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            display: inline-block; 
+            margin: 10px 0; 
+          }
+          .endpoint { 
+            background: #f8fafc; 
+            padding: 8px 12px; 
+            margin: 5px 0; 
+            border-left: 4px solid #3b82f6; 
+            font-family: monospace; 
+          }
+          .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; 
+            margin: 20px 0; 
+          }
+          .stat-card { 
+            background: #e0f2fe; 
+            padding: 15px; 
+            border-radius: 8px; 
+            text-align: center; 
+          }
+          .stat-number { 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: #0369a1; 
+          }
+          .footer { 
+            text-align: center; 
+            margin-top: 30px; 
+            color: #64748b; 
+            font-size: 14px; 
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1>🚀 文化大學行銷系 - 後端API服務</h1>
+          <div class="status">✅ 服務正常運行</div>
+          
+          <h2>📊 服務統計</h2>
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-number">${apiInfo.stats.totalContent}</div>
+              <div>發布內容數</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">${apiInfo.stats.totalOperationLogs}</div>
+              <div>操作記錄數</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">${Math.floor(apiInfo.stats.uptime / 60)}分鐘</div>
+              <div>運行時間</div>
+            </div>
+          </div>
+
+          <h2>🔗 API 端點</h2>
+          ${Object.entries(apiInfo.endpoints).map(([key, desc]) => 
+            `<div class="endpoint">${desc}</div>`
+          ).join('')}
+
+          <h2>🔧 測試API</h2>
+          <p>您可以測試以下端點：</p>
+          <div class="endpoint">
+            <a href="/api/content" target="_blank">GET /api/content</a> - 查看所有內容
+          </div>
+          <div class="endpoint">
+            <a href="/api/content/by-page/home?limit=6" target="_blank">GET /api/content/by-page/home?limit=6</a> - 查看首頁內容
+          </div>
+
+          <div class="footer">
+            <p>🕐 最後更新：${new Date().toLocaleString('zh-TW')}</p>
+            <p>💻 文化大學行銷系 內容管理系統</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `);
+  } else {
+    // API請求返回JSON
+    res.json(apiInfo);
+  }
+});
+
 // 啟動服務器
 app.listen(PORT, () => {
   console.log(`🚀 管理後台服務器運行在 http://localhost:${PORT}`);
