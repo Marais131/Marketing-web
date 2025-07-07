@@ -44,6 +44,32 @@ const feedbacks = [
     rating: 5,
     position: "數位行銷專員 @ 新創公司"
   },
+  {
+    id: 4,
+    name: "張雅婷",
+    identity: "行銷學系大三",
+    type: "在校生",
+    avatar: "",
+    content:
+      "行銷系的課程讓我學會用數據分析消費者行為，邏輯推理能力大幅提升。老師會帶我們實作市場調查，讓理論與實務結合，對未來職涯很有幫助。",
+    course: "數據分析與市場調查",
+    year: "2024",
+    rating: 5,
+    position: "行銷競賽校隊成員"
+  },
+  {
+    id: 5,
+    name: "李承諺",
+    identity: "行銷學系 109級畢業生",
+    type: "畢業生",
+    avatar: "",
+    content:
+      "文化行銷系強調消費心理與嚴謹決策，讓我在職場上能精準分析市場趨勢。學期間參與專案實作，累積了寶貴經驗，畢業後很快就找到理想工作。",
+    course: "消費心理與決策分析",
+    year: "2022",
+    rating: 5,
+    position: "行銷分析師 @ 金融科技公司"
+  },
 ];
 
 function getTypeBadge(type: string) {
@@ -62,7 +88,7 @@ function getTypeBadge(type: string) {
 }
 
 const StudentFeedback = () => (
-  <section className="relative py-20 md:py-32 bg-white overflow-hidden">
+  <section className="relative py-20 md:py-32 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden w-full">
     {/* 背景裝飾 */}
     <div className="absolute inset-0">
       {/* 大型背景圓 */}
@@ -84,7 +110,7 @@ const StudentFeedback = () => (
       <div className="absolute top-1/2 right-16 w-2 h-2 bg-[#1A4C7A] rounded-full animate-pulse delay-700"></div>
     </div>
 
-    <div className="container mx-auto px-6 max-w-6xl relative z-10">
+    <div className="container mx-auto px-2 md:px-8 lg:px-16 max-w-[100vw] w-full relative z-10">
       {/* 標題區域 */}
       <div className="text-center mb-16">
         <div className="inline-flex items-center bg-gradient-to-r from-[#1A4C7A]/10 to-[#3CB1B6]/10 px-6 py-3 rounded-full mb-6 border border-[#2A7DB1]/20">
@@ -101,30 +127,31 @@ const StudentFeedback = () => (
       </div>
 
       {/* 輪播卡片 */}
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full max-w-[1800px] mx-auto px-0 md:px-4 lg:px-8 relative">
+        {/* 卡片區域下方大面積漸層光暈，聚焦融合 */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[98%] h-[85%] bg-gradient-to-br from-blue-100/40 via-white/60 to-blue-50/30 rounded-3xl blur-2xl opacity-70 -z-10"></div>
         <Carousel className="w-full">
-          <CarouselContent className="gap-6">
+          <CarouselContent className="gap-0 py-4 md:py-8">
             {feedbacks.map((fb) => (
-              <CarouselItem key={fb.id} className="md:basis-1/2 lg:basis-1/2">
-                <Card className="h-full bg-white border-0 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden group">
-                  <CardContent className="p-8">
+              <CarouselItem key={fb.id} className="w-full md:basis-1/2 lg:basis-1/2 block">
+                <Card className="h-full max-w-[420px] w-full bg-white/70 backdrop-blur-md border border-blue-100/60 rounded-3xl shadow-[0_8px_32px_0_rgba(44,180,200,0.10)] hover:shadow-[0_12px_40px_0_rgba(44,180,200,0.16)] hover:ring-2 hover:ring-blue-200/30 transition-all duration-500 hover:-translate-y-2 overflow-visible group relative mx-0 my-1">
+                  {/* 柔和光暈 */}
+                  <div className="absolute -inset-2 z-0 pointer-events-none rounded-3xl bg-blue-100/20 blur-2xl opacity-40 group-hover:opacity-60 transition-all duration-500"></div>
+                  <CardContent className="p-10 relative z-10">
                     {/* 引號裝飾 */}
                     <div className="mb-6">
                       <Quote className="w-12 h-12 text-[#3CB1B6]/20 group-hover:text-[#3CB1B6]/40 transition-colors duration-300" />
                     </div>
-
                     {/* 評分星星 */}
                     <div className="flex gap-1 mb-4">
                       {[...Array(fb.rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-[#3CB1B6] text-[#3CB1B6]" />
                       ))}
                     </div>
-
                     {/* 心得內容 */}
                     <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 font-medium">
                       {fb.content}
                     </blockquote>
-
                     {/* 用戶信息 */}
                     <div className="flex items-center gap-4 mb-4">
                       <Avatar className="w-14 h-14 border-2 border-[#3CB1B6]/20">
@@ -145,7 +172,6 @@ const StudentFeedback = () => (
                         <p className="text-xs text-[#2A7DB1] font-medium">{fb.position}</p>
                       </div>
                     </div>
-
                     {/* 課程與年份 */}
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                       <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -154,6 +180,8 @@ const StudentFeedback = () => (
                       </div>
                       <span className="text-sm text-gray-400">{fb.year}</span>
                     </div>
+                    {/* 主色系漸層線條 */}
+                    <div className="mt-8 h-1 w-2/3 mx-auto bg-gradient-to-r from-[#1A4C7A] via-[#2A7DB1] to-[#3CB1B6] rounded-full"></div>
                   </CardContent>
                 </Card>
               </CarouselItem>
@@ -166,17 +194,29 @@ const StudentFeedback = () => (
         </Carousel>
       </div>
 
-      {/* CTA 區域 */}
-      <div className="text-center mt-16 bg-gradient-to-br from-[#1A4C7A]/5 to-[#3CB1B6]/5 rounded-3xl p-8 md:p-12">
+      {/* CTA 區域 - 優化銜接 */}
+      <div className="text-center mt-16 bg-gradient-to-br from-[#1A4C7A]/8 to-[#3CB1B6]/8 rounded-3xl p-8 md:p-12 border border-[#2A7DB1]/10 max-w-[1200px] mx-auto">
         <h3 className="text-2xl md:text-3xl font-bold text-[#1A4C7A] mb-4">
           想了解更多學習心得？
         </h3>
         <p className="text-lg text-[#2A7DB1] mb-6">
           與我們的學長姐直接對話，獲得第一手的學習經驗分享
         </p>
-        <button className="bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] hover:from-[#2A7DB1] hover:to-[#3CB1B6] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+        <a 
+          href="https://www.facebook.com/pccu.marketing" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-block bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] hover:from-[#2A7DB1] hover:to-[#3CB1B6] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+        >
           聯絡學長姐
-        </button>
+        </a>
+      </div>
+      
+      {/* 底部過渡到最新消息 */}
+      <div className="mt-16 text-center">
+        <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#2A7DB1]/30 to-transparent mx-auto mb-4"></div>
+        <p className="text-[#2A7DB1]/60 text-sm font-medium">接下來看看我們的最新動態</p>
+        <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#3CB1B6]/20 to-transparent mx-auto mt-2"></div>
       </div>
     </div>
   </section>
