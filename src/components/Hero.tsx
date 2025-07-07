@@ -4,28 +4,11 @@ const LOGO = "/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png";
 
 const Hero = () => {
   const [showVideo, setShowVideo] = useState(false);
-  const [heroContent, setHeroContent] = useState({
+  const heroContent = {
     mainTitle: '品牌端行銷新世代',
     subtitle: '以現代品牌視野，培養跨域行銷領袖',
     tagline: '專業 × 邏輯 × 數據 × 消費心理'
-  });
-
-  // 從後端獲取 Hero 內容
-  useEffect(() => {
-    const fetchHeroContent = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/api/website-content');
-        if (response.ok) {
-          const content = await response.json();
-          setHeroContent(content.hero);
-        }
-      } catch (error) {
-        console.log('無法獲取 Hero 內容，使用默認值:', error);
-      }
-    };
-
-    fetchHeroContent();
-  }, []);
+  };
 
   return (
     <section className="relative w-full bg-white min-h-[80vh] flex flex-col items-center justify-center py-16 md:py-24 overflow-hidden">
