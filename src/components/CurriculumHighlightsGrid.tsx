@@ -70,11 +70,11 @@ const highlights = [
 // 學習體驗
 const learningExperience = [
   {
-    title: "創意工作坊",
-    description: "腦力激盪，發想創意點子",
-    detailDescription: "在專業的創意空間中，與同學一起進行頭腦風暴，學習設計思維方法論，培養創新思考能力。每次工作坊都會有實際的創意產出，讓理論與實踐完美結合。",
+    title: "邏輯推演工作坊",
+    description: "嚴謹推演，發想精準方案",
+    detailDescription: "在專業的推演空間中，與同學一起進行邏輯推理，學習策略規劃與消費心理洞察，培養精準決策能力。每次工作坊都會有實際的策略產出，讓理論與實踐完美結合。",
     image: "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=500&h=300&fit=crop&crop=center",
-    tags: ["創意思考", "團隊合作", "設計思維"],
+    tags: ["邏輯思考", "團隊合作", "消費心理"],
     stats: { participants: "25人", duration: "3小時", projects: "5個專案" }
   },
   {
@@ -88,7 +88,7 @@ const learningExperience = [
   {
     title: "品牌專案實作",
     description: "與真實品牌合作專案",
-    detailDescription: "直接與知名品牌合作，參與真實的行銷專案。從市場調研到策略制定，從創意發想到執行落地，體驗完整的品牌行銷流程。",
+    detailDescription: "直接與知名品牌合作，參與真實的行銷專案。從市場調研到策略制定，從邏輯推演到執行落地，體驗完整的品牌行銷流程。",
     image: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=500&h=300&fit=crop&crop=center",
     tags: ["專案管理", "客戶溝通", "成果展示"],
     stats: { brands: "20+品牌", success: "90%成功率", budget: "百萬預算" }
@@ -682,8 +682,8 @@ const CurriculumHighlightsGrid = () => {
                 準備好開始你的行銷之旅了嗎？
               </h2>
               <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                加入文化行銷，用創意和數據驅動的思維改變世界<br/>
-                成為下一個行銷領域的創新者
+                加入文化行銷，用邏輯推演、數據分析與消費心理洞察改變世界<br/>
+                成為下一個行銷領域的決策專家
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

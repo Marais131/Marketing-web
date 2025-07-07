@@ -35,8 +35,8 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* 桌面導航 */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* 桌面導航 - 顯示在中大螢幕 */}
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link 
                 key={item.path}
@@ -52,11 +52,11 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* 移動端菜單按鈕 */}
+          {/* 移動端菜單按鈕 - 只在小螢幕顯示 */}
           <Button
             variant="ghost"
             size="sm"
-            className="lg:hidden p-2 hover:bg-[#3CB1B6]/10 text-[#1A4C7A]"
+            className="md:hidden p-2 hover:bg-[#3CB1B6]/10 text-[#1A4C7A]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -65,7 +65,7 @@ const Navbar = () => {
 
         {/* 移動端菜單 */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl border-b border-[#1A4C7A]/10 shadow-xl">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl border-b border-[#1A4C7A]/10 shadow-xl">
             <div className="container mx-auto px-4 py-6">
               <div className="flex flex-col space-y-2">
                 {navItems.map((item) => (

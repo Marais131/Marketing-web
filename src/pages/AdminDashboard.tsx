@@ -60,6 +60,33 @@ interface SystemStatus {
   lastChecked: string;
 }
 
+// 定義內容項目介面
+interface ContentItem {
+  id: number;
+  type: string;
+  category: string;
+  title: string;
+  content: string;
+  images?: string[];
+  displayPage?: string;
+  isSticky?: boolean;
+  priority?: string;
+  author?: string;
+  date?: string;
+  views?: number;
+  status?: string;
+}
+
+// 定義媒體文件介面
+interface MediaFile {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  url: string;
+  uploadDate: string;
+}
+
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('publish');
   const [isPublishing, setIsPublishing] = useState(false);
@@ -74,12 +101,12 @@ const AdminDashboard = () => {
     priority: 'normal' // 新增：優先級
   });
 
-  const [publishedItems, setPublishedItems] = useState([]);
+  const [publishedItems, setPublishedItems] = useState<ContentItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   
   // 媒體管理狀態
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState<MediaFile[]>([]);
   const [isUploading, setIsUploading] = useState(false);
 
   // 系統狀態相關
@@ -318,7 +345,7 @@ const AdminDashboard = () => {
     return user ? JSON.parse(user) : { name: '管理員', avatar: '👨‍💼' };
   };
 
-  const handleEdit = (item: any) => {
+  const handleEdit = (item: ContentItem) => {
     setPublishForm({
       type: item.type,
       category: item.category,
@@ -332,7 +359,7 @@ const AdminDashboard = () => {
     setActiveTab('publish');
   };
 
-  const handleDelete = (item: any) => {
+  const handleDelete = (item: ContentItem) => {
     if (confirm(`確定要刪除「${item.title}」嗎？`)) {
       // 記錄刪除操作
       logUserOperation(
@@ -413,7 +440,7 @@ const AdminDashboard = () => {
 
   const deleteMediaFile = (fileId: string) => {
     if (confirm('確定要刪除這個文件嗎？')) {
-      setUploadedFiles(uploadedFiles.filter((f: any) => f.id !== fileId));
+      setUploadedFiles(uploadedFiles.filter((f: MediaFile) => f.id !== fileId));
       alert('文件已刪除！');
     }
   };
@@ -1514,7 +1541,7 @@ const AdminDashboard = () => {
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {uploadedFiles.map((file: any) => (
+                      {uploadedFiles.map((file: MediaFile) => (
                         <div key={file.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                           {file.type?.startsWith('image/') ? (
                             <img 

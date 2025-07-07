@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const images = [
   {
@@ -35,12 +36,22 @@ const images = [
 
 const PhotoWall = () => {
   return (
-    <section className="relative w-full py-20 md:py-32 bg-white overflow-hidden">
+    <section className="relative w-full py-20 md:py-32 overflow-hidden">
       {/* 背景裝飾 */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-[#3CB1B6]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#1A4C7A]/5 rounded-full blur-3xl"></div>
-        {/* 網格背景 */}
+        {/* 移除白色背景，使用透明背景 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent"></div>
+        
+        {/* 裝飾圓形 - 調整透明度 */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-radial from-[#3CB1B6]/8 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-radial from-[#1A4C7A]/6 to-transparent rounded-full blur-3xl"></div>
+        
+        {/* 幾何裝飾點 */}
+        <div className="absolute top-32 left-1/4 w-2 h-2 bg-[#2A7DB1]/40 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-40 right-1/3 w-1.5 h-1.5 bg-[#3CB1B6]/50 rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute top-2/3 left-1/6 w-3 h-3 bg-[#1A4C7A]/30 rounded-full animate-pulse" style={{animationDelay: '3s'}}></div>
+        
+        {/* 網格背景 - 更細膩 */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{
             backgroundImage: `
@@ -93,22 +104,29 @@ const PhotoWall = () => {
           ))}
         </div>
 
-        {/* CTA 區域 */}
-        <div className="text-center bg-gradient-to-br from-[#1A4C7A]/5 to-[#3CB1B6]/5 rounded-3xl p-8 md:p-12">
+        {/* CTA 區域 - 增強視覺效果 */}
+        <div className="text-center bg-gradient-to-br from-white/60 via-white/40 to-white/60 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/30 shadow-lg">
           <h3 className="text-2xl md:text-3xl font-bold text-[#1A4C7A] mb-4">
             探索更多校園精彩
           </h3>
           <p className="text-lg text-[#2A7DB1] mb-6 max-w-2xl mx-auto">
             加入我們，親身體驗豐富多元的學習環境與無限可能
           </p>
-          <button className="bg-[#1A4C7A] hover:bg-[#2A7DB1] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+          <Link 
+            to="/activities"
+            className="inline-block bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] hover:from-[#2A7DB1] hover:to-[#3CB1B6] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+          >
             了解更多活動
-          </button>
+          </Link>
         </div>
       </div>
 
       {/* 自定義動畫 */}
       <style>{`
+        .bg-gradient-radial {
+          background: radial-gradient(circle, var(--tw-gradient-stops));
+        }
+        
         @keyframes fadeInUp {
           0% {
             opacity: 0;

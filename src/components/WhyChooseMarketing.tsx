@@ -1,11 +1,10 @@
-
 import { Lightbulb, TrendingUp, Briefcase, Layers3 } from "lucide-react";
 
 const reasons = [
   {
     icon: Lightbulb,
-    title: "創意與影響力兼備",
-    desc: "行銷是驅動創新、扭轉市場的關鍵。你能將想法變現實，影響品牌、社會甚至世界。",
+    title: "邏輯與影響力兼備",
+    desc: "行銷是驅動嚴謹決策、精準市場的關鍵。你能以知識、邏輯與消費心理制定策略，影響品牌、社會甚至世界。",
     bg: "from-yellow-100 via-yellow-50 to-blue-50",
   },
   {
@@ -23,7 +22,7 @@ const reasons = [
   {
     icon: Layers3,
     title: "技能多元，跨界發展",
-    desc: "培養數據、邏輯、溝通、設計等多樣能力，未來可轉戰企劃、產品、廣告、創業等多領域。",
+    desc: "培養消費心理、數據分析、邏輯推演、策略規劃等多樣能力，未來可轉戰企劃、產品、廣告、創業等多領域。",
     bg: "from-blue-100 via-purple-100 to-pink-100",
   },
 ];

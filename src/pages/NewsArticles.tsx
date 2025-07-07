@@ -4,10 +4,20 @@ import SEOHead from "@/components/SEOHead";
 import { Calendar, User } from "lucide-react";
 import { apiConfig } from "../lib/api";
 
+// 定義後端內容介面
+interface BackendContent {
+  id: number;
+  title: string;
+  content: string;
+  author?: string;
+  date: string;
+  category: string;
+  images?: string[];
+}
+
 const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const [backendConnected, setBackendConnected] = useState(false);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -15,11 +25,10 @@ const Articles = () => {
         // 從後端API獲取所有內容
         const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.content}`);
         if (response.ok) {
-          const publishedContent = await response.json();
-          setBackendConnected(true);
+          const publishedContent: BackendContent[] = await response.json();
           
           // 轉換後端內容為文章格式
-          const backendArticles: Article[] = publishedContent.map((item: any) => ({
+          const backendArticles: Article[] = publishedContent.map((item: BackendContent) => ({
             id: item.id,
             title: item.title,
             excerpt: item.content,
@@ -74,13 +83,6 @@ const Articles = () => {
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-blue-700 via-cyan-600 to-purple-700 bg-clip-text text-transparent drop-shadow">
             行銷系專欄文章
           </h1>
-          {/* 連接狀態指示器 */}
-          <div className="flex items-center justify-center gap-2 text-sm text-slate-500 mb-6">
-            <div className={`w-2 h-2 rounded-full ${backendConnected ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
-            <span>
-              {backendConnected ? '即時更新 • 來自管理後台' : '靜態內容 • 管理後台離線'}
-            </span>
-          </div>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             探索行銷專業知識，洞察產業趨勢，分享學習心得
           </p>

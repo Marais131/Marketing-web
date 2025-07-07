@@ -7,7 +7,7 @@ const Hero = () => {
   const [heroContent, setHeroContent] = useState({
     mainTitle: '品牌端行銷新世代',
     subtitle: '以現代品牌視野，培養跨域行銷領袖',
-    tagline: '專業 × 創新 × 數據 × 美感 × 心理'
+    tagline: '專業 × 邏輯 × 數據 × 消費心理'
   });
 
   // 從後端獲取 Hero 內容
@@ -101,27 +101,33 @@ const Hero = () => {
           {/* Logo 浮動動畫 */}
           <img
             src={LOGO}
-            alt="文化大學行銷系 Logo"
-            className="h-[160px] md:h-[220px] lg:h-[250px] w-auto mb-2 md:mb-0 animate-float relative z-10"
-            style={{ minWidth: "180px", maxWidth: "350px" }}
+            alt="中國文化大學行銷學系-培養品牌端視野的新世代行銷人才"
+            className="h-[240px] md:h-[320px] lg:h-[380px] xl:h-[420px] w-auto mb-2 md:mb-0 animate-float relative z-10"
+            style={{ minWidth: "260px", maxWidth: "500px" }}
           />
           {/* 主標題，淡入上移動畫 */}
           <h1
-            className="text-[8vw] md:text-[6vw] lg:text-[5vw] font-black leading-[1.05] tracking-tight text-[#1A4C7A] text-center md:text-left drop-shadow-none opacity-0 translate-y-8 animate-heroTitle relative z-10"
+            className="text-[16vw] md:text-[12vw] lg:text-[10vw] font-black leading-[1.05] tracking-tight text-[#1A4C7A] text-center md:text-left drop-shadow-none opacity-0 translate-y-8 animate-heroTitle relative z-10"
             style={{ letterSpacing: "-0.04em" }}
           >
-            {heroContent.mainTitle.split('行銷')[0]}
-            <span className="text-[#2A7DB1]">行銷</span>
-            <span className="text-[#3CB1B6]">{heroContent.mainTitle.split('行銷')[1]}</span>
+            <span className="text-[#1A4C7A]">品牌端</span>
+            <span
+              className="bg-gradient-to-r from-[#1A4C7A] to-[#3CB1B6] text-transparent bg-clip-text mx-1"
+              style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+            >
+              行銷
+            </span>
+            <br />
+            <span className="block text-[#3CB1B6] text-right w-full pr-2">新世代</span>
           </h1>
         </div>
         {/* 副標題，滑入動畫 */}
-        <div className="text-[1.5rem] md:text-3xl font-bold text-[#2A7DB1] text-center max-w-2xl mt-2 mb-2 opacity-0 -translate-x-8 animate-slideInLeft relative z-10">
-          {heroContent.subtitle}
+        <div className="text-[2.5rem] md:text-5xl font-bold whitespace-nowrap bg-gradient-to-r from-[#1A4C7A] to-[#3CB1B6] text-transparent bg-clip-text mt-2 mb-2 opacity-0 -translate-x-8 animate-slideInLeft relative z-10">
+          以現代品牌視野，培養跨域行銷領袖
         </div>
         {/* 特色標語色塊，滑入動畫 */}
-        <div className="inline-block rounded-full bg-[#3CB1B6]/10 px-10 py-4 text-[#3CB1B6] font-semibold text-xl shadow-sm mb-4 opacity-0 translate-x-8 animate-slideInRight relative z-10 backdrop-blur-sm border border-[#3CB1B6]/20">
-          {heroContent.tagline}
+        <div className="inline-block rounded-full bg-[#3CB1B6]/10 px-10 py-4 text-[#3CB1B6] font-semibold text-3xl shadow-sm mb-4 opacity-0 translate-x-8 animate-slideInRight relative z-10 backdrop-blur-sm border border-[#3CB1B6]/20">
+          專業 × 邏輯 × 數據 × 消費心理
         </div>
         {/* 影片區塊，scale-in 動畫 */}
         <div className="w-full flex items-center justify-center mt-6 relative z-10">

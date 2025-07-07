@@ -2,6 +2,8 @@
  * 團體合照元件放在首頁 Hero 下方，圖片+溫馨短句
  */
 
+import { Link } from 'react-router-dom';
+
 const HomeGroupPhoto = () => (
   <section className="relative py-20 md:py-32 bg-gradient-to-br from-slate-50 via-white to-slate-50 overflow-hidden">
     {/* 背景裝飾 */}
@@ -25,7 +27,7 @@ const HomeGroupPhoto = () => (
           我們的團隊
         </h2>
         <p className="text-xl md:text-2xl text-[#2A7DB1] font-medium max-w-3xl mx-auto">
-          充滿創意與行動力的品牌行銷人
+          具備邏輯與行動力的品牌行銷人，專精消費心理與數據分析
         </p>
       </div>
 
@@ -55,11 +57,10 @@ const HomeGroupPhoto = () => (
         <div className="flex-1 text-center lg:text-left space-y-8">
           <div className="space-y-6">
             <h3 className="text-3xl md:text-4xl font-bold text-[#1A4C7A] leading-tight">
-              團結 · 多元 · 創新
+              團結 · 多元 · 嚴謹
             </h3>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              我們相信每個人都有獨特的創意火花，在這裡，不同背景的同學聚在一起，
-              用多元的視角解決品牌挑戰，創造無限可能。
+              我們相信每個人都能以知識與邏輯解決品牌挑戰，專注消費心理與數據分析，創造精準行銷成果。
             </p>
           </div>
 
@@ -67,7 +68,7 @@ const HomeGroupPhoto = () => (
           <div className="flex flex-wrap justify-center lg:justify-start gap-4">
             {[
               { icon: "🎯", text: "目標導向", color: "bg-[#1A4C7A]" },
-              { icon: "🚀", text: "創新思維", color: "bg-[#2A7DB1]" },
+              { icon: "📊", text: "數據分析", color: "bg-[#2A7DB1]" },
               { icon: "🤝", text: "團隊合作", color: "bg-[#3CB1B6]" }
             ].map((item, index) => (
               <div 
@@ -82,9 +83,12 @@ const HomeGroupPhoto = () => (
 
           {/* CTA 按鈕 */}
           <div className="pt-4">
-            <button className="bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] hover:from-[#2A7DB1] hover:to-[#3CB1B6] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+            <Link 
+              to="/contact"
+              className="inline-block bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] hover:from-[#2A7DB1] hover:to-[#3CB1B6] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+            >
               加入我們的團隊
-            </button>
+            </Link>
           </div>
         </div>
       </div>

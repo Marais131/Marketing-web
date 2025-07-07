@@ -1,7 +1,6 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Facebook, Instagram, Youtube } from "lucide-react";
+import { Facebook, Instagram, Youtube, Settings } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -57,8 +56,19 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-slate-700 mt-8 pt-8 text-center text-slate-400 text-sm">
-          <p>&copy; 2024 中國文化大學行銷學系. All rights reserved.</p>
+        <div className="border-t border-slate-700 mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-slate-400 text-sm">&copy; 2024 中國文化大學行銷學系. All rights reserved.</p>
+            
+            {/* 管理後台入口 */}
+            <Link
+              to="/admin/login"
+              className="flex items-center space-x-1 text-slate-500 hover:text-slate-300 transition-colors text-xs mt-2 md:mt-0"
+            >
+              <Settings className="w-3 h-3" />
+              <span>管理後台</span>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

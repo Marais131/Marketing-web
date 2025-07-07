@@ -70,7 +70,7 @@ const KeyFeatures = () => {
             <li className="flex items-start gap-2 mb-2">
               <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" />
               <span>
-                <b>創新／創意思維</b>：美感訓練、內容敘事、跨界創新
+                <b>邏輯推演</b>：消費心理、數據分析、策略規劃
               </span>
             </li>
           </ul>

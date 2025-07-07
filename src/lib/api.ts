@@ -19,6 +19,31 @@ export const apiConfig = {
   }
 };
 
+// 定義介面
+interface ContentData {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  date: string;
+  category: string;
+  image?: string;
+  views?: number;
+}
+
+interface LoginCredentials {
+  username: string;
+  password: string;
+}
+
+interface PublishData {
+  title: string;
+  content: string;
+  category: string;
+  author?: string;
+  image?: string;
+}
+
 // API 請求助手函數
 export const apiRequest = async (endpoint: string, options: RequestInit = {}) => {
   const url = `${apiConfig.baseURL}${endpoint}`;
@@ -88,11 +113,11 @@ export const getContentByPage = (page: string, limit?: number) => {
   const url = `${apiConfig.endpoints.contentByPage}/${page}${limit ? `?limit=${limit}` : ''}`;
   return apiRequest(url);
 };
-export const publishContent = (data: any) => apiRequest(apiConfig.endpoints.publish, {
+export const publishContent = (data: PublishData) => apiRequest(apiConfig.endpoints.publish, {
   method: 'POST',
   body: JSON.stringify(data),
 });
-export const adminLogin = (credentials: any) => apiRequest(apiConfig.endpoints.adminLogin, {
+export const adminLogin = (credentials: LoginCredentials) => apiRequest(apiConfig.endpoints.adminLogin, {
   method: 'POST',
   body: JSON.stringify(credentials),
 });
