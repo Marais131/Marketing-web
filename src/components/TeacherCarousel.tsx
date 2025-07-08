@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Award, BookOpen, Users, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -39,6 +39,20 @@ const TeacherCarousel: React.FC<TeacherCarouselProps> = ({ teachers }) => {
   const teachersPerView = 3;
   const totalSlides = Math.ceil(teachers.length / teachersPerView);
 
+  const handleNext = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    setTimeout(() => setIsAnimating(false), 600);
+  }, [isAnimating, totalSlides]);
+
+  const handlePrev = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+    setTimeout(() => setIsAnimating(false), 600);
+  }, [isAnimating, totalSlides]);
+
   // 自動輪播
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,28 +60,14 @@ const TeacherCarousel: React.FC<TeacherCarouselProps> = ({ teachers }) => {
     }, 10000); // 延長到10秒
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [handleNext]);
 
-  const handleNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-    setTimeout(() => setIsAnimating(false), 600);
-  };
-
-  const handlePrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-    setTimeout(() => setIsAnimating(false), 600);
-  };
-
-  const goToSlide = (index: number) => {
+  const goToSlide = useCallback((index: number) => {
     if (isAnimating || index === currentIndex) return;
     setIsAnimating(true);
     setCurrentIndex(index);
     setTimeout(() => setIsAnimating(false), 600);
-  };
+  }, [isAnimating, currentIndex]);
 
   return (
     <div className="relative w-full bg-white">
