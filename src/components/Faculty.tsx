@@ -7,7 +7,7 @@ const featuredTeachers = [
     name: "駱少康",
     title: "行銷學博士／行銷所所長",
     role: "系主任",
-    imgUrl: "/lovable-uploads/5a68349a-be9d-4fe6-854f-9314ed8de50b.png",
+    imgUrl: "/lovable-uploads/luo-shaokang.png",
     description: "行銷管理、消費者行為、行銷數量法、市場調查研究，品牌管理權威，推動產學創新。"
   },
   {
@@ -108,7 +108,9 @@ const Faculty = () => {
             <div className="space-y-4">
               <div className="flex items-center gap-3 mb-4">
                 <Star className="w-8 h-8 text-orange-500" />
-                <span className="text-orange-600 font-semibold text-lg">頂尖師資陣容</span>
+                <span className="text-orange-600 text-lg">
+                  頂尖<strong className="font-extrabold tracking-wide text-2xl" style={{fontWeight:900}}>師資陣容</strong>
+                </span>
               </div>
               <h2 className="text-5xl font-bold text-slate-800 leading-tight">
                 頂尖師資，<br/>

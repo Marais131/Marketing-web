@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 
 const images = [
   {
-    src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
+    src: "/lovable-uploads/student-activity-1.jpg",
     title: "創新思維工作坊",
     category: "學習實戰"
   },
   {
-    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=900&auto=format&fit=crop",
+    src: "/lovable-uploads/student-gathering-bg.jpg",
     title: "團隊協作專案",
     category: "實務演練"
   },
   {
-    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=900&auto=format&fit=crop",
+    src: "/lovable-uploads/student-activity-2.jpg",
     title: "品牌策略研討",
     category: "學術交流"
   },
   {
-    src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=900&auto=format&fit=crop",
+    src: "/lovable-uploads/student-activity-3.jpg",
     title: "數位行銷實作",
     category: "技能培養"
   },
@@ -37,8 +37,17 @@ const images = [
 const PhotoWall = () => {
   return (
     <section className="relative w-full py-20 md:py-32 overflow-hidden">
+      {/* 學生活動照片背景 */}
+      {/* <div className="absolute inset-0 z-0">
+        <img
+          src="/lovable-uploads/student-gathering-bg.jpg"
+          alt="學生活動現場"
+          className="w-full h-full object-cover opacity-20"
+          style={{objectPosition: 'center'}}
+        />
+      </div> */}
       {/* 背景裝飾 */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-10">
         {/* 移除白色背景，使用透明背景 */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent"></div>
         

@@ -81,7 +81,7 @@ const Hero = () => {
       {/* Logo 與主標題區塊 */}
       <div className="w-full max-w-6xl flex flex-col items-center justify-center gap-10 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-8 w-full justify-center">
-          {/* Logo 浮動動畫 */}
+          {/* Logo 浮動畫 */}
           <img
             src={LOGO}
             alt="中國文化大學行銷學系-培養品牌端視野的新世代行銷人才"
@@ -90,7 +90,7 @@ const Hero = () => {
           />
           {/* 主標題，淡入上移動畫 */}
           <h1
-            className="text-[16vw] md:text-[12vw] lg:text-[10vw] font-black leading-[1.05] tracking-tight text-[#1A4C7A] text-center md:text-left drop-shadow-none opacity-0 translate-y-8 animate-heroTitle relative z-10"
+            className="text-[14vw] md:text-[10vw] lg:text-[8vw] font-black leading-[1.05] tracking-tight text-[#1A4C7A] text-center md:text-left drop-shadow-none opacity-0 translate-y-8 animate-heroTitle relative z-10"
             style={{ letterSpacing: "-0.04em" }}
           >
             <span className="text-[#1A4C7A]">品牌端</span>
@@ -145,8 +145,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      
-      {/* 自定義動畫 keyframes */}
+      {/* 自定義動畫 keyframes 保留 */}
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0); }

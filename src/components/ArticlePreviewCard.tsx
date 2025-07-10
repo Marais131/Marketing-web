@@ -1,5 +1,6 @@
 
 import { Calendar, User } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export interface Article {
   id: number;
@@ -9,6 +10,7 @@ export interface Article {
   date: string;
   category: string;
   image?: string;
+  type?: string; // 添加 type 屬性
 }
 
 export const sampleArticles: Article[] = [
@@ -42,8 +44,18 @@ export const sampleArticles: Article[] = [
 ];
 
 export function ArticlePreviewCard({ article }: { article: Article }) {
+  // 根據類型決定路由
+  const getDetailRoute = () => {
+    if (['專欄', '行銷觀點', '產業分析', '學習心得', '專業知識', '趨勢分析', '教師專欄', '產業分享'].includes(article.category)) {
+      return `/article/${article.id}`;
+    } else {
+      return `/announcement/${article.id}`;
+    }
+  };
+
   return (
-    <div className="bg-white/90 border border-slate-200 rounded-2xl shadow group overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+    <Link to={getDetailRoute()} className="block">
+      <div className="bg-white/90 border border-slate-200 rounded-2xl shadow group overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full cursor-pointer">
       {article.image && (
         <img
           src={article.image}
@@ -67,5 +79,6 @@ export function ArticlePreviewCard({ article }: { article: Article }) {
         <p className="text-slate-600 text-sm line-clamp-3">{article.excerpt}</p>
       </div>
     </div>
+    </Link>
   );
 }

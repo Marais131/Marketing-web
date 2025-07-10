@@ -53,7 +53,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-slate-50 to-white">
+    <section id="contact" className="py-20 bg-gradient-to-b from-blue-900 via-purple-900 to-black">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

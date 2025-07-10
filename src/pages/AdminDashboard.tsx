@@ -205,6 +205,26 @@ const AdminDashboard = () => {
           date: '2024-01-08',
           views: 203,
           status: 'published'
+        },
+        {
+          id: 4,
+          type: 'admin',
+          title: '📋 112學年度第二學期選課注意事項',
+          content: '請同學注意選課時間，務必在期限內完成選課程序。如有任何問題，請洽詢系辦公室。',
+          category: '一般行政訊息',
+          date: '2024-01-05',
+          views: 342,
+          status: 'published'
+        },
+        {
+          id: 5,
+          type: 'admin',
+          title: '📋 學期初系務會議通知',
+          content: '本學期系務會議將於開學第一週舉行，請全體師生準時參加。會議將討論本學期重要事項。',
+          category: '一般行政訊息',
+          date: '2024-01-03',
+          views: 178,
+          status: 'published'
         }
       ]);
     }
@@ -836,6 +856,7 @@ const AdminDashboard = () => {
                       <option value="event">🎉 活動記錄</option>
                       <option value="experience">💡 學習心得</option>
                       <option value="notice">📢 重要公告</option>
+                      <option value="admin">📋 行政訊息</option>
                     </select>
                   </div>
 
@@ -852,6 +873,7 @@ const AdminDashboard = () => {
                       <option value="活動紀錄">🎉 活動紀錄</option>
                       <option value="學習心得">💡 學習心得</option>
                       <option value="系所公告">📢 系所公告</option>
+                      <option value="一般行政訊息">📋 一般行政訊息</option>
                       <option value="競賽成果">🏆 競賽成果</option>
                       <option value="實習分享">💼 實習分享</option>
                     </select>

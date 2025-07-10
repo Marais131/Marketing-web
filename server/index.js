@@ -309,6 +309,58 @@ app.get('/api/content', (req, res) => {
   res.json(sortedContent);
 });
 
+// 獲取單篇內容詳細資料
+app.get('/api/content/:id', (req, res) => {
+  try {
+    const contentId = parseInt(req.params.id);
+    const content = publishedContent.find(item => 
+      item.id === contentId && item.status === 'published'
+    );
+    
+    if (!content) {
+      return res.status(404).json({ error: '內容不存在' });
+    }
+    
+    // 增加瀏覽次數
+    content.views = (content.views || 0) + 1;
+    
+    console.log(`📖 內容被瀏覽: ${content.title} (瀏覽次數: ${content.views})`);
+    res.json(content);
+  } catch (error) {
+    console.error('獲取內容詳情時出錯:', error);
+    res.status(500).json({ error: '獲取內容失敗' });
+  }
+});
+
+// 獲取相關內容推薦
+app.get('/api/content/:id/related', (req, res) => {
+  try {
+    const contentId = parseInt(req.params.id);
+    const currentContent = publishedContent.find(item => 
+      item.id === contentId && item.status === 'published'
+    );
+    
+    if (!currentContent) {
+      return res.status(404).json({ error: '內容不存在' });
+    }
+    
+    // 獲取同類別的相關內容（排除當前內容）
+    const relatedContent = publishedContent
+      .filter(item => 
+        item.status === 'published' && 
+        item.id !== contentId && 
+        item.category === currentContent.category
+      )
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3); // 最多返回3篇
+    
+    res.json(relatedContent);
+  } catch (error) {
+    console.error('獲取相關內容時出錯:', error);
+    res.status(500).json({ error: '獲取相關內容失敗' });
+  }
+});
+
 // 網站內容管理
 let websiteContent = {
   hero: {

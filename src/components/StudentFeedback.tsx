@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { School, GraduationCap, Star, Quote } from "lucide-react";
+import { School, GraduationCap, Star, Quote, Briefcase } from "lucide-react";
 
 const feedbacks = [
   {
@@ -88,135 +88,120 @@ function getTypeBadge(type: string) {
 }
 
 const StudentFeedback = () => (
-  <section className="relative py-20 md:py-32 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden w-full">
-    {/* 背景裝飾 */}
-    <div className="absolute inset-0">
-      {/* 大型背景圓 */}
-      <div className="absolute top-10 right-10 w-80 h-80 bg-[#3CB1B6]/3 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#1A4C7A]/3 rounded-full blur-3xl"></div>
-      {/* 網格背景 */}
-      <div className="absolute inset-0 opacity-[0.015]">
+  <section className="relative py-20 md:py-32 bg-white overflow-hidden w-full">
+    {/* 背景網格 */}
+    <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `
-            linear-gradient(#2A7DB1 1px, transparent 1px),
-            linear-gradient(90deg, #2A7DB1 1px, transparent 1px)
+          linear-gradient(#1A4C7A 1px, transparent 1px),
+          linear-gradient(90deg, #1A4C7A 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px'
         }}></div>
-      </div>
-      {/* 浮動元素 */}
-      <div className="absolute top-32 left-20 w-3 h-3 bg-[#3CB1B6] rounded-full animate-pulse"></div>
-      <div className="absolute bottom-40 right-32 w-4 h-4 bg-[#2A7DB1] rounded-full animate-pulse delay-300"></div>
-      <div className="absolute top-1/2 right-16 w-2 h-2 bg-[#1A4C7A] rounded-full animate-pulse delay-700"></div>
     </div>
 
-    <div className="container mx-auto px-2 md:px-8 lg:px-16 max-w-[100vw] w-full relative z-10">
-      {/* 標題區域 */}
+    <div className="container mx-auto px-6 relative z-20">
+      {/* 標題區域 - 依照截圖優化 */}
       <div className="text-center mb-16">
-        <div className="inline-flex items-center bg-gradient-to-r from-[#1A4C7A]/10 to-[#3CB1B6]/10 px-6 py-3 rounded-full mb-6 border border-[#2A7DB1]/20">
-          <Star className="w-5 h-5 mr-2 text-[#2A7DB1]" />
-          <span className="text-[#1A4C7A] font-semibold">學長姊・同學心得回饋</span>
+        {/* 膠囊標籤 */}
+        <div className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-blue-200 bg-white/80 shadow-sm mb-8 text-blue-800 text-lg font-semibold" style={{letterSpacing: '0.02em'}}>
+          <svg className="w-6 h-6 text-blue-400 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          學長姊・同學心得回饋
         </div>
-        <h2 className="text-[3rem] md:text-[4rem] lg:text-[5rem] font-black text-[#1A4C7A] mb-6 leading-[0.9] tracking-tight">
-          真實聲音
-        </h2>
-        <p className="text-xl md:text-2xl text-[#2A7DB1] font-medium max-w-3xl mx-auto">
-          畢業學長姐、在校生的親身經驗分享
-        </p>
-        <div className="w-24 h-1 bg-gradient-to-r from-[#1A4C7A] to-[#3CB1B6] rounded-full mx-auto mt-6"></div>
+        {/* 主標題 */}
+        <h2 className="text-[4rem] md:text-[5rem] font-extrabold text-[#1A4C7A] mb-4 leading-[0.95] tracking-tight">真實聲音</h2>
+        {/* 副標題 */}
+        <div className="text-2xl md:text-3xl text-[#2A7DB1] font-medium mb-6">畢業學長姐、在校生的親身經驗分享</div>
+        {/* 裝飾橫線 */}
+        <div className="w-32 h-1 bg-gradient-to-r from-[#1A4C7A] to-[#3CB1B6] rounded-full mx-auto mb-2"></div>
       </div>
 
-      {/* 輪播卡片 */}
-      <div className="w-full max-w-[1800px] mx-auto px-0 md:px-4 lg:px-8 relative">
-        {/* 卡片區域下方大面積漸層光暈，聚焦融合 */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[98%] h-[85%] bg-gradient-to-br from-blue-100/40 via-white/60 to-blue-50/30 rounded-3xl blur-2xl opacity-70 -z-10"></div>
-        <Carousel className="w-full">
-          <CarouselContent className="gap-0 py-4 md:py-8">
-            {feedbacks.map((fb) => (
-              <CarouselItem key={fb.id} className="w-full md:basis-1/2 lg:basis-1/2 block">
-                <Card className="h-full max-w-[420px] w-full bg-white/70 backdrop-blur-md border border-blue-100/60 rounded-3xl shadow-[0_8px_32px_0_rgba(44,180,200,0.10)] hover:shadow-[0_12px_40px_0_rgba(44,180,200,0.16)] hover:ring-2 hover:ring-blue-200/30 transition-all duration-500 hover:-translate-y-2 overflow-visible group relative mx-0 my-1">
-                  {/* 柔和光暈 */}
-                  <div className="absolute -inset-2 z-0 pointer-events-none rounded-3xl bg-blue-100/20 blur-2xl opacity-40 group-hover:opacity-60 transition-all duration-500"></div>
-                  <CardContent className="p-10 relative z-10">
-                    {/* 引號裝飾 */}
-                    <div className="mb-6">
-                      <Quote className="w-12 h-12 text-[#3CB1B6]/20 group-hover:text-[#3CB1B6]/40 transition-colors duration-300" />
-                    </div>
-                    {/* 評分星星 */}
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(fb.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-[#3CB1B6] text-[#3CB1B6]" />
-                      ))}
-                    </div>
-                    {/* 心得內容 */}
-                    <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 font-medium">
-                      {fb.content}
-                    </blockquote>
-                    {/* 用戶信息 */}
-                    <div className="flex items-center gap-4 mb-4">
-                      <Avatar className="w-14 h-14 border-2 border-[#3CB1B6]/20">
-                        {fb.avatar ? (
-                          <AvatarImage src={fb.avatar} alt={fb.name} />
-                        ) : (
+      <div className="relative w-screen max-w-none px-0 overflow-visible">
+        {/* 卡片區域下方大面積漸層光暈，更柔和的融合 */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[99vw] h-[90%] bg-gradient-to-br from-blue-100/30 via-white/80 to-blue-50/30 rounded-3xl blur-3xl opacity-70 -z-10 pointer-events-none"></div>
+        <Carousel className="w-full overflow-visible">
+          <CarouselContent className="w-full flex overflow-visible py-4 md:py-8">
+            {feedbacks.map((fb, idx) => (
+              <CarouselItem
+                key={fb.id}
+                className="w-full md:basis-1/3 lg:basis-1/3 block overflow-visible px-4"
+              >
+                <div className="relative overflow-visible">
+                  {/* 柔和大範圍光暈 - 統一所有卡片樣式 */}
+                  <div className="absolute -inset-6 md:-inset-8 lg:-inset-10 z-0 pointer-events-none rounded-3xl bg-gradient-to-br from-blue-200/25 via-blue-100/15 to-blue-300/20 blur-2xl opacity-50 group-hover:opacity-70 transition-all duration-500"></div>
+                  
+                  <Card className="relative z-10 bg-white/90 backdrop-blur-sm border-white/30 shadow-xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2">
+                  <CardContent className="p-8">
+                      {/* 學生頭像和資訊 */}
+                      <div className="flex items-center mb-6">
+                        <Avatar className="w-16 h-16 mr-4 border-4 border-white shadow-lg">
+                          <AvatarImage 
+                            src={fb.avatar || "/lovable-uploads/student-activity-2.jpg"} 
+                            alt={fb.name}
+                          />
                           <AvatarFallback className="bg-gradient-to-br from-[#1A4C7A] to-[#3CB1B6] text-white font-bold text-lg">
-                            {fb.name.slice(0, 2)}
+                            {fb.name.charAt(0)}
                           </AvatarFallback>
-                        )}
                       </Avatar>
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className="font-bold text-lg text-[#1A4C7A]">{fb.name}</h4>
-                          {getTypeBadge(fb.type)}
+                          <h3 className="text-lg font-bold text-[#1A4C7A] mb-1">{fb.name}</h3>
+                          <p className="text-sm text-[#2A7DB1] mb-1">{fb.identity}</p>
+                          <div className="flex items-center gap-2">
+                            <Badge className={`text-xs px-2 py-1 ${
+                              fb.type === '畢業生' 
+                                ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 border-green-200' 
+                                : 'bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 border-blue-200'
+                            }`}>
+                              {fb.type}
+                            </Badge>
+                            <div className="flex items-center gap-1">
+                              {[...Array(fb.rating)].map((_, i) => (
+                                <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                        <p className="text-sm text-gray-600 mb-1">{fb.identity}</p>
-                        <p className="text-xs text-[#2A7DB1] font-medium">{fb.position}</p>
                       </div>
+
+                      {/* 回饋內容 */}
+                      <div className="mb-6">
+                        <Quote className="w-8 h-8 text-[#3CB1B6]/60 mb-3" />
+                        <p className="text-gray-700 leading-relaxed italic">"{fb.content}"</p>
                     </div>
-                    {/* 課程與年份 */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <div className="w-2 h-2 bg-[#3CB1B6] rounded-full"></div>
-                        <span>{fb.course}</span>
+
+                      {/* 課程和職位資訊 */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2 text-sm text-[#2A7DB1]">
+                          <School className="w-4 h-4" />
+                          <span className="font-medium">{fb.course}</span>
                       </div>
-                      <span className="text-sm text-gray-400">{fb.year}</span>
+                        {fb.position && (
+                          <div className="flex items-center gap-2 text-sm text-[#1A4C7A]">
+                            <Briefcase className="w-4 h-4" />
+                            <span className="font-medium">{fb.position}</span>
+                          </div>
+                        )}
                     </div>
-                    {/* 主色系漸層線條 */}
-                    <div className="mt-8 h-1 w-2/3 mx-auto bg-gradient-to-r from-[#1A4C7A] via-[#2A7DB1] to-[#3CB1B6] rounded-full"></div>
                   </CardContent>
                 </Card>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-center gap-4 mt-8">
-            <CarouselPrevious className="relative left-0 top-0 border-2 border-[#2A7DB1] text-[#2A7DB1] hover:bg-[#2A7DB1] hover:text-white" />
-            <CarouselNext className="relative right-0 top-0 border-2 border-[#2A7DB1] text-[#2A7DB1] hover:bg-[#2A7DB1] hover:text-white" />
-          </div>
         </Carousel>
+        {/* 將箭頭移到最下方中央，absolute定位 */}
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex justify-center gap-6 z-40 pb-2">
+          <CarouselPrevious
+            className="!w-14 !h-14 !rounded-full !bg-white/80 !border-2 !border-[#1A4C7A]/30 !shadow-lg !flex !items-center !justify-center group transition-all duration-200 disabled:opacity-50 disabled:cursor-default"
+          >
+            <svg className="w-7 h-7 text-[#1A4C7A] group-hover:text-white transition" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          </CarouselPrevious>
+          <CarouselNext
+            className="!w-14 !h-14 !rounded-full !bg-white/80 !border-2 !border-[#1A4C7A]/30 !shadow-lg !flex !items-center !justify-center group transition-all duration-200 disabled:opacity-50 disabled:cursor-default"
+          >
+            <svg className="w-7 h-7 text-[#1A4C7A] group-hover:text-white transition" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </CarouselNext>
       </div>
-
-      {/* CTA 區域 - 優化銜接 */}
-      <div className="text-center mt-16 bg-gradient-to-br from-[#1A4C7A]/8 to-[#3CB1B6]/8 rounded-3xl p-8 md:p-12 border border-[#2A7DB1]/10 max-w-[1200px] mx-auto">
-        <h3 className="text-2xl md:text-3xl font-bold text-[#1A4C7A] mb-4">
-          想了解更多學習心得？
-        </h3>
-        <p className="text-lg text-[#2A7DB1] mb-6">
-          與我們的學長姐直接對話，獲得第一手的學習經驗分享
-        </p>
-        <a 
-          href="https://www.facebook.com/pccu.marketing" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-block bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] hover:from-[#2A7DB1] hover:to-[#3CB1B6] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
-        >
-          聯絡學長姐
-        </a>
-      </div>
-      
-      {/* 底部過渡到最新消息 */}
-      <div className="mt-16 text-center">
-        <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#2A7DB1]/30 to-transparent mx-auto mb-4"></div>
-        <p className="text-[#2A7DB1]/60 text-sm font-medium">接下來看看我們的最新動態</p>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#3CB1B6]/20 to-transparent mx-auto mt-2"></div>
       </div>
     </div>
   </section>

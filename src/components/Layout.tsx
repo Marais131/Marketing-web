@@ -7,13 +7,13 @@ const Layout = () => {
   return (
     <>
       <BackgroundDecor />
-      <div className="min-h-screen bg-white">
-        <Navbar />
-        <main className="pt-0">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+    <div className="min-h-screen bg-white">
+      <Navbar />
+      <main className="pt-0">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
     </>
   );
 };

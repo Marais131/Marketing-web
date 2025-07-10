@@ -117,7 +117,11 @@ const Articles = () => {
 
         {/* 文章列表 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {articles.map((article) => (
+          {articles
+            .filter(article => 
+              ['專欄', '行銷觀點', '產業分析', '學習心得', '專業知識', '趨勢分析', '教師專欄', '產業分享'].includes(article.category)
+            )
+            .map((article) => (
             <div key={article.id} className="relative">
               <ArticlePreviewCard article={article} />
             </div>

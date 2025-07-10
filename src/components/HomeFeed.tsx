@@ -36,6 +36,7 @@ const iconMap = {
   "榮譽消息": Award,
   "競賽成果": Award,
   "一般公告": Calendar,
+  "一般行政訊息": Calendar,
   "活動": Camera,
   "講座": Briefcase,
   "工作坊": Users,
@@ -61,6 +62,7 @@ const colorMap = {
   "榮譽消息": "from-[#3CB1B6] to-[#1A4C7A]",
   "競賽成果": "from-[#3CB1B6] to-[#1A4C7A]",
   "一般公告": "from-[#1A4C7A] to-[#3CB1B6]",
+  "一般行政訊息": "from-[#2A7DB1] to-[#3CB1B6]",
   "活動": "from-[#2A7DB1] to-[#1A4C7A]",
   "講座": "from-[#2A7DB1] to-[#3CB1B6]",
   "工作坊": "from-[#3CB1B6] to-[#1A4C7A]",
@@ -146,6 +148,30 @@ const HomeFeed = () => {
       views: 1100,
       description: "全國行銷競賽優異表現",
       priority: "high"
+    },
+    {
+      id: 7,
+      title: "📋 112學年度第二學期選課注意事項",
+      content: "請同學注意選課時間，務必在期限內完成選課程序。如有任何問題，請洽詢系辦公室。",
+      author: "系辦公室",
+      date: "2024-01-05",
+      category: "一般行政訊息",
+      views: 342,
+      description: "選課時間與程序注意事項",
+      isSticky: true,
+      priority: "high"
+    },
+    {
+      id: 8,
+      title: "📋 學期初系務會議通知",
+      content: "本學期系務會議將於開學第一週舉行，請全體師生準時參加。會議將討論本學期重要事項。",
+      author: "系辦公室",
+      date: "2024-01-03",
+      category: "一般行政訊息",
+      views: 178,
+      description: "系務會議時間與議程",
+      isSticky: false,
+      priority: "normal"
     }
   ], []);
 
@@ -248,8 +274,19 @@ const HomeFeed = () => {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((article, index) => (
-              <div key={article.id || index} className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 relative border border-white/20">
+            {articles.map((article, index) => {
+              // 根據類型決定路由
+              const getDetailRoute = () => {
+                if (['專欄', '行銷觀點', '產業分析', '學習心得', '專業知識', '趨勢分析', '教師專欄', '產業分享'].includes(article.category)) {
+                  return `/article/${article.id}`;
+                } else {
+                  return `/announcement/${article.id}`;
+                }
+              };
+
+              return (
+                <Link key={article.id || index} to={getDetailRoute()} className="group">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 relative border border-white/20 cursor-pointer group-hover:scale-105">
                 {/* 置頂標識 */}
                 {article.isSticky && (
                   <div className="absolute top-2 right-2">
@@ -267,7 +304,7 @@ const HomeFeed = () => {
                   {getPriorityIcon(article.priority)}
                 </div>
                 
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
                   {article.title}
                 </h3>
                 
@@ -292,7 +329,9 @@ const HomeFeed = () => {
                   </span>
                 </div>
               </div>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         )}
         
