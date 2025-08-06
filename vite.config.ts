@@ -4,6 +4,8 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // GitHub Pages 部署配置
+  base: mode === 'production' ? '/Marketing-web/' : '/',
   server: {
     host: "::",
     port: 8080,

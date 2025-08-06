@@ -1,9 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { GradientCard } from "@/components/ui/gradient-card";
+import { FadeInSection } from "@/components/ui/fade-in-section";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { School, GraduationCap, Star, Quote, Briefcase } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
 const feedbacks = [
@@ -74,7 +76,7 @@ const feedbacks = [
   },
 ];
 
-function getTypeBadge(type: string) {
+const getTypeBadge = (type: string) => {
   return (
     <Badge
       className={
@@ -87,67 +89,56 @@ function getTypeBadge(type: string) {
       {type}
     </Badge>
   );
-}
+};
 
 const StudentFeedback = () => {
   const [api, setApi] = useState<CarouselApi>();
   const autoplayRef = useRef(
     Autoplay({ 
-      delay: 4000,  // 4秒自動切換
-      stopOnInteraction: true,  // 使用者互動時暫停
-      stopOnMouseEnter: true,   // 滑鼠懸停時暫停
-      stopOnFocusIn: true       // 焦點進入時暫停
+      delay: 4000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: true,
+      stopOnFocusIn: true
     })
   );
 
-  // 當使用者長時間沒有操作時，重新啟動自動輪播
-  useEffect(() => {
-    if (!api) return;
-
-    let timeoutId: NodeJS.Timeout;
-
+  const handleUserInteraction = useCallback(() => {
     const resetAutoplay = () => {
-      // 清除之前的計時器
-      if (timeoutId) clearTimeout(timeoutId);
-      
-      // 8秒後重新啟動自動輪播
-      timeoutId = setTimeout(() => {
+      setTimeout(() => {
         autoplayRef.current?.reset();
       }, 8000);
     };
+    resetAutoplay();
+  }, []);
 
-    // 監聽使用者互動事件
-    const handleUserInteraction = () => {
-      resetAutoplay();
-    };
+  useEffect(() => {
+    if (!api) return;
 
-    // 監聽滑動、點擊等事件
     api.on('pointerDown', handleUserInteraction);
     api.on('select', handleUserInteraction);
 
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
       api.off('pointerDown', handleUserInteraction);
       api.off('select', handleUserInteraction);
     };
-  }, [api]);
+  }, [api, handleUserInteraction]);
 
   return (
     <section className="relative py-20 md:py-32 bg-white overflow-hidden w-full">
       {/* 背景網格 */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
             linear-gradient(#1A4C7A 1px, transparent 1px),
             linear-gradient(90deg, #1A4C7A 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px'
-          }}></div>
-      </div>
+          `,
+          backgroundSize: '60px 60px'
+        }}></div>
+    </div>
 
       <div className="container mx-auto px-6 relative z-20">
         {/* 標題區域 - 依照截圖優化 */}
-        <div className="text-center mb-16">
+      <FadeInSection className="text-center mb-16">
           {/* 膠囊標籤 */}
           <div className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-blue-200 bg-white/80 shadow-sm mb-8 text-blue-800 text-lg font-semibold" style={{letterSpacing: '0.02em'}}>
             <svg className="w-6 h-6 text-blue-400 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
@@ -159,7 +150,7 @@ const StudentFeedback = () => {
           <div className="text-2xl md:text-3xl text-[#2A7DB1] font-medium mb-6">畢業學長姐、在校生的親身經驗分享</div>
           {/* 裝飾橫線 */}
           <div className="w-32 h-1 bg-gradient-to-r from-[#1A4C7A] to-[#3CB1B6] rounded-full mx-auto mb-2"></div>
-        </div>
+      </FadeInSection>
 
         <div className="relative w-screen max-w-none px-0 overflow-visible">
           {/* 卡片區域下方大面積漸層光暈，更柔和的融合 */}
@@ -182,10 +173,8 @@ const StudentFeedback = () => {
                   className="basis-full md:basis-1/3 lg:basis-1/3 overflow-visible px-4"
                 >
                   <div className="relative overflow-visible">
-                    {/* 柔和大範圍光暈 - 統一所有卡片樣式 */}
-                    <div className="absolute -inset-6 md:-inset-8 lg:-inset-10 z-0 pointer-events-none rounded-3xl bg-gradient-to-br from-blue-200/25 via-blue-100/15 to-blue-300/20 blur-2xl opacity-50 group-hover:opacity-70 transition-all duration-500"></div>
-                    <Card className="relative z-10 bg-white/90 backdrop-blur-sm border-white/30 shadow-xl hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2">
-                    <CardContent className="p-8">
+                    <GradientCard variant="subtle" className="p-8 group magnetic-hover">
+                  <div className="relative z-10">
                         {/* 學生頭像和資訊 */}
                         <div className="flex items-center mb-6">
                           <Avatar className="w-16 h-16 mr-4 border-4 border-white shadow-lg">
@@ -193,11 +182,11 @@ const StudentFeedback = () => {
                               src={fb.avatar || "/lovable-uploads/student-activity-2.jpg"} 
                               alt={fb.name}
                             />
-                            <AvatarFallback className="bg-gradient-to-br from-[#1A4C7A] to-[#3CB1B6] text-white font-bold text-lg">
+                          <AvatarFallback className="bg-gradient-to-br from-[#1A4C7A] to-[#3CB1B6] text-white font-bold text-lg">
                               {fb.name.charAt(0)}
-                            </AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1">
+                          </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
                             <h3 className="text-lg font-bold text-[#1A4C7A] mb-1">{fb.name}</h3>
                             <p className="text-sm text-[#2A7DB1] mb-1">{fb.identity}</p>
                             <div className="flex items-center gap-2">
@@ -231,15 +220,15 @@ const StudentFeedback = () => {
                             <div className="flex items-center gap-2 text-sm text-[#1A4C7A]">
                               <Briefcase className="w-4 h-4" />
                               <span className="font-medium">{fb.position}</span>
-                            </div>
+                    </div>
                           )}
-                      </div>
-                    </CardContent>
-                  </Card>
+                    </div>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
+                </GradientCard>
+                  </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
             {/* 將箭頭放在 Carousel 內部，並用絕對定位顯示在最下方中央 */}
             <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex justify-center gap-6 z-40 pb-2">
               <CarouselPrevious
@@ -252,12 +241,12 @@ const StudentFeedback = () => {
               >
                 <svg className="w-7 h-7 text-[#1A4C7A] group-hover:text-white transition" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
               </CarouselNext>
-            </div>
-          </Carousel>
-        </div>
+          </div>
+        </Carousel>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 };
 
 export default StudentFeedback;

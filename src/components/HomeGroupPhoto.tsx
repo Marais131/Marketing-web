@@ -3,6 +3,9 @@
  */
 
 import { Link } from 'react-router-dom';
+import { FadeInSection } from "@/components/ui/fade-in-section";
+import { ElegantImage } from "@/components/ui/elegant-image";
+import { EnhancedButton } from "@/components/ui/enhanced-button";
 
 const HomeGroupPhoto = () => (
   <section className="relative py-20 md:py-32 bg-gradient-to-br from-slate-50 via-white to-slate-50 overflow-hidden">
@@ -75,39 +78,31 @@ const HomeGroupPhoto = () => (
 
     <div className="container mx-auto px-6 relative z-20">
       {/* 標題區域 */}
-      <div className="text-center mb-16">
+      <FadeInSection className="text-center mb-16">
         <h2 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-black text-[#1A4C7A] mb-6 leading-[0.9] tracking-tight">
           我們的團隊
         </h2>
         <p className="text-xl md:text-2xl text-[#2A7DB1] font-medium max-w-3xl mx-auto">
           具備邏輯與行動力的品牌行銷人，專精消費心理與數據分析
         </p>
-      </div>
+      </FadeInSection>
 
       {/* 主要內容區域 */}
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* 團體合照 */}
-        <div className="flex-1 relative group">
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-            <img
-              src="/lovable-uploads/5b1142c5-30f6-4b6a-882f-adfab212c822.png"
-              alt="品牌行銷系團體合照"
-              className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
-              style={{ maxHeight: '500px', objectFit: 'cover' }}
-              onError={(e) => {
-                console.log('圖片載入失敗，已切換到備用圖片');
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop';
-              }}
-            />
-            {/* 光暈效果 */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1A4C7A]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            {/* 邊框裝飾 */}
-            <div className="absolute -inset-1 bg-gradient-to-br from-[#1A4C7A] via-[#2A7DB1] to-[#3CB1B6] rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10"></div>
-          </div>
-        </div>
+        <FadeInSection delay={200} direction="left" className="flex-1 relative">
+          <ElegantImage
+            src="/lovable-uploads/5b1142c5-30f6-4b6a-882f-adfab212c822.png"
+            alt="品牌行銷系團體合照"
+            variant="card"
+            overlay={true}
+            className="w-full h-auto object-cover"
+            containerClassName="magnetic-hover max-h-[500px]"
+          />
+        </FadeInSection>
         
         {/* 文字內容區域 */}
-        <div className="flex-1 text-center lg:text-left space-y-8">
+        <FadeInSection delay={400} direction="right" className="flex-1 text-center lg:text-left space-y-8">
           <div className="space-y-6">
             <h3 className="text-3xl md:text-4xl font-bold text-[#1A4C7A] leading-tight">
               團結 · 多元 · 嚴謹
@@ -136,14 +131,18 @@ const HomeGroupPhoto = () => (
 
           {/* CTA 按鈕 */}
           <div className="pt-4">
-            <Link 
-              to="/contact"
-              className="inline-block bg-gradient-to-r from-[#1A4C7A] to-[#2A7DB1] hover:from-[#2A7DB1] hover:to-[#3CB1B6] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+            <EnhancedButton
+              variant="gradient" 
+              size="lg"
+              animation="shine"
+              asChild
             >
-              加入我們的團隊
-            </Link>
+              <Link to="/contact">
+                加入我們的團隊
+              </Link>
+            </EnhancedButton>
           </div>
-        </div>
+        </FadeInSection>
       </div>
 
       {/* 底部裝飾線 */}

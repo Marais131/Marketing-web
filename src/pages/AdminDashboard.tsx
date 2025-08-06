@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   LayoutDashboard, 
   FileText, 
@@ -162,10 +162,10 @@ const AdminDashboard = () => {
     loadOperationLogs();
     // 載入用戶活動統計
     loadUserActivityStats();
-  }, []);
+  }, [checkSystemStatus, loadPublishedContent, loadUploadedFiles, loadOperationLogs, loadUserActivityStats]);
 
   // 載入已發布內容
-  const loadPublishedContent = async () => {
+  const loadPublishedContent = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.content}`);
@@ -229,10 +229,10 @@ const AdminDashboard = () => {
       ]);
     }
     setIsLoading(false);
-  };
+  }, []);
 
   // 載入已上傳文件
-  const loadUploadedFiles = async () => {
+  const loadUploadedFiles = useCallback(async () => {
     try {
       const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.media}`);
       if (response.ok) {
@@ -242,7 +242,7 @@ const AdminDashboard = () => {
     } catch (error) {
       console.log('載入媒體文件失敗，使用演示模式');
     }
-  };
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
@@ -471,7 +471,7 @@ const AdminDashboard = () => {
   };
 
   // 系統狀態檢測函數
-  const checkSystemStatus = async () => {
+  const checkSystemStatus = useCallback(async () => {
     setIsCheckingStatus(true);
     const newStatus: SystemStatus = {
       overall: 'normal',
@@ -610,7 +610,7 @@ const AdminDashboard = () => {
 
     setSystemStatus(newStatus);
     setIsCheckingStatus(false);
-  };
+  }, [publishedItems.length]);
 
   // 獲取狀態顯示信息
   const getStatusDisplay = (status: 'normal' | 'warning' | 'error') => {
@@ -627,7 +627,7 @@ const AdminDashboard = () => {
   };
 
   // 載入操作記錄
-  const loadOperationLogs = async () => {
+  const loadOperationLogs = useCallback(async () => {
     setIsLoadingLogs(true);
     try {
       const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.operationLogs}?limit=10`);
@@ -663,10 +663,10 @@ const AdminDashboard = () => {
     } finally {
       setIsLoadingLogs(false);
     }
-  };
+  }, []);
 
   // 載入用戶活動統計
-  const loadUserActivityStats = async () => {
+  const loadUserActivityStats = useCallback(async () => {
     try {
       const response = await fetch(`${apiConfig.baseURL}${apiConfig.endpoints.userActivityStats}`);
       if (response.ok) {
@@ -693,7 +693,7 @@ const AdminDashboard = () => {
     } catch (error) {
       console.error('載入用戶活動統計失敗:', error);
     }
-  };
+  }, []);
 
   // 記錄用戶操作
   const logUserOperation = async (action, actionText, target, targetType, targetId, details) => {
