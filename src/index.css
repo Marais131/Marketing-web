@@ -398,6 +398,54 @@
   }
 }
 
+/* 效能優化樣式 */
+.cv-auto { 
+  content-visibility: auto; 
+  contain-intrinsic-size: 800px 1200px; 
+}
+
+/* 尊重使用者動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  * { 
+    animation: none !important; 
+    transition: none !important; 
+  }
+  
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-reverse,
+  .animate-pulse-slow,
+  .animate-heroTitle,
+  .animate-slideInLeft,
+  .animate-slideInRight,
+  .animate-scaleIn {
+    animation: none !important;
+  }
+}
+
+/* 低效能設備優化 */
+@media (max-width: 768px) {
+  .blur-3xl {
+    filter: blur(16px);
+  }
+  
+  .blur-2xl {
+    filter: blur(12px);
+  }
+}
+
+/* 高對比度模式支援 */
+@media (prefers-contrast: high) {
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: none !important;
+  }
+  
+  .bg-gradient-to-br {
+    background: #ffffff !important;
+  }
+}
+
 /* 新增的優雅動畫 */
 @keyframes shimmer {
   0% {

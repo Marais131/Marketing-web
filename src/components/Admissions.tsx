@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import AlumniTestimonials from "@/components/ui/alumni-testimonials";
 
 const Admissions = () => {
   const admissionTypes = [
@@ -140,6 +141,11 @@ const Admissions = () => {
                 </Card>
               ))}
             </div>
+          </div>
+
+          {/* Alumni testimonials */}
+          <div className="mb-16">
+            <AlumniTestimonials />
           </div>
 
           {/* Scholarships and support */}

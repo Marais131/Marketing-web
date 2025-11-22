@@ -2,12 +2,14 @@
  * 團體合照元件放在首頁 Hero 下方，圖片+溫馨短句
  */
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FadeInSection } from "@/components/ui/fade-in-section";
 import { ElegantImage } from "@/components/ui/elegant-image";
 import { EnhancedButton } from "@/components/ui/enhanced-button";
 
-const HomeGroupPhoto = () => (
+const HomeGroupPhoto = () => {
+  const navigate = useNavigate();
+  return (
   <section className="relative py-20 md:py-32 bg-gradient-to-br from-slate-50 via-white to-slate-50 overflow-hidden">
     
     {/* 高級專業背景裝飾 */}
@@ -135,11 +137,9 @@ const HomeGroupPhoto = () => (
               variant="gradient" 
               size="lg"
               animation="shine"
-              asChild
+              onClick={() => navigate('/contact')}
             >
-              <Link to="/contact">
-                加入我們的團隊
-              </Link>
+              加入我們的團隊
             </EnhancedButton>
           </div>
         </FadeInSection>
@@ -151,6 +151,7 @@ const HomeGroupPhoto = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default HomeGroupPhoto;

@@ -1,4 +1,6 @@
 import { Lightbulb, TrendingUp, Briefcase, Layers3 } from "lucide-react";
+import { TestimonialsColumn, type Testimonial } from "@/components/ui/testimonials-columns-1";
+import { motion } from "framer-motion";
 
 const reasons = [
   {
@@ -26,6 +28,67 @@ const reasons = [
     bg: "from-blue-100 via-purple-100 to-pink-100",
   },
 ];
+
+const testimonials: Testimonial[] = [
+  {
+    text: "沒有能夠觸達與說服的策略，再好的產品也不會被看見。行銷是成長槓桿。",
+    image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200",
+    name: "科技新創 CEO",
+    role: "創辦人",
+  },
+  {
+    text: "當我們真正理解用戶，轉化自然發生。資料與洞察是行銷的燃料。",
+    image: "https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?q=80&w=200",
+    name: "資深行銷顧問",
+    role: "Growth Advisor",
+  },
+  {
+    text: "品牌不只是識別，它是每一次互動的承諾與體驗。",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200",
+    name: "品牌總監",
+    role: "Brand Director",
+  },
+  {
+    text: "行銷把商業語言轉譯成顧客價值，讓策略真正落地。",
+    image: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200",
+    name: "消費品業務負責人",
+    role: "BU Head",
+  },
+  {
+    text: "內容、通路、產品三者合一時，成長就被系統化。這是行銷的力量。",
+    image: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200",
+    name: "電商營運長",
+    role: "COO",
+  },
+  {
+    text: "好的行銷是讓顧客成為品牌故事的一部分。",
+    image: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=200",
+    name: "內容策略主管",
+    role: "Content Lead",
+  },
+  {
+    text: "行銷與產品相輔相成。洞察需求、快速實驗，才是競爭優勢。",
+    image: "https://images.unsplash.com/photo-1541534401786-2077eed87a72?q=80&w=200",
+    name: "產品經理",
+    role: "PM",
+  },
+  {
+    text: "沒有市場驗證的創意只是靈感；被驗證的創意才是生意。",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200",
+    name: "廣告策略總監",
+    role: "Strategy Director",
+  },
+  {
+    text: "在資源有限的條件下，行銷讓每一分投入都能產生最大影響。",
+    image: "https://images.unsplash.com/photo-1543966888-7c1dc482a810?q=80&w=200",
+    name: "中小企業主",
+    role: "Owner",
+  },
+];
+
+const testiFirst = testimonials.slice(0, 3);
+const testiSecond = testimonials.slice(3, 6);
+const testiThird = testimonials.slice(6, 9);
 
 const WhyChooseMarketing = () => (
   <section className="w-full relative z-10 overflow-hidden">
@@ -119,6 +182,27 @@ const WhyChooseMarketing = () => (
           </div>
         ))}
       </div>
+
+      {/* 行銷很重要：來自企業主與專家的一致聲音 */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="mt-16"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1A4C7A] mb-4">
+          為什麼行銷這麼重要？
+        </h2>
+        <p className="text-center text-[#2A7DB1] mb-8">
+          坊間許多行銷專家與企業主都認為：行銷是推動成長的核心引擎。
+        </p>
+        <div className="flex justify-center gap-6 mt-4 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] max-h-[540px] overflow-hidden">
+          <TestimonialsColumn testimonials={testiFirst} duration={15} />
+          <TestimonialsColumn testimonials={testiSecond} className="hidden md:block" duration={19} />
+          <TestimonialsColumn testimonials={testiThird} className="hidden lg:block" duration={17} />
+        </div>
+      </motion.div>
     </div>
   </section>
 );

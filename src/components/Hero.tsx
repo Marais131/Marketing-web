@@ -87,6 +87,12 @@ const Hero = () => {
             alt="中國文化大學行銷學系-培養品牌端視野的新世代行銷人才"
             className="h-[240px] md:h-[320px] lg:h-[380px] xl:h-[420px] w-auto mb-2 md:mb-0 animate-float relative z-10"
             style={{ minWidth: "260px", maxWidth: "500px" }}
+            width={420}
+            height={420}
+            decoding="async"
+            // DOM 屬性需要小寫寫法
+            fetchpriority="high"
+            loading="eager"
           />
           {/* 主標題，淡入上移動畫 */}
           <h1
@@ -118,9 +124,17 @@ const Hero = () => {
             {!showVideo ? (
               <>
                 <img
-                  src="https://img.youtube.com/vi/kcLHZOMzuXE/maxresdefault.jpg"
+                  src="https://img.youtube.com/vi/kcLHZOMzuXE/hqdefault.jpg"
+                  srcSet="https://img.youtube.com/vi/kcLHZOMzuXE/mqdefault.jpg 320w,
+                          https://img.youtube.com/vi/kcLHZOMzuXE/hqdefault.jpg 480w,
+                          https://img.youtube.com/vi/kcLHZOMzuXE/sddefault.jpg 640w"
+                  sizes="(max-width: 640px) 320px, (max-width: 768px) 480px, 640px"
                   alt="系所介紹影片"
                   className="w-full h-full object-cover object-center aspect-[16/9]"
+                  width={640}
+                  height={360}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <button
                   onClick={() => setShowVideo(true)}

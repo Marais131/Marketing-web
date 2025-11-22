@@ -65,6 +65,9 @@ const Navbar = () => {
             size="sm"
             className="md:hidden p-2 hover:bg-[#3CB1B6]/10 text-[#1A4C7A]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMobileMenuOpen ? "關閉導航選單" : "開啟導航選單"}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </Button>
@@ -72,7 +75,12 @@ const Navbar = () => {
 
         {/* 移動端菜單 */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 glass-effect border-b border-[#1A4C7A]/20 shadow-2xl animate-fade-in-scale">
+          <div 
+            id="mobile-menu"
+            className="md:hidden absolute top-full left-0 right-0 glass-effect border-b border-[#1A4C7A]/20 shadow-2xl animate-fade-in-scale"
+            role="navigation"
+            aria-label="主要導航選單"
+          >
             <div className="container mx-auto px-4 py-6">
               <div className="flex flex-col space-y-2">
                 {navItems.map((item) => (

@@ -7,6 +7,8 @@ export { QuoteBlock } from "./quote-block";
 export { ProgressIndicator } from "./progress-indicator";
 export { ElegantImage } from "./elegant-image";
 export { EnhancedButton } from "./enhanced-button";
+export { Typewriter } from "./typewriter";
+export { Gallery4 } from "./gallery4";
 
 // Re-export original shadcn/ui components
 export { Button, buttonVariants } from "./button";

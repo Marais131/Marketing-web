@@ -11,6 +11,8 @@ interface ElegantImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   overlay?: boolean;
   zoom?: boolean;
   loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 const ElegantImage: React.FC<ElegantImageProps> = ({
@@ -22,6 +24,8 @@ const ElegantImage: React.FC<ElegantImageProps> = ({
   overlay = false,
   zoom = true,
   loading = "lazy",
+  decoding = "async",
+  fetchPriority,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -61,6 +65,9 @@ const ElegantImage: React.FC<ElegantImageProps> = ({
           src={src}
           alt={alt}
           loading={loading}
+          decoding={decoding}
+          // React 不識別駝峰寫法到 DOM，改為小寫屬性傳遞
+          {...(fetchPriority ? { fetchpriority: fetchPriority } : {})}
           onLoad={() => setIsLoaded(true)}
           onError={() => setHasError(true)}
           className={cn(
